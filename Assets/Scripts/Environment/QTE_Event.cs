@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace PudimdimGames{
     public class QTE_Event : MonoBehaviour{
 
@@ -31,7 +32,7 @@ namespace PudimdimGames{
             if(UnityEngine.Input.GetKeyDown("e")){
                 lockpickIcon.SetActive(true);
                 fillAmount += fillValue;
-                // Sons de tentando abrir a porta
+                //AudioManager.Instance.PlaySFX(lockpickingSound, 1f);
             }
 
             timeThreshold += Time.deltaTime;    
@@ -42,7 +43,7 @@ namespace PudimdimGames{
             }
 
             if(CountDownTimer.TimerInstance.noise){
-                // Som de falhar ao tentar abrir a porta
+                //AudioManager.Instance.PlaySFX(lockpickFailSound, 1f);
             }
 
             if(fillAmount < 0){

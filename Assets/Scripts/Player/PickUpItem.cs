@@ -136,7 +136,8 @@ namespace PudimdimGames{
             if(noiseMode){
                 itemSound = true;
                 getItemSound = itemSound;
-                // Tocar o som do item
+                //Papae.UnitySDK.Managers.AudioManager.Instance.PlaySFX(itemNoise, 1f);
+                
             }
         }
 

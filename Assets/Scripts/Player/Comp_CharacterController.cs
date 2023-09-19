@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace PudimdimGames
 {
     public enum CharacterStance{Standing, Crouching, Proning}
@@ -71,7 +72,12 @@ namespace PudimdimGames
 
     
         // Start is called before the first frame update
-        void Start(){
+        void Start()
+        {
+           /* if(CheatController.cheatInstance != null)    
+                if(CheatController.cheatInstance.canLoad)
+                    LoadGame(); */
+
             _animator = GetComponent<Animator>();
             _collider = GetComponent<CapsuleCollider>();
             _inputs = GetComponent<Comp_PlayerInputs>(); 
@@ -290,26 +296,65 @@ namespace PudimdimGames
 
         void OnTriggerEnter(Collider other){
             if(other.gameObject.CompareTag("SavePoint")){     
-                // Save Game
+                StartCoroutine(SaveTextCorroutine());
+
+
+
+               /* // Script.Method(name, value) - Estrutura da linha
+                BlazeSave.SaveData("PlayerPosX", gameObject.transform.position.x);
+                BlazeSave.SaveData("PlayerPosY", gameObject.transform.position.y);
+                BlazeSave.SaveData("PlayerPosZ", gameObject.transform.position.z);
+                for (index = 0; index < doors.Length; index++){
+                    BlazeSave.SaveData("CanOpenDoor" + index, doors[index].GetComponent<Door>().canOpenGet);
+                }
+                
+                for (index = 0; index < vents.Length; index++){
+                    BlazeSave.SaveData("CanOpenVent" + index, 
+                        vents[index].GetComponent<Teleporting>().canTeleport);
+                }
+
+                
+                CheatController.cheatInstance.canLoad = true;*/
             }
 
             if(other.gameObject.CompareTag("Prisão")){
-                // Mudar música da para a sua área de acordo com o nome(Prisão)
+                //AudioManager.Instance.PlayBGM(prisaoSound, MusicTransition.LinearFade, 2f);
 
             }else if(other.gameObject.CompareTag("CentralComando")){
-                // Mudar música da para a sua área de acordo com o nome(CentralComando)
+                //AudioManager.Instance.PlayBGM(centralComandoSound, MusicTransition.LinearFade, 2f);
+
             }else if(other.gameObject.CompareTag("SalaFinal")){
-                // Mudar música da para a sua área de acordo com o nome(SalaFinal)
+                //AudioManager.Instance.PlayBGM(salaFinalSound, MusicTransition.LinearFade, 2f);
+
             }else if(other.gameObject.CompareTag("OpEspeciais")){
-                // Mudar música da para a sua área de acordo com o nome(OpEspeciais)
+                //AudioManager.Instance.PlayBGM(opEspeciaisSound, MusicTransition.LinearFade, 2f);
+
             }else if(other.gameObject.CompareTag("TestesNucleares")){
-                // Mudar música da para a sua área de acordo com o nome(TestesNucleares)
+                //AudioManager.Instance.PlayBGM(salaTesteNuclearSound, MusicTransition.LinearFade, 2f);
             }
+
+
+
         }
 
 
         public void LoadGame(){   
-            // Load saved game
+               /* float xvalue = BlazeSave.LoadData<float>("PlayerPosX");
+                float yvalue = BlazeSave.LoadData<float>("PlayerPosY");
+                float zvalue = BlazeSave.LoadData<float>("PlayerPosZ");
+                
+                for (index = 0; index < doors.Length; index++){
+                    doors[index].GetComponent<Door>().canOpenGet = 
+                        BlazeSave.LoadData<bool>("CanOpenDoor" + index);
+                } 
+                 
+                for (index = 0; index < vents.Length; index++){
+                    vents[index].GetComponent<Teleporting>().canTeleport = 
+                        BlazeSave.LoadData<bool>("CanOpenVent" + index);
+                }   
+
+                gameObject.transform.position = new Vector3(xvalue, yvalue, zvalue);*/
+                
         }
         
         

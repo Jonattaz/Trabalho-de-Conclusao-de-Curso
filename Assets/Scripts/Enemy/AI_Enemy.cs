@@ -33,6 +33,7 @@ namespace PudimdimGames{
         private float isSpinningTime; // Search at player-noise-position
         public float spinTime = 3f;
 
+
         // Wait time at waypoint for patrolling
         private float waitTime;
         [SerializeField] private float startWaitTime;
@@ -220,6 +221,8 @@ namespace PudimdimGames{
                     stateText = "You Got Caught";
                     nav.speed = idleSpeed;
                     caught = true;
+                   /* if(!CheatController.cheatInstance.getCheat)
+                        GameMenu.gameMenuInstance.getCaughtInfo = caught;*/
                }
             
         }
