@@ -971,11 +971,11 @@ MonoBehaviour:
   playerObj: {fileID: 95090829}
   orientation: {fileID: 802641009}
   rotationSpeed: 5
-  walkSpeed: 7
-  sprintSpeed: 10
+  walkSpeed: 3
+  sprintSpeed: 5
   groundDrag: 7.5
   state: 0
-  crouchSpeed: 3.5
+  crouchSpeed: 1.5
   crouchYScale: 0.5
   sprintKey: 304
   crouchKey: 306
