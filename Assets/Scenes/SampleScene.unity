@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -915,6 +915,7 @@ GameObject:
   - component: {fileID: 179442613}
   - component: {fileID: 179442614}
   - component: {fileID: 179442615}
+  - component: {fileID: 179442616}
   m_Layer: 0
   m_Name: PJ
   m_TagString: Player
@@ -983,6 +984,26 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &179442616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179442609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e5e1c74098e494db5ebdc977798381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 802641009}
+  attackPoint: {fileID: 189351142}
+  itemToThrow: {fileID: 2577358083446680476, guid: ffdc1c5cbb37e1343811caa0e549f887, type: 3}
+  totalThrows: 50
+  throwCoolDown: 0.1
+  throwKey: 103
+  throwForce: 70
+  throwUpwardForce: 0
 --- !u!1 &189351141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,9 +1030,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189351141}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.731, z: 0.304}
-  m_LocalScale: {x: 0.71995, y: 0.1179, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.731, z: 0.30399996}
+  m_LocalScale: {x: 0.71994996, y: 0.117899984, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 95090829}
@@ -3033,7 +3054,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802641008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.0272002, z: 2.1364}
+  m_LocalPosition: {x: 0, y: 1.0272001, z: 2.1364}
   m_LocalScale: {x: 0.43197, y: 0.14147998, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3890,8 +3911,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.12606622, y: 0.49129233, z: -0.07211846, w: 0.8588004}
-  m_LocalPosition: {x: -7.753145, y: 3.119, z: -6.1376667}
+  m_LocalRotation: {x: -0.12828788, y: 0.50368726, z: -0.07593725, w: -0.8509259}
+  m_LocalPosition: {x: -4.551228, y: 3.131, z: -5.333999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
