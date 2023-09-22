@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThrowItem : MonoBehaviour{
     [Header("References")]
     [SerializeField] private Transform orientation;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private GameObject itemToThrow;
+    [SerializeField] private Text throwsText;
 
     [Header("Settings")]
     [SerializeField] private int totalThrows;
@@ -53,17 +55,16 @@ public class ThrowItem : MonoBehaviour{
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
         totalThrows--;
+        throwsText.text = totalThrows.ToString();
 
-        // Implement throw cooldown
+        // Throw cooldown
         Invoke(nameof(ResetThrow), throwCoolDown);
 
-        // Implement self destruction after a certain amount of time
     }
 
     private void ResetThrow(){
         readyToThrow = true;
     }
-
 }
 
 
