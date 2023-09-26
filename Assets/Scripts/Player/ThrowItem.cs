@@ -8,10 +8,10 @@ public class ThrowItem : MonoBehaviour{
     [SerializeField] private Transform orientation;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private GameObject itemToThrow;
-    [SerializeField] private Text throwsText;
+    public Text throwsText;
 
     [Header("Settings")]
-    [SerializeField] private int totalThrows;
+    public int totalThrows;
     [SerializeField] private float throwCoolDown;
 
     [Header("Throwing")]
@@ -22,6 +22,7 @@ public class ThrowItem : MonoBehaviour{
 
     // Start is called before the first frame update
     void Start(){
+        throwsText.text = totalThrows.ToString();
         readyToThrow = true;        
     }
 
