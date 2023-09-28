@@ -5854,7 +5854,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357300190}
-  m_LocalRotation: {x: 0.16036716, y: 0.000000018988336, z: -0.0000000030850345, w: 0.98705745}
+  m_LocalRotation: {x: 0.16036716, y: -0.000000018988336, z: 0.0000000030850345, w: 0.98705745}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8269,6 +8269,8 @@ GameObject:
   - component: {fileID: 2016958546}
   - component: {fileID: 2016958547}
   - component: {fileID: 2016958548}
+  - component: {fileID: 2016958549}
+  - component: {fileID: 2016958550}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -8309,6 +8311,8 @@ MonoBehaviour:
   _VisionConeColor: {r: 1, g: 0.00000019073488, b: 0, a: 0.25}
   _HearingRange: 4
   _HearingRangeColor: {r: 1, g: 0.87176263, b: 0, a: 0.25}
+  _ProximityDetectionRange: 2
+  _ProximityRangeColor: {r: 1, g: 1, b: 1, a: 0.25}
 --- !u!114 &2016958547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8336,6 +8340,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb1efee9a1d53b4ea1d6669d2599f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2016958549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016958544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ee5bb727738c6469afecb9cec9a295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2016958550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016958544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee133e9d05e40d54bb1bf156dcd4d349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VisionSensitivity:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.009533564
+      outSlope: 0.009533564
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.22500002
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  VisionMinimumAwareness: 1
+  VisionAwarenessBuildRate: 10
+  HearingMinimumAwareness: 0
+  HearingAwarenessBuildRate: 5
+  ProximityMinimumAwareness: 0
+  ProximityAwarenessBuildRate: 1
+  AwarenessDecayDelay: 0.1
+  AwarenessDecayRate: 0.1
 --- !u!1 &2020951166
 GameObject:
   m_ObjectHideFlags: 0

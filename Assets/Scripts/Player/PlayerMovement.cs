@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour{
         if(grounded && Input.GetKey(sprintKey)){
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
-            HearingManager.Instance.OnSoundEmitted(transform.position, EHeardSoundCategory.EFootstep, 0.1f);
+            HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, 1f);
         }
 
         // Mode - Walking

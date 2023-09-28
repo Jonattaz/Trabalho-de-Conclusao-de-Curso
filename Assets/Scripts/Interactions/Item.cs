@@ -42,7 +42,7 @@ public class Item : MonoBehaviour, IInteractable{
         
         if(thrown){
             if(other.gameObject.tag != "Player" && other.gameObject.tag != "Enemy"){
-                HearingManager.Instance.OnSoundEmitted(transform.position, EHeardSoundCategory.EItem, 0.2f);
+                HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EItem, 2f);
                 Destroy(this.gameObject, destroyTime);
             }
         }
