@@ -19,7 +19,7 @@ public class VisionSensor : MonoBehaviour{
     void Update(){
         
         // Check all candidates
-        for (int index = 0; index < DetectableTargetManager.Instance.AllTargets.Count; index++){
+        for (int index = 0; index < DetectableTargetManager.Instance.AllTargets.Count; ++index){
             
             var candidateTarget = DetectableTargetManager.Instance.AllTargets[index];
 
@@ -38,13 +38,13 @@ public class VisionSensor : MonoBehaviour{
             vectorToTarget.Normalize();
 
             // If out of vision cone - cannot see
-            if(Vector3.Dot(vectorToTarget.normalized, LinkedAI.EyeDirection) < LinkedAI.cosVisionConeAngle){
+            if(Vector3.Dot(vectorToTarget, LinkedAI.EyeDirection) < LinkedAI.cosVisionConeAngle){
                 continue;
             }
 
             // Raycast to target passes
             RaycastHit hitResult;
-            if(Physics.Raycast(LinkedAI.EyeLocation, vectorToTarget.normalized, out hitResult,LinkedAI.VisionConeRange, DetectionMask, QueryTriggerInteraction.Collide)){
+            if(Physics.Raycast(LinkedAI.EyeLocation, vectorToTarget, out hitResult, LinkedAI.VisionConeRange, DetectionMask, QueryTriggerInteraction.Collide)){
                 
                 if(hitResult.collider.GetComponentInParent<DetectableTarget>() == candidateTarget)
                     LinkedAI.ReportCanSee(candidateTarget);    

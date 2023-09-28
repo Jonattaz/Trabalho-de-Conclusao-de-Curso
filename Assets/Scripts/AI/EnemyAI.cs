@@ -55,47 +55,39 @@ public class EnemyAI : MonoBehaviour{
 
     public void ReportCanSee(DetectableTarget seen){
         Awareness.ReportCanSee(seen);
-        //Debug.Log("Can see " + seen.gameObject.name);
     }
 
     public void ReportCanHear(GameObject source, Vector3 location,EHeardSoundCategory category, float intensity){
-        Awareness.ReportCanHear(gameObject, location, category, intensity);
-        //Debug.Log("Heard Sound " + category + " at " + location.ToString() + " with intensity of " + intensity);
+        Awareness.ReportCanHear(source, location, category, intensity);
     }
 
     public void ReportInProximity(DetectableTarget target){
         Awareness.ReportInProximity(target);
-        //Debug.Log("Can sense " + target.gameObject.name);
     }
 
     public void OnSuspicious(){
         
-        Debug.LogWarning("I hear you");
+        Debug.Log("I hear you");
     }
 
     public void OnDetected(GameObject target){
-        Debug.LogWarning("I see you " + target.gameObject.name);
+        Debug.Log("I see you " + target.gameObject.name);
     }
 
     public void OnFullyDetected(GameObject target){
-        Debug.LogWarning("Charge! " + target.gameObject.name);
+        Debug.Log("Charge! " + target.gameObject.name);
     }
-
     
-    public void OnLostDetection(GameObject target){
-        Debug.LogWarning("I see you " + target.gameObject.name);
-    }
-
     public void OnLostDetected(GameObject target){
-        Debug.LogWarning("Where are you " + target.gameObject.name);
+        Debug.Log("Where are you " + target.gameObject.name);
     }
     
     public void OnLostSuspicion(){
-        Debug.LogWarning("Where did you go");
+        Debug.Log("Where did you go");
     }
 
     public void OnFullyLost(){
-        Debug.LogWarning(" Must be nothing");
+        Debug.Log(" Must be nothing");
     }
 }
 

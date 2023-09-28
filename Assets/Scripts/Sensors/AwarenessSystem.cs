@@ -25,10 +25,13 @@ class TrackedTarget{
         LastSensedTime = Time.time;
         Awareness      = Mathf.Clamp(Mathf.Max(Awareness, minAwareness) + awareness, 0f, 2f);
 
-        if(oldAwareness < 2f && awareness >= 2f){
+        if(oldAwareness < 2f && Awareness >= 2f){
             return true;
         }
-        if(oldAwareness < 1f && awareness >= 1f){
+        if(oldAwareness < 1f && Awareness >= 1f){
+            return true;
+        }
+        if(oldAwareness <= 0f && Awareness >= 0f){
             return true;
         }
         return false;
@@ -52,10 +55,6 @@ class TrackedTarget{
         if(oldAwareness >= 1f && Awareness < 1f){
             return true;
         }
-        if(oldAwareness <= 0f && Awareness >= 0f){
-            return true;
-        }
-
         return Awareness <= 0f;
     }
 
@@ -90,15 +89,24 @@ public class AwarenessSystem : MonoBehaviour{
 
         List<GameObject> toCleanup = new List<GameObject>();
         foreach( var targetGO in Targets.Keys){
+            
             if(Targets[targetGO].DecayAwareness(AwarenessDecayDelay, AwarenessDecayRate * Time.deltaTime)){
+                
                 if(Targets[targetGO].Awareness <= 0f){
+                    
                     LinkedAI.OnFullyLost();
                     toCleanup.Add(targetGO);
+                
                 }else{
+                
                     if(Targets[targetGO].Awareness >= 1f){
+                
                         LinkedAI.OnLostDetected(targetGO);
+                
                     }else{
+                
                         LinkedAI.OnLostSuspicion();
+                
                     }
                 }             
             }
