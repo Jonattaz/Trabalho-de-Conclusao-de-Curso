@@ -46,6 +46,10 @@ public class EnemyAI : MonoBehaviour{
         Debug.Log(" Can see " + seen.gameObject.name);
     }
 
+    public void ReportCanHear(Vector3 location,EHeardSoundCategory category, float intensity){
+        Debug.Log(" Heard Sound " + category + " at " + location.ToString() + " with intensity of " + intensity);
+    }
+
 }
 
 // Only Unity Editor

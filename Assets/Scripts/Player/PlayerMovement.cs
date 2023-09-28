@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
+        
         // Ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
@@ -113,6 +114,7 @@ public class PlayerMovement : MonoBehaviour{
         if(grounded && Input.GetKey(sprintKey)){
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
+            HearingManager.Instance.OnSoundEmitted(transform.position, EHeardSoundCategory.EFootstep, 0.1f);
         }
 
         // Mode - Walking
