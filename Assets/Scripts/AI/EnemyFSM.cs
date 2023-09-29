@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFSM : EnemyBase{
+public class EnemyFSM : MonoBehaviour{
 
     public enum EState{
         Idle,
@@ -43,18 +43,17 @@ public class EnemyFSM : EnemyBase{
     }
 
      
-    public override void OnTargetDetected(GameObject target){
+    public void OnTargetDetected(GameObject target){
 
-        base.OnTargetDetected(target);
-
+        Debug.Log("[" + gameObject.name + "] Detected " + target.name);
         LastSeenTarget = target.transform;
         SwitchToState(EState.SawSomething);    
 
     }
 
-    public override void OnTargetLost(GameObject target){
+    public void OnTargetLost(GameObject target){
     
-        base.OnTargetLost(target);
+        Debug.Log("[" + gameObject.name + "] Lost " + target.name);
 
         LastSeenTarget = null;
 
@@ -66,9 +65,9 @@ public class EnemyFSM : EnemyBase{
 
     }
     
-    public override void OnSoundHeard(Vector3 location){
+    public void OnSoundHeard(Vector3 location){
                 
-        base.OnSoundHeard(location);
+        Debug.Log("[" + gameObject.name + "] heard something at " + location);
 
         LastHeardLocation = location;
 

@@ -65,6 +65,7 @@ public class EnemyAI : MonoBehaviour{
         Awareness.ReportInProximity(target);
     }
 
+    // Add the reactions to the On Methods
     public void OnSuspicious(){
         
         Debug.Log("I hear you");
