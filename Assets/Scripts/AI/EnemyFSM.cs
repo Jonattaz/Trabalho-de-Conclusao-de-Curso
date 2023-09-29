@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyFSM : MonoBehaviour{
 
@@ -32,8 +33,12 @@ public class EnemyFSM : MonoBehaviour{
 
     Transform LastSeenTarget;
 
+    NavMeshAgent NavMeshAgent;
+
     // Start is called before the first frame update
     void Start(){
+        NavMeshAgent = GetComponent<NavMeshAgent>();
+        NavMeshAgent.enabled = true;
         SwitchToState(CurrentState);
     }
 
@@ -107,6 +112,8 @@ public class EnemyFSM : MonoBehaviour{
 
     private void UpdateState(){
 
+        NavMeshAgent.speed = MovementSpeed;
+
         if(CurrentState ==  EState.Idle){
         
             UpdateState_Idle();
@@ -152,7 +159,7 @@ public class EnemyFSM : MonoBehaviour{
         }
 
         // Move towards the point - Test this later using NavMesh instead of MoveTowards
-        transform.position = Vector3.MoveTowards(transform.position, PatrolPoints[CurrentPatrolPoint].position, MovementSpeed * Time.deltaTime);
+        NavMeshAgent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
 
         // Face the patrol point
         transform.LookAt(PatrolPoints[CurrentPatrolPoint], Vector3.up);
