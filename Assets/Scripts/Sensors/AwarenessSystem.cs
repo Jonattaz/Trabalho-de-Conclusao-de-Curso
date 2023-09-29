@@ -134,7 +134,7 @@ public class AwarenessSystem : MonoBehaviour{
             }else if (Targets[targetGO].Awareness >= 1f){
                 LinkedAI.OnDetected(targetGO);
             }else{
-                LinkedAI.OnSuspicious();
+                LinkedAI.OnSuspicious(targetGO);
             }
         }
     }

@@ -36,11 +36,13 @@ public class EnemyAI : MonoBehaviour{
     public float cosVisionConeAngle{get; private set;} = 0f;
 
     AwarenessSystem Awareness;
+    EnemyFSM EnemyMovement;
 
     // Awake is called when the script instance is being loaded.
     void Awake(){
         cosVisionConeAngle = Mathf.Cos(VisionConeAngle * Mathf.Deg2Rad);
         Awareness = GetComponent<AwarenessSystem>();
+        EnemyMovement = GetComponent<EnemyFSM>();
     }
 
     // Start is called before the first frame update
@@ -65,28 +67,38 @@ public class EnemyAI : MonoBehaviour{
         Awareness.ReportInProximity(target);
     }
 
+
     // Add the reactions to the On Methods. Reference EnemyFSM script here
-    public void OnSuspicious(){
-        
+
+    // Go see object thrown
+    public void OnSuspicious(GameObject target){
         Debug.Log("I hear you");
+        EnemyMovement.OnSoundHeard(target);
+
     }
 
+    // Start a idle moment and then after seconds continue patrolling
     public void OnDetected(GameObject target){
         Debug.Log("I see you " + target.gameObject.name);
     }
 
+    // Chase player
     public void OnFullyDetected(GameObject target){
         Debug.Log("Charge! " + target.gameObject.name);
     }
     
+    
+    // Start a idle moment and then after seconds continue patrolling
     public void OnLostDetected(GameObject target){
         Debug.Log("Where are you " + target.gameObject.name);
     }
     
+    // Start patrolling
     public void OnLostSuspicion(){
         Debug.Log("Where did you go");
     }
 
+    // Start patrolling
     public void OnFullyLost(){
         Debug.Log(" Must be nothing");
     }

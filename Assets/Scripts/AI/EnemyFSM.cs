@@ -29,7 +29,7 @@ public class EnemyFSM : MonoBehaviour{
 
     int CurrentPatrolPoint;
 
-    Vector3 LastHeardLocation;
+    GameObject LastHeardLocation;
 
     Transform LastSeenTarget;
 
@@ -49,17 +49,12 @@ public class EnemyFSM : MonoBehaviour{
 
      
     public void OnTargetDetected(GameObject target){
-
-        Debug.Log("[" + gameObject.name + "] Detected " + target.name);
         LastSeenTarget = target.transform;
         SwitchToState(EState.SawSomething);    
-
     }
 
     public void OnTargetLost(GameObject target){
     
-        Debug.Log("[" + gameObject.name + "] Lost " + target.name);
-
         LastSeenTarget = null;
 
         if(CurrentState == EState.SawSomething){
@@ -70,10 +65,8 @@ public class EnemyFSM : MonoBehaviour{
 
     }
     
-    public void OnSoundHeard(Vector3 location){
+    public void OnSoundHeard(GameObject location){
                 
-        Debug.Log("[" + gameObject.name + "] heard something at " + location);
-
         LastHeardLocation = location;
 
         SwitchToState(EState.HeardSomething);
@@ -95,7 +88,7 @@ public class EnemyFSM : MonoBehaviour{
         }else if(newState == EState.HeardSomething){
 
             // Look at the sound source for a set time
-            transform.rotation = Quaternion.LookRotation(LastHeardLocation - transform.position, Vector3.up);
+            transform.rotation = Quaternion.LookRotation(LastHeardLocation.transform.position - transform.position, Vector3.up);
             ListenTimeRemaning = ListenTme;
 
         }else if(newState == EState.SawSomething){
@@ -167,7 +160,7 @@ public class EnemyFSM : MonoBehaviour{
     }
 
     private void UpdateState_HeardSomething(){
-
+  
         ListenTimeRemaning -= Time.deltaTime;
 
         // Nothing heard - Patrol
@@ -175,12 +168,15 @@ public class EnemyFSM : MonoBehaviour{
 
             SwitchToState(EState.Patrolling);
 
+        }else{
+            
+            if(LastHeardLocation != null)
+                NavMeshAgent.SetDestination(LastHeardLocation.transform.position);
         }
 
     }    
 
     private void UpdateState_SawSomething(){
-
         transform.LookAt(LastSeenTarget, Vector3.up);
 
     }

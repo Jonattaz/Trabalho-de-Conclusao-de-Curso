@@ -9497,7 +9497,7 @@ MonoBehaviour:
   _VisionConeAngle: 70
   _VisionConeRange: 4
   _VisionConeColor: {r: 1, g: 0.00000019073488, b: 0, a: 0.25}
-  _HearingRange: 4
+  _HearingRange: 10
   _HearingRangeColor: {r: 1, g: 0.87176263, b: 0, a: 0.25}
   _ProximityDetectionRange: 2
   _ProximityRangeColor: {r: 1, g: 1, b: 1, a: 0.25}
@@ -9585,12 +9585,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  VisionMinimumAwareness: 1
-  VisionAwarenessBuildRate: 10
+  VisionMinimumAwareness: 0.5
+  VisionAwarenessBuildRate: 5
   HearingMinimumAwareness: 0
-  HearingAwarenessBuildRate: 5
+  HearingAwarenessBuildRate: 10
   ProximityMinimumAwareness: 0
-  ProximityAwarenessBuildRate: 1
+  ProximityAwarenessBuildRate: 0.5
   AwarenessDecayDelay: 0.1
   AwarenessDecayRate: 0.1
 --- !u!114 &2016958551
