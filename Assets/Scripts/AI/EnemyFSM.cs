@@ -10,6 +10,7 @@ public class EnemyFSM : MonoBehaviour{
         Patrolling,
         SawSomething,
         HeardSomething,
+        Chase
     }
 
     [SerializeField] EState CurrentState;
@@ -72,10 +73,17 @@ public class EnemyFSM : MonoBehaviour{
         SwitchToState(EState.HeardSomething);
 
     }
+
+    public void OnChase(GameObject target){
+        
+        LastSeenTarget = target;
+        SwitchToState(EState.Chase);
+    }
     
 
     void SwitchToState(EState newState){
         
+        MovementSpeed = MovementSpeedValueRef;
         // Initialise based on the state
         if(newState == EState.Idle){
         
@@ -95,9 +103,12 @@ public class EnemyFSM : MonoBehaviour{
 
             // Look at target
             transform.rotation = Quaternion.LookRotation(LastSeenTarget.transform.position - transform.position, Vector3.up);
-            transform.LookAt(LastSeenTarget.transform, Vector3.up);
             AttentionTimeRemaning = AttentionTime;
 
+        }else if(newState == EState.Chase){
+
+            transform.rotation = Quaternion.LookRotation(LastSeenTarget.transform.position - transform.position, Vector3.up);
+    
         }
 
         // Update state and debug display
@@ -125,6 +136,8 @@ public class EnemyFSM : MonoBehaviour{
 
             UpdateState_SawSomething();
 
+        }else if(CurrentState == EState.Chase){
+            UpdateState_Chase();
         }
     }
 
@@ -189,6 +202,16 @@ public class EnemyFSM : MonoBehaviour{
             SwitchToState(EState.Patrolling);
 
         }
+    }
+
+    private void UpdateState_Chase(){
+
+        if(LastSeenTarget != null){
+            MovementSpeed = MovementSpeedValueRef;
+
+            NavMeshAgent.SetDestination(LastSeenTarget.transform.position);
+        }
+
     }
 }
 
