@@ -9,7 +9,7 @@ public class EnemyFSM : MonoBehaviour{
         Idle,
         Patrolling,
         SawSomething,
-        HeardSomething
+        HeardSomething,
     }
 
     [SerializeField] EState CurrentState;
@@ -23,20 +23,20 @@ public class EnemyFSM : MonoBehaviour{
     [SerializeField] float IdleMaxTime = 10f;
 
     [SerializeField]  float ListenTme = 5f;
-
+    [SerializeField] float AttentionTime = 5f ;
     float IdleTimeRemaning;
     float ListenTimeRemaning;
-
+    float AttentionTimeRemaning;
     int CurrentPatrolPoint;
-
     GameObject LastHeardLocation;
-
-    Transform LastSeenTarget;
-
+    GameObject LastSeenTarget;
+    float MovementSpeedValueRef;
     NavMeshAgent NavMeshAgent;
 
     // Start is called before the first frame update
     void Start(){
+
+        MovementSpeedValueRef = MovementSpeed;
         NavMeshAgent = GetComponent<NavMeshAgent>();
         NavMeshAgent.enabled = true;
         SwitchToState(CurrentState);
@@ -49,11 +49,11 @@ public class EnemyFSM : MonoBehaviour{
 
      
     public void OnTargetDetected(GameObject target){
-        LastSeenTarget = target.transform;
+        LastSeenTarget = target;
         SwitchToState(EState.SawSomething);    
     }
 
-    public void OnTargetLost(GameObject target){
+    public void OnTargetLost(){
     
         LastSeenTarget = null;
 
@@ -94,7 +94,9 @@ public class EnemyFSM : MonoBehaviour{
         }else if(newState == EState.SawSomething){
 
             // Look at target
-            transform.LookAt(LastSeenTarget, Vector3.up);
+            transform.rotation = Quaternion.LookRotation(LastSeenTarget.transform.position - transform.position, Vector3.up);
+            transform.LookAt(LastSeenTarget.transform, Vector3.up);
+            AttentionTimeRemaning = AttentionTime;
 
         }
 
@@ -177,8 +179,16 @@ public class EnemyFSM : MonoBehaviour{
     }    
 
     private void UpdateState_SawSomething(){
-        transform.LookAt(LastSeenTarget, Vector3.up);
 
+        MovementSpeed = 0f;
+        AttentionTimeRemaning -= Time.deltaTime;
+        Debug.Log(AttentionTime.ToString());
+        // Nothing seen - Patrol
+        if(AttentionTimeRemaning <= 0){
+            MovementSpeed = MovementSpeedValueRef;
+            SwitchToState(EState.Patrolling);
+
+        }
     }
 }
 

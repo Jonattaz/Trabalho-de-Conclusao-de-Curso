@@ -9497,10 +9497,10 @@ MonoBehaviour:
   _VisionConeAngle: 70
   _VisionConeRange: 4
   _VisionConeColor: {r: 1, g: 0.00000019073488, b: 0, a: 0.25}
-  _HearingRange: 10
+  _HearingRange: 4
   _HearingRangeColor: {r: 1, g: 0.87176263, b: 0, a: 0.25}
   _ProximityDetectionRange: 2
-  _ProximityRangeColor: {r: 1, g: 1, b: 1, a: 0.25}
+  _ProximityRangeColor: {r: 0, g: 0.4457605, b: 1, a: 0.25}
 --- !u!114 &2016958547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9618,6 +9618,7 @@ MonoBehaviour:
   IdleMinTime: 5
   IdleMaxTime: 10
   ListenTme: 5
+  AttentionTime: 5
 --- !u!195 &2016958552
 NavMeshAgent:
   m_ObjectHideFlags: 0
