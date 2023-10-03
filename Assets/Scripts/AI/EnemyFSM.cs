@@ -14,17 +14,17 @@ public class EnemyFSM : MonoBehaviour{
     }
 
     [SerializeField] EState CurrentState;
-
+    [SerializeField] private PlayerMovement PlayerMovement;
     [SerializeField] List<Transform> PatrolPoints;
-    [SerializeField] float PatrolPointsReachedThreshold = 0.5f;
-
-    [SerializeField] float MovementSpeed = 2f;
-
-    [SerializeField] float IdleMinTime = 5f;
-    [SerializeField] float IdleMaxTime = 10f;
-
-    [SerializeField]  float ListenTme = 5f;
-    [SerializeField] float AttentionTime = 5f ;
+    [SerializeField] private float PatrolPointsReachedThreshold = 0.5f;
+    [SerializeField] private float MovementSpeed = 2f;
+    [SerializeField] private float IdleMinTime = 5f;
+    [SerializeField] private float IdleMaxTime = 10f;
+    [SerializeField] private float ListenTme = 5f;
+    [SerializeField] private float AttentionTime = 5f ;
+    [SerializeField] private float DeathDistance;
+    [SerializeField] private float StunTime;
+    [SerializeField] private int DeathCounter;
     float IdleTimeRemaning;
     float ListenTimeRemaning;
     float AttentionTimeRemaning;
@@ -32,11 +32,12 @@ public class EnemyFSM : MonoBehaviour{
     GameObject LastHeardLocation;
     GameObject LastSeenTarget;
     float MovementSpeedValueRef;
+    float distance;
     NavMeshAgent NavMeshAgent;
 
     // Start is called before the first frame update
     void Start(){
-
+        DeathCounter = 0;
         MovementSpeedValueRef = MovementSpeed;
         NavMeshAgent = GetComponent<NavMeshAgent>();
         NavMeshAgent.enabled = true;
@@ -195,12 +196,15 @@ public class EnemyFSM : MonoBehaviour{
 
         MovementSpeed = 0f;
         AttentionTimeRemaning -= Time.deltaTime;
-        Debug.Log(AttentionTime.ToString());
+        distance = Vector3.Distance(LastSeenTarget.transform.position, gameObject.transform.position);
+        
         // Nothing seen - Patrol
         if(AttentionTimeRemaning <= 0){
             MovementSpeed = MovementSpeedValueRef;
             SwitchToState(EState.Patrolling);
 
+        }else if(distance < DeathDistance){
+            SwitchToState(EState.Chase);
         }
     }
 
@@ -210,9 +214,38 @@ public class EnemyFSM : MonoBehaviour{
             MovementSpeed = MovementSpeedValueRef;
 
             NavMeshAgent.SetDestination(LastSeenTarget.transform.position);
+
+            distance = Vector3.Distance(LastSeenTarget.transform.position, gameObject.transform.position);
+
+            if(distance < DeathDistance){
+                
+                if(DeathCounter == 3){
+
+                    // Game Over
+
+                }else{
+                    
+                    // Stun and go back patrolling
+                    DeathCounter++;        
+                    StartCoroutine(StunAttack());
+                    SwitchToState(EState.Patrolling);
+                }
+
+            } 
+
         }
 
     }
+
+    IEnumerator StunAttack(){
+        
+        PlayerMovement.movementConstraint = true;
+        
+        yield return new WaitForSeconds(StunTime);
+        
+        PlayerMovement.movementConstraint = false;
+    }
+
 }
 
 

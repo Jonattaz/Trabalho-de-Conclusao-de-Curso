@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour{
     [SerializeField] private float walkSpeed;
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float groundDrag;
+    [SerializeField] private bool stunMode;
     private float moveSpeed;
     float horizontalInput;
     float verticalInput;
@@ -64,6 +65,16 @@ public class PlayerMovement : MonoBehaviour{
             PlayerInput();
             SpeedControl();
             StateHandler();
+            
+            if(stunMode){
+                rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
+                rb.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+                stunMode = false;
+            }
+
+        }else{
+            stunMode = true;            
+            rb.constraints = RigidbodyConstraints.FreezeAll;
         }
 
         // Handle drag

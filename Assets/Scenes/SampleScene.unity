@@ -379,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 51505034}
   - component: {fileID: 51505035}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ItemThrowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -611,7 +611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66503451}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audios
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 95090831}
   - component: {fileID: 95090830}
   - component: {fileID: 95090833}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerObject
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1350,7 +1350,7 @@ GameObject:
   - component: {fileID: 179442615}
   - component: {fileID: 179442616}
   - component: {fileID: 179442617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PJ
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1473,7 +1473,7 @@ GameObject:
   - component: {fileID: 189351145}
   - component: {fileID: 189351144}
   - component: {fileID: 189351143}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3794,7 +3794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 667494729}
   - component: {fileID: 667494730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4579,7 +4579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 802641009}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
@@ -5421,7 +5421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 915057974}
   - component: {fileID: 915057975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7386,7 +7386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1335478646}
   - component: {fileID: 1335478647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Audio Source (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7573,7 +7573,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357300190}
-  m_LocalRotation: {x: 0.16036716, y: 0.000000018988336, z: -0.0000000030850345, w: 0.98705745}
+  m_LocalRotation: {x: 0.16036716, y: -0.000000018988336, z: 0.0000000030850345, w: 0.98705745}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8849,7 +8849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579871519}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9748,7 +9748,7 @@ GameObject:
   - component: {fileID: 1771888727}
   - component: {fileID: 1771888726}
   - component: {fileID: 1771888725}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AIObject
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -10492,7 +10492,7 @@ GameObject:
   - component: {fileID: 2016958553}
   - component: {fileID: 2016958554}
   - component: {fileID: 2016958552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AI_Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10640,6 +10640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 0
+  PlayerMovement: {fileID: 179442615}
   PatrolPoints:
   - {fileID: 1674011956}
   - {fileID: 221831284}
@@ -10653,6 +10654,9 @@ MonoBehaviour:
   IdleMaxTime: 10
   ListenTme: 5
   AttentionTime: 5
+  DeathDistance: 2
+  StunTime: 3
+  DeathCounter: 0
 --- !u!195 &2016958552
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11155,7 +11159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -94.3512, y: -52.3}
+  m_AnchoredPosition: {x: -94.351074, y: -52.30005}
   m_SizeDelta: {x: 148.7083, y: 56.9863}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2064989409
