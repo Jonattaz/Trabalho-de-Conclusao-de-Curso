@@ -12,6 +12,13 @@ public class PlayerRaycastInteract : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
+
+        InteractionController();
+        
+    }
+
+
+    private void InteractionController(){
         RaycastHit hit;
 
         if(Physics.Raycast(orientationPoint.position, orientationPoint.forward, out hit, raycastRange, layerMask)){

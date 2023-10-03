@@ -9,9 +9,10 @@ public class ThrowItem : MonoBehaviour{
     [SerializeField] private Transform attackPoint;
     [SerializeField] private GameObject itemToThrow;
     [SerializeField] private LineRenderer lineRenderer;
-    Rigidbody projectileRb;
-    GameObject projectile;
+    private Rigidbody projectileRb;
+    private GameObject projectile;
     public Text throwsText;
+    private PlayerMovement PlayerMovement;
 
     [Header("Settings")]
     public int totalThrows;
@@ -29,6 +30,7 @@ public class ThrowItem : MonoBehaviour{
 
     // Start is called before the first frame update
     void Start(){
+        PlayerMovement = GetComponent<PlayerMovement>();
         throwsText.text = totalThrows.ToString();
         readyToThrow = true;    
 
@@ -42,13 +44,16 @@ public class ThrowItem : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        if(Input.GetKey(throwKey) && readyToThrow && totalThrows > 0){
-            DrawProjection();
-        }   
+            
+        if(!PlayerMovement.movementConstraint){
+            if(Input.GetKey(throwKey) && readyToThrow && totalThrows > 0){
+                DrawProjection();
+            }   
 
-        if(Input.GetKeyUp(throwKey) && readyToThrow && totalThrows > 0){
-            Throw();
-            lineRenderer.enabled = false;
+            if(Input.GetKeyUp(throwKey) && readyToThrow && totalThrows > 0){
+                Throw();
+                lineRenderer.enabled = false;
+            }
         }
     }
 

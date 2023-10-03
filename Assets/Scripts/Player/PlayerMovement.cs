@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour{
     [SerializeField] private Transform player;
     [SerializeField] private Transform playerObj;
     [SerializeField] private Transform orientation;
+    public bool movementConstraint;
     Rigidbody rb;
 
     [Header("Movement")]
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour{
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        movementConstraint = false;
     }
 
     // Update is called once per frame
@@ -58,9 +60,11 @@ public class PlayerMovement : MonoBehaviour{
         // Ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        PlayerInput();
-        SpeedControl();
-        StateHandler();
+        if(!movementConstraint){
+            PlayerInput();
+            SpeedControl();
+            StateHandler();
+        }
 
         // Handle drag
         if(grounded){
@@ -118,7 +122,7 @@ public class PlayerMovement : MonoBehaviour{
                 Quando a personagem corre faz barulho
                 
                 HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, 1f);
-              */
+            */
         }
 
         // Mode - Walking
