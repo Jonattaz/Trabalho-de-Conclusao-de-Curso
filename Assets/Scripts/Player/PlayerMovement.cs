@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour{
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
             /*
-                Quando a personagem corre faz barulho
+                Quando a personagem corre faz barulho - Fazer barulho de acordo com um timer(WaitForSeconds)
                 
                 HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, 1f);
             */

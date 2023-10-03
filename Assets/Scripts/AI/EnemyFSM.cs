@@ -15,6 +15,8 @@ public class EnemyFSM : MonoBehaviour{
 
     [SerializeField] EState CurrentState;
     [SerializeField] private PlayerMovement PlayerMovement;
+    [SerializeField] private GameObject DeathUI;
+    [SerializeField] private GameObject PlayerObj;
     [SerializeField] List<Transform> PatrolPoints;
     [SerializeField] private float PatrolPointsReachedThreshold = 0.5f;
     [SerializeField] private float MovementSpeed = 2f;
@@ -222,13 +224,14 @@ public class EnemyFSM : MonoBehaviour{
                 if(DeathCounter == 3){
 
                     // Game Over
+                    DeathUI.SetActive(true);
+                    PlayerObj.SetActive(false);
+                    this.gameObject.SetActive(false);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
 
-                }else{
-                    
-                    // Stun and go back patrolling
-                    DeathCounter++;        
+                }else{                            
                     StartCoroutine(StunAttack());
-                    SwitchToState(EState.Patrolling);
                 }
 
             } 
@@ -238,9 +241,12 @@ public class EnemyFSM : MonoBehaviour{
     }
 
     IEnumerator StunAttack(){
-        
+       
+        // Stun and go back patrolling
+        DeathCounter++;
         PlayerMovement.movementConstraint = true;
-        
+        SwitchToState(EState.Patrolling);
+       
         yield return new WaitForSeconds(StunTime);
         
         PlayerMovement.movementConstraint = false;
