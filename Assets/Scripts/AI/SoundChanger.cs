@@ -4,27 +4,43 @@ using UnityEngine;
 
 public class SoundChanger : MonoBehaviour{
 
-    [SerializeField] private AudioSource[] AudioSources;
+    [SerializeField] private float TimeChanger;
+    [SerializeField] private float RemainingTime;
     [SerializeField] private int index;
+    [SerializeField] private GameObject[] AudioClips;
+   
     // Start is called before the first frame update
     void Start(){
-        index = 0;    
+        
+        RemainingTime = TimeChanger;
+
+        index = 0;  
     }
 
     // Update is called once per frame
     void Update(){
+        
+        ChangeSound();
 
-        StartCoroutine(PlaySound());        
     }
 
-     IEnumerator PlaySound(){
-        AudioSources[index].Play();
-        yield return new WaitForSeconds(AudioSources[index].clip.length);
-        AudioSources[index].Stop();
-        index++;
-        if(index >= AudioSources.Length){
-            index = 0;
+    private void ChangeSound(){
+        
+        if(RemainingTime <= 0){
+            AudioClips[index].SetActive(false);
+            
+            RemainingTime = TimeChanger;
+            index++;
+
+            if(index >= AudioClips.Length){
+                index = 0;
+            }
+
+            AudioClips[index].SetActive(true);
+    
+        }else{
+            RemainingTime -= Time.deltaTime;
         }
-        AudioSources[index].Play();
     }
+
 }
