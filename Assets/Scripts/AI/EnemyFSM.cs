@@ -198,7 +198,9 @@ public class EnemyFSM : MonoBehaviour{
 
         MovementSpeed = 0f;
         AttentionTimeRemaning -= Time.deltaTime;
-        distance = Vector3.Distance(LastSeenTarget.transform.position, gameObject.transform.position);
+        
+        if(LastSeenTarget != null)
+            distance = Vector3.Distance(LastSeenTarget.transform.position, gameObject.transform.position);
         
         // Nothing seen - Patrol
         if(AttentionTimeRemaning <= 0){

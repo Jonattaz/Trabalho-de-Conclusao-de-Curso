@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour{
         rb.freezeRotation = true;
         startYScale = transform.localScale.y;
 
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         movementConstraint = false;
     }
