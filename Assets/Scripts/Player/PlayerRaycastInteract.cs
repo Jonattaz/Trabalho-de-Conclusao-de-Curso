@@ -23,7 +23,7 @@ public class PlayerRaycastInteract : MonoBehaviour{
 
         if(Physics.Raycast(orientationPoint.position, orientationPoint.forward, out hit, raycastRange, layerMask)){
             
-            Debug.Log("O raycast está acertando " + hit.collider.gameObject.name);
+        //    Debug.Log("O raycast está acertando " + hit.collider.gameObject.name);
 
             var hitObjectInteract = hit.collider.GetComponent<IInteractable>();
             if(hitObjectInteract != null){

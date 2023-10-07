@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour{
     [SerializeField] private Transform orientation;
     public bool movementConstraint;
     Rigidbody rb;
+    public bool camCon1;
+    public bool camCon2;
 
     [Header("Movement")]
     [SerializeField] private float rotationSpeed;
@@ -49,6 +51,7 @@ public class PlayerMovement : MonoBehaviour{
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         startYScale = transform.localScale.y;
+        camCon2 = true;
 
         //Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
