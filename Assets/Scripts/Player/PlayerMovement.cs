@@ -99,14 +99,13 @@ public class PlayerMovement : MonoBehaviour{
         
         //Rotate Orientation
         Vector3 viewDir = player.position - new Vector3(orientation.position.x, player.position.y, orientation.position.z);
-        orientation.forward = -viewDir.normalized;
+        orientation.forward = viewDir.normalized;
 
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if(inputDir != Vector3.zero){
-            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+            orientation.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
-
 
         // Start crouch
         if(Input.GetKeyDown(crouchKey)){
