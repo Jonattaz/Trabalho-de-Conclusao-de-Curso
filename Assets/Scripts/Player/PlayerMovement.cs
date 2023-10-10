@@ -94,17 +94,20 @@ public class PlayerMovement : MonoBehaviour{
     }
 
     private void PlayerInput(){
+       
+        //Rotate Orientation
+        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        
+        if(viewDir != Vector3.zero)
+            orientation.forward = viewDir.normalized;
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
         
-        //Rotate Orientation
-        Vector3 viewDir = player.position - new Vector3(orientation.position.x, player.position.y, orientation.position.z);
-        orientation.forward = viewDir.normalized;
-
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if(inputDir != Vector3.zero){
-            orientation.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
 
         // Start crouch
