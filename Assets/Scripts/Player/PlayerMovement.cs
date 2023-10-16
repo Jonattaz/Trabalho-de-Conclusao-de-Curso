@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour{
     
     [Header("References")]
-    [SerializeField] private Transform player;
     [SerializeField] private Transform playerObj;
-    [SerializeField] private Transform orientation;
     public bool movementConstraint;
     Rigidbody rb;
     public bool camCon1;
@@ -17,8 +15,10 @@ public class PlayerMovement : MonoBehaviour{
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float sprintSpeed;
+    [SerializeField] private float backwardsSpeed;
     [SerializeField] private float groundDrag;
     [SerializeField] private bool stunMode;
+    [SerializeField] private bool backwardsMove;
     private float moveSpeed;
     float horizontalInput;
     float verticalInput;
@@ -95,19 +95,18 @@ public class PlayerMovement : MonoBehaviour{
 
     private void PlayerInput(){
        
-        //Rotate Orientation
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        
-        if(viewDir != Vector3.zero)
-            orientation.forward = viewDir.normalized;
-
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        
-       Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
-       
-        if(inputDir != Vector3.zero){
-            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+
+        // Backwards Speed
+        if(Input.GetKeyDown(KeyCode.S)){
+            moveSpeed = backwardsSpeed;
+            backwardsMove = true;
+        }
+        if(Input.GetKeyDown(KeyCode.W)){
+            moveSpeed = walkSpeed;
+            backwardsMove = false;
+            moveSpeed = walkSpeed;
         }
 
         // Start crouch
@@ -131,7 +130,7 @@ public class PlayerMovement : MonoBehaviour{
         }
 
         // Mode - Sprinting
-        if(grounded && Input.GetKey(sprintKey)){
+        if(grounded && Input.GetKey(sprintKey) && !backwardsMove){
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
             /*
@@ -144,15 +143,17 @@ public class PlayerMovement : MonoBehaviour{
         // Mode - Walking
         else if(grounded){
             state = MovementState.walking;
-            moveSpeed = walkSpeed;
         }
     }
 
     private void MovePlayer(){
         
+        //Rotate character
+        playerObj.Rotate(Vector3.up * horizontalInput * rotationSpeed * (100f * Time.deltaTime));
+        
         // Calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
+        moveDirection = playerObj.forward * verticalInput;
+        
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
 
