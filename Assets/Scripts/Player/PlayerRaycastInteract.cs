@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class PlayerRaycastInteract : MonoBehaviour{
     
+    
+    [SerializeField] private KeyCode interactionKey = KeyCode.E;                
     [SerializeField] private float raycastRange = 5f;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Transform orientationPoint;
-    [SerializeField] private KeyCode interactionKey = KeyCode.E;
-
 
     // Update is called once per frame
     void Update(){
-
         InteractionController();
-        
     }
 
 

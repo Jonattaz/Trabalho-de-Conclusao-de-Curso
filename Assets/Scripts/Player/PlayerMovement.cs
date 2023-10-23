@@ -86,6 +86,7 @@ public class PlayerMovement : MonoBehaviour{
         }else{
             rb.drag = 0;
         }
+
     }
 
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
