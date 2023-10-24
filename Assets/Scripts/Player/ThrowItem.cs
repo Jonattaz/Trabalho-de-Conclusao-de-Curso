@@ -35,7 +35,7 @@ public class ThrowItem : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         PlayerMovement = GetComponent<PlayerMovement>();
-        throwsText.text = totalThrows.ToString();
+        throwsText.text = throwsText.text = "Arremessáveis = " + totalThrows.ToString();
         readyToThrow = true;    
 
          int itemLayer = itemToThrow.layer;
@@ -162,7 +162,7 @@ public class ThrowItem : MonoBehaviour{
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
         totalThrows--;
-        throwsText.text = totalThrows.ToString();
+        throwsText.text = "Arremessáveis = " + totalThrows.ToString();
 
         // Throw cooldown
         Invoke(nameof(ResetThrow), throwCoolDown);

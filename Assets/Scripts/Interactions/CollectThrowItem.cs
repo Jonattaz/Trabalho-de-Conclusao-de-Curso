@@ -12,7 +12,8 @@ public class CollectThrowItem : MonoBehaviour, IInteractable{
 
         gameObject.SetActive(false);
         throwItemRef.totalThrows++;
-        throwItemRef.throwsText.text = throwItemRef.totalThrows.ToString();
+        throwItemRef.throwsText.text = throwItemRef.throwsText.text = "Arremessáveis = " + throwItemRef.totalThrows.ToString();
+
         thrown = true;
         Destroy(this.gameObject);
     }

@@ -6,7 +6,7 @@ public class PlayerRaycastInteract : MonoBehaviour{
     
     
     [SerializeField] private KeyCode interactionKey = KeyCode.E;                
-    [SerializeField] private float raycastRange = 5f;
+    [SerializeField] private float raycastRange;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Transform orientationPoint;
 
@@ -21,7 +21,7 @@ public class PlayerRaycastInteract : MonoBehaviour{
 
         if(Physics.Raycast(orientationPoint.position, orientationPoint.forward, out hit, raycastRange, layerMask)){
             
-        //    Debug.Log("O raycast está acertando " + hit.collider.gameObject.name);
+            //Debug.Log("O raycast está acertando " + hit.collider.gameObject.name);
 
             var hitObjectInteract = hit.collider.GetComponent<IInteractable>();
             if(hitObjectInteract != null){

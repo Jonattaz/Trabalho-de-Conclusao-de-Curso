@@ -1592,7 +1592,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &196751076
 GameObject:
@@ -5555,7 +5555,7 @@ AudioSource:
   MinDistance: 5
   MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -7317,7 +7317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 756202093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e408f249d132246ae3eed73d52dd7e, type: 3}
+  m_Script: {fileID: 11500000, guid: c7e27ce4fe71f9f4e8a661056abcdc7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &776682382
@@ -7818,8 +7818,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 291.885, y: -119.35849}
-  m_SizeDelta: {x: 583.7701, y: 238.7144}
+  m_AnchoredPosition: {x: 291.885, y: -133.15488}
+  m_SizeDelta: {x: 583.7701, y: 266.3071}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &847948451
 MonoBehaviour:
@@ -7855,7 +7855,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "W,A,S,D - Movimenta\xE7\xE3o\nCtrl Esq - Agachar\nShift Esq - Correr\nE
-    - Intera\xE7\xE3o com Objetos\nG - Arremessar Objeto Amarelo"
+    - Intera\xE7\xE3o com Objetos\nG - Arremessar Objeto Amarelo\nCena 1"
 --- !u!222 &847948452
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8264,7 +8264,7 @@ AudioSource:
   MinDistance: 4
   MaxDistance: 8
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -10269,7 +10269,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 756202095}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_TargetAssemblyTypeName: LocalSceneController, Assembly-CSharp
         m_MethodName: CloseGame
         m_Mode: 1
         m_Arguments:
@@ -11497,7 +11497,7 @@ AudioSource:
   MinDistance: 3
   MaxDistance: 6
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -11939,7 +11939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422118547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.349, z: 0}
+  m_LocalPosition: {x: -0, y: 0.07, z: 0.105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12714,13 +12714,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 756202095}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: ReloadGame
-        m_Mode: 1
+        m_TargetAssemblyTypeName: LocalSceneController, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12914,12 +12914,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1496190701}
   m_Layer: 0
-  m_Name: Reverb Zone
+  m_Name: Reverb Zones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1496190701
 Transform:
   m_ObjectHideFlags: 0
@@ -12938,7 +12938,7 @@ Transform:
   - {fileID: 57219017}
   - {fileID: 1603724964}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1533270082
 GameObject:
@@ -16057,7 +16057,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -244.0094, y: 28.493164}
+  m_AnchoredPosition: {x: -244.0094, y: 46}
   m_SizeDelta: {x: 488.0181, y: 56.9863}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2064989409
