@@ -7986,9 +7986,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2624f7960273354a9999484ba04d304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 2
   thrown: 0
+  wait: 0
+  destroyTime: 2
   throwItemRef: {fileID: 179442616}
+  collectMessage: "Arremes\xE1vel foi coletado"
+  messageTextObj: {fileID: 638972081}
 --- !u!135 &707796514
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11522,8 +11525,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1177466151}
-  - component: {fileID: 1177466155}
-  - component: {fileID: 1177466154}
   - component: {fileID: 1177466153}
   - component: {fileID: 1177466152}
   m_Layer: 6
@@ -11560,13 +11561,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6739087357162cc44a396025c9a6385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  text: 
   inventoryItem: 1
   collectMessage: "P\xE1gina do di\xE1rio coletada!"
   messageTextObj: {fileID: 638972081}
   prefab: {fileID: 0}
-  itemName: 
+  itemName: JournalPage
+  audioClipOnInteract: {fileID: 0}
 --- !u!135 &1177466153
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11580,56 +11580,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.56
   m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1177466154
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177466150}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 40c8968d203821a47be09588ac528f07, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1177466155
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177466150}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1210234860
 GameObject:
   m_ObjectHideFlags: 0
@@ -13776,9 +13726,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2624f7960273354a9999484ba04d304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 2
   thrown: 0
+  wait: 0
+  destroyTime: 2
   throwItemRef: {fileID: 179442616}
+  collectMessage: "Arremes\xE1vel foi coletado"
+  messageTextObj: {fileID: 638972081}
 --- !u!1 &1427131979
 GameObject:
   m_ObjectHideFlags: 0
@@ -16507,8 +16460,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1762125170}
-  - component: {fileID: 1762125174}
-  - component: {fileID: 1762125173}
   - component: {fileID: 1762125172}
   - component: {fileID: 1762125171}
   m_Layer: 6
@@ -16545,13 +16496,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6739087357162cc44a396025c9a6385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  text: 
   inventoryItem: 1
   collectMessage: "Obitu\xE1rio da m\xE3e coletado!"
   messageTextObj: {fileID: 638972081}
   prefab: {fileID: 0}
-  itemName: 
+  itemName: Obtuary
+  audioClipOnInteract: {fileID: 0}
 --- !u!135 &1762125172
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16565,56 +16515,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.56
   m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1762125173
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762125169}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 40c8968d203821a47be09588ac528f07, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1762125174
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762125169}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1771888722
 GameObject:
   m_ObjectHideFlags: 0
@@ -16823,13 +16723,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6739087357162cc44a396025c9a6385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 0}
-  text: 
   inventoryItem: 1
   collectMessage: "Pe\xE7a da caixa de m\xFAsica coletada!"
   messageTextObj: {fileID: 638972081}
   prefab: {fileID: 0}
-  itemName: 
+  itemName: Music Box piece
+  audioClipOnInteract: {fileID: 0}
 --- !u!1001 &1839452584
 PrefabInstance:
   m_ObjectHideFlags: 0

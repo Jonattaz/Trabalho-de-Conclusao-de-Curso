@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CollectThrowItem : MonoBehaviour, IInteractable{   
     
-    [SerializeField] private float destroyTime;
     [SerializeField] private bool thrown;
+    [SerializeField] private bool wait;
+    [SerializeField] private float destroyTime;
     [SerializeField] ThrowItem throwItemRef;
-      
+    // Mensagem que aparece ao coletar algum item
+    public string collectMessage;
+    public Text messageTextObj;
+
+
     public void CollectItem(){
-
-        gameObject.SetActive(false);
-        throwItemRef.totalThrows++;
-        throwItemRef.throwsText.text = throwItemRef.throwsText.text = "Arremessáveis = " + throwItemRef.totalThrows.ToString();
-
-        thrown = true;
-        Destroy(this.gameObject);
+        if(!wait){
+            messageTextObj.text = collectMessage;
+            StartCoroutine(FadingText());
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            wait = !wait;
+        }
     }
 
     public void Interact(){
@@ -26,13 +31,38 @@ public class CollectThrowItem : MonoBehaviour, IInteractable{
 
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
     void OnCollisionEnter(Collision other){
-        
         if(thrown){
             if(other.gameObject.tag != "Player" && other.gameObject.tag != "Enemy"){
                 HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EItem, 2f);
                 Destroy(this.gameObject, destroyTime);
             }
         }
+    }
 
+    IEnumerator FadingText()
+    {
+        throwItemRef.totalThrows++;
+        throwItemRef.throwsText.text = throwItemRef.throwsText.text = "Arremessáveis = " + throwItemRef.totalThrows.ToString();
+        Color newColor = messageTextObj.color;
+
+        while (newColor.a < 1)
+        {
+            newColor.a += Time.deltaTime;
+            messageTextObj.color = newColor;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        while (newColor.a > 0)
+        {
+            newColor.a -= Time.deltaTime;
+            messageTextObj.color = newColor;
+            yield return null;
+        }
+    
+        thrown = true;
+        wait = !wait;
+        Destroy(this.gameObject);
     }
 }

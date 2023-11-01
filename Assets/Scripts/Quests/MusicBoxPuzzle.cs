@@ -8,6 +8,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     //General    
     private AudioSource audioSource;
     private Renderer renderer;
+    private bool verify;
     [SerializeField] private Material[] materials;
     [SerializeField] private AudioClip audioClipInteraction;
     [SerializeField] private AudioClip audioClipUnlock;
@@ -47,9 +48,13 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
 
     // Update is called once per frame
     void Update(){
-       
+       if(verify){
+            if(PlayerInventory.instance.items.Contains(journalPage) && PlayerInventory.instance.items.Contains(obituaryPage)){
+                renderer.material = materials[0];  
+                gameObject.GetComponent<MusicBoxPuzzle>().enabled = false; 
+            }
+       }
     }
-
 
     public void Interact(){
         
@@ -136,6 +141,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
             obituaryPage.gameObject.SetActive(true);
             journalPage.gameObject.SetActive(true);
             gameObject.GetComponent<SphereCollider>().enabled = false;
+            verify = true;
 
          }else{
 

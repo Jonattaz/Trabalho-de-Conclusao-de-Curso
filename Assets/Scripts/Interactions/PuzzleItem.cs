@@ -5,17 +5,10 @@ using UnityEngine.UI;
 
 public class PuzzleItem : MonoBehaviour, IInteractable{
 
-     [Header("Item configuration")]
-
-    // Audio que toca ao interagir com o item
-    public AudioClip audioClip;
-
     private PuzzleItem item;
+    private bool wait;
 
-    // Texto que aparece ao interagir com o item
-    public string text;
-
-    [Header("Inventoy")]
+    [Header("Item Configuration")]
     // Verifica se o item interagido é de inventário
     public bool inventoryItem;
 
@@ -29,7 +22,9 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
 
     // Bool que serve para identificar um item de quest
     public string itemName;
-
+    
+    // Audio que toca ao interagir com o item
+    public AudioClip audioClipOnInteract;
 
     // Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
     void Start(){
@@ -39,14 +34,18 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
     public void CollectItem(){
 
         // Adicionar ao inventario da personagem que este item foi coletado
-        if (item.inventoryItem){
-                messageTextObj.text = collectMessage;
-                StartCoroutine(FadingText());
+        if (item.inventoryItem && !wait){
+            messageTextObj.text = collectMessage;
+            StartCoroutine(FadingText());
+            if(gameObject.GetComponent<MeshRenderer>() != null)
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+            PlayerInventory.instance.AddItem(item);
+            wait = !wait;
         }
 
     }
 
-     IEnumerator FadingText()
+    IEnumerator FadingText()
     {
         Color newColor = messageTextObj.color;
 
@@ -65,9 +64,7 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
             messageTextObj.color = newColor;
             yield return null;
         }
-
-        
-        PlayerInventory.instance.AddItem(item);
+        wait = !wait;
         this.gameObject.SetActive(false);
     }
 

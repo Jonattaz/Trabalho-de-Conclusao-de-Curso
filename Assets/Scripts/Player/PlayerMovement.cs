@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour{
     [SerializeField] private bool stunMode;
     [SerializeField] private bool backwardsMove;
     private float moveSpeed;
+    private float rotationSpeedStore;
     float horizontalInput;
     float verticalInput;
     Vector3 moveDirection;
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour{
         rb.freezeRotation = true;
         startYScale = transform.localScale.y;
         camCon2 = true;
+        rotationSpeedStore = rotationSpeed;
 
         //Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -91,7 +93,9 @@ public class PlayerMovement : MonoBehaviour{
 
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     void FixedUpdate(){
-        MovePlayer();        
+        
+        if(!movementConstraint)
+            MovePlayer();        
     }
 
     private void PlayerInput(){
