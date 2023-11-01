@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
 
@@ -10,6 +11,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     private Renderer renderer;
     private bool verify;
     [SerializeField] private Material[] materials;
+    [SerializeField] private CinemachineVirtualCamera activeCam;
     [SerializeField] private AudioClip audioClipInteraction;
     [SerializeField] private AudioClip audioClipUnlock;
     [SerializeField] private PuzzleItem musicBoxPiece;
@@ -66,7 +68,8 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 if(audioClipInteraction != null)
                     audioSource.PlayOneShot(audioClipInteraction);
 
-                // Zoom no objeto
+                // Zoom in no objeto
+                activeCam.Priority = 11;
                 puzzleChoicesObject.active = true;
                 PlayerMovement.movementConstraint = true;
                 Cursor.visible = true;
@@ -181,7 +184,8 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     }
 
     public void Exit(){
-
+        // Zoom out 
+        activeCam.Priority = 0;
         puzzleChoicesObject.active = false;
         PlayerMovement.movementConstraint = false;
         Cursor.visible = false;
