@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuzzleItem : MonoBehaviour, IInteractable{
 
@@ -21,6 +22,8 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
     // Mensagem que aparece ao coletar algum item
     public string collectMessage;
 
+    public Text messageTextObj;
+
     // Prefab correspondente do item
     public GameObject prefab;
 
@@ -37,10 +40,35 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
 
         // Adicionar ao inventario da personagem que este item foi coletado
         if (item.inventoryItem){
-                this.gameObject.SetActive(false);
-                PlayerInventory.instance.AddItem(item);
+                messageTextObj.text = collectMessage;
+                StartCoroutine(FadingText());
         }
 
+    }
+
+     IEnumerator FadingText()
+    {
+        Color newColor = messageTextObj.color;
+
+        while (newColor.a < 1)
+        {
+            newColor.a += Time.deltaTime;
+            messageTextObj.color = newColor;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        while (newColor.a > 0)
+        {
+            newColor.a -= Time.deltaTime;
+            messageTextObj.color = newColor;
+            yield return null;
+        }
+
+        
+        PlayerInventory.instance.AddItem(item);
+        this.gameObject.SetActive(false);
     }
 
     public void Interact(){
