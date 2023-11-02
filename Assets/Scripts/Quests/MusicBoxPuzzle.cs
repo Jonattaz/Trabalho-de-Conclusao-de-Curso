@@ -32,14 +32,19 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private bool IIIPin;
     [SerializeField] private bool IVPin;
 
-    // Pins Audio
-    [SerializeField] private AudioClip IASound;
-    [SerializeField] private AudioClip IBSound;
-    [SerializeField] private AudioClip IIASound;
-    [SerializeField] private AudioClip IIBSound;
-    [SerializeField] private AudioClip IIIASound;
-    [SerializeField] private AudioClip IVASound;
-    [SerializeField] private AudioClip IVBSound;
+    /* Pins Audio
+        Ordem
+        pinSound[0] = IA
+        pinSound[1] = IB
+        pinSound[2] = IIA
+        pinSound[3] = IIB
+        pinSound[4] = IIIA
+        pinSound[5] = IIIB
+        pinSound[6] = IVA
+        pinSound[7] = IVB
+    */
+    public AudioClip[] pinSound;
+    public AudioClip[] pinsSound;
 
     // Start is called before the first frame update
     void Start(){
@@ -63,7 +68,6 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         if(!puzzleCompleted){
             // Checks if the player has the music box piece in their inventory
             if(PlayerInventory.instance.items.Contains(musicBoxPiece)){            
-                //Debug.Log("Possui a peça");
                 
                 if(audioClipInteraction != null)
                     audioSource.PlayOneShot(audioClipInteraction);
@@ -75,7 +79,6 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 Cursor.visible = true;
 
             }else{
-                //Debug.Log("Não possui a peça");
                 obsObject.active = !obsObject.active;
                 obsText.text = obsWithoutItem;
                 PlayerMovement.movementConstraint = !PlayerMovement.movementConstraint;
@@ -89,10 +92,10 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     public void ChoiceI(){
         IPin = !IPin;
         if(IPin){
-            //audioSource.PlayOneShot(IASound);
+            audioSource.PlayOneShot(pinSound[0]);
             Debug.Log("IASound playing...");
         }else{
-            //audioSource.PlayOneShot(IBSound);
+            audioSource.PlayOneShot(pinSound[1]);
             Debug.Log("IBSound playing...");
         }
     }
@@ -100,10 +103,10 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     public void ChoiceII(){
         IIPin = !IIPin;
         if(IIPin){
-            //audioSource.PlayOneShot(IIASound);
+            audioSource.PlayOneShot(pinSound[2]);
             Debug.Log("IIASound playing...");
         }else{
-            //audioSource.PlayOneShot(IIBSound);
+            audioSource.PlayOneShot(pinSound[3]);
             Debug.Log("IIBSound playing...");
         }
 
@@ -112,10 +115,10 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     public void ChoiceIII(){
         IIIPin = !IIIPin;
         if(IIIPin){
-            //audioSource.PlayOneShot(IIIASound);
+            audioSource.PlayOneShot(pinSound[4]);
             Debug.Log("IIIASound playing...");
         }else{
-            //audioSource.PlayOneShot(IIIBSound);
+            audioSource.PlayOneShot(pinSound[5]);
             Debug.Log("IIIBSound playing...");
         }
     }
@@ -123,10 +126,10 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     public void ChoiceIV(){
         IVPin = !IVPin;
         if(IVPin){
-            //audioSource.PlayOneShot(IVASound);
+            audioSource.PlayOneShot(pinSound[6]);
             Debug.Log("IVASound playing...");
         }else{
-            //audioSource.PlayOneShot(IVBSound);
+            audioSource.PlayOneShot(pinSound[7]);
             Debug.Log("IVBSound playing...");
         }
     }
@@ -137,7 +140,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
 
             // Animação da bailarina dançando e a música tocando
             // Ao terminar tocar o barulho de algo destrancando
-            //audioSource.PlayOneShot(audioClipUnlock);
+            StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[5], pinSound[6]));
             puzzleUnlockText.text = endPuzzleText;
             puzzleCompleted = true;
             renderer.material = materials[1];
@@ -145,40 +148,40 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
             journalPage.gameObject.SetActive(true);
             gameObject.GetComponent<SphereCollider>().enabled = false;
             verify = true;
-
+            audioSource.PlayOneShot(audioClipUnlock);
+            
          }else{
-
             // Apenas a animação da bailarina rotacionando e musica desafinada tocando
             if(!IPin && !IIPin && !IIIPin && !IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[5], pinSound[7]));
             }else if(IPin && IIPin && IIIPin && IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[5], pinSound[6]));
             }else if(IPin && !IIPin && !IIIPin && !IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[5], pinSound[7]));
             }else if(!IPin && IIPin && !IIIPin && !IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[5], pinSound[7]));
             }else if(!IPin && !IIPin && IIIPin && !IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[4], pinSound[7]));
             }else if(!IPin && !IIPin && !IIIPin && IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[5], pinSound[6]));
             }else if(IPin && IIPin && !IIIPin && !IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[5], pinSound[7]));
             }else if(IPin && !IIPin && IIIPin && !IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[4], pinSound[7]));
             }else if(!IPin && IIPin && IIIPin && !IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[4], pinSound[7]));
             }else if(!IPin && IIPin && !IIIPin && IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[5], pinSound[6]));
             }else if(!IPin && !IIPin && IIIPin && IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[4], pinSound[6]));
             }else if(!IPin && IIPin && IIIPin && IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[4], pinSound[6]));
             }else if(IPin && !IIPin && IIIPin && IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[4], pinSound[6]));
             }else if(IPin && IIPin && !IIIPin && IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[5], pinSound[6]));
             }else if(IPin && IIPin && IIIPin && !IVPin){
-
+                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[4], pinSound[7]));
             }
          }
     }
@@ -189,10 +192,37 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         puzzleChoicesObject.active = false;
         PlayerMovement.movementConstraint = false;
         Cursor.visible = false;
-
+        if(puzzleCompleted){
+            audioSource.enabled = false;
+        }
     }
 
+    IEnumerator playAudioSequentially(AudioClip IPin, AudioClip IIPin, AudioClip IIIPin, AudioClip IVPin){
+        
+        yield return null;
 
+        pinsSound[0] = IPin;
+        pinsSound[1] = IIPin;
+        pinsSound[2] = IIIPin;
+        pinsSound[3] = IVPin;
+
+        //1.Loop through each AudioClip
+        for (int i = 0; i < pinsSound.Length; i++){
+                
+            //2.Assign current AudioClip to audiosource
+            audioSource.clip = pinsSound[i];
+
+            //3.Play Audio
+            audioSource.Play();
+
+            //4.Wait for it to finish playing
+            while (audioSource.isPlaying){
+                yield return null;
+            }
+
+                //5. Go back to #2 and play the next audio in the adClips array
+        }
+    }
 
 }
 
