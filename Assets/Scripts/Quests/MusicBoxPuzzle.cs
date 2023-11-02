@@ -10,6 +10,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     private AudioSource audioSource;
     private Renderer renderer;
     private bool verify;
+    private bool canPuzzle;
     [SerializeField] private Material[] materials;
     [SerializeField] private CinemachineVirtualCamera activeCam;
     [SerializeField] private AudioClip audioClipInteraction;
@@ -67,17 +68,18 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         
         if(!puzzleCompleted){
             // Checks if the player has the music box piece in their inventory
-            if(PlayerInventory.instance.items.Contains(musicBoxPiece)){            
-                
-                if(audioClipInteraction != null)
+            if(PlayerInventory.instance.items.Contains(musicBoxPiece) || canPuzzle ){            
+                PlayerInventory.instance.items.Remove(musicBoxPiece);
+                if(!canPuzzle)
                     audioSource.PlayOneShot(audioClipInteraction);
-
+    
                 // Zoom in no objeto
                 activeCam.Priority = 11;
                 puzzleChoicesObject.active = true;
                 PlayerMovement.movementConstraint = true;
                 Cursor.visible = true;
-
+                canPuzzle = true;
+                
             }else{
                 obsObject.active = !obsObject.active;
                 obsText.text = obsWithoutItem;

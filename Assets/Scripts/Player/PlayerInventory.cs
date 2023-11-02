@@ -17,37 +17,22 @@ public class PlayerInventory : MonoBehaviour{
 
     public int index = 0;
     public int LastQuestIndex;
-    public int nextLevel;
-
+  
     [HideInInspector]
     public bool questObjective;
 
     public bool inQuest = false;
 
-    public bool finalLevel;
-    private void Awake()
-    {
-        finalLevel = false;
+    private void Awake(){
         instance = this;
         
     }
+
+    // Update is called every frame, if the MonoBehaviour is enabled.
+    void Update(){
+        
+    }
     
-    private void Update() {
-        if(LastQuestIndex == index){
-            StartCoroutine(WaitForSceneLoad());
-        }
-
-        if(finalLevel){
-            StartCoroutine(WaitForSceneLoad());
-        }
-
-    }
-
-     private IEnumerator WaitForSceneLoad() {
-        yield return new WaitForSeconds(2);
-        //PauseMenu.MenuInstance.SceneLoad(nextLevel);
-    }
-
     public void AddItem(PuzzleItem item){
         if (items.Contains(item))
         {   
