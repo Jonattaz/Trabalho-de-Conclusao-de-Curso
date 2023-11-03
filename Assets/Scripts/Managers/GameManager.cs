@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour{
 
     public static void LoadScene(int index, float duration = 1, float waitTime = 0){
 
-        GameManagerInstance.StartCoroutine(GameManagerInstance.FadeScene(index, duration, waitTime));
+        //GameManagerInstance.StartCoroutine(GameManagerInstance.FadeScene(index, duration, waitTime));
+        AsyncOperation ao = SceneManager.LoadSceneAsync(index);
 
     }
 

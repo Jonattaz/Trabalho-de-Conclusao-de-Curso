@@ -20,9 +20,12 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
     // Prefab correspondente do item
     public GameObject prefab;
 
-    // Bool que serve para identificar um item de quest
     public string itemName;
     
+    public string itemType;
+
+    public string itemDescription;
+
     // Audio que toca ao interagir com o item
     public AudioClip audioClipOnInteract;
 

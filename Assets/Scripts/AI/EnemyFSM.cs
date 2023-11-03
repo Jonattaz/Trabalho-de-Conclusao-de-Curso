@@ -223,7 +223,7 @@ public class EnemyFSM : MonoBehaviour{
 
             if(distance < DeathDistance){
                 
-                if(DeathCounter == 3){
+                if(DeathCounter == 1){
 
                     // Game Over
                     DeathUI.SetActive(true);

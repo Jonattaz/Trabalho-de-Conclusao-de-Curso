@@ -158,8 +158,8 @@ Camera:
   m_GameObject: {fileID: 28730817}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.45788705, g: 0, b: 0.5660378, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -214,6 +214,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9008219481647798135, guid: 67fec819626f8b04c91b052d7a3885f4, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9008219483155156629, guid: 67fec819626f8b04c91b052d7a3885f4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -224,7 +228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9008219483314142979, guid: 67fec819626f8b04c91b052d7a3885f4, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9008219483314142979, guid: 67fec819626f8b04c91b052d7a3885f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -605,7 +609,7 @@ RectTransform:
   m_Children:
   - {fileID: 7588077730046693040}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -624,6 +628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e27ce4fe71f9f4e8a661056abcdc7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 0.3
+  waitTime: 0.5
 --- !u!1 &7588077728805489360
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour{
 
-
     public List<PuzzleItem> items;
  
     [HideInInspector]
@@ -22,14 +21,13 @@ public class PlayerInventory : MonoBehaviour{
     public bool questObjective;
 
     public bool inQuest = false;
+    
+    public int itemIndex;
+    public int pagesIndex;
+    public int tasksIndex;
 
     private void Awake(){
         instance = this;
-        
-    }
-
-    // Update is called every frame, if the MonoBehaviour is enabled.
-    void Update(){
         
     }
     
@@ -40,6 +38,33 @@ public class PlayerInventory : MonoBehaviour{
         }
         //UI.instaceUI.SetItems(item, items.Count);
         items.Add(item);
+        if(item.itemType == "Item"){
+            if(GameMenu.instance.itens[itemIndex] != null){
+                GameMenu.instance.itensButton[itemIndex].SetActive(true);
+                GameMenu.instance.itens[itemIndex].text = item.itemName;
+                GameMenu.instance.itemDescription[itemIndex].text = item.itemDescription;
+                itemIndex++; 
+            }
+
+
+        }else if(item.itemType == "Task"){
+            if(GameMenu.instance.tasks[tasksIndex] != null){
+                GameMenu.instance.tasksButton[tasksIndex].SetActive(true);
+                GameMenu.instance.tasks[tasksIndex].text = item.itemName;
+                GameMenu.instance.taskDescription[tasksIndex].text = item.itemDescription;
+                tasksIndex++;
+            }
+
+        }else if(item.itemType == "Page"){
+            if(GameMenu.instance.pages[pagesIndex] != null){
+                GameMenu.instance.pagesButton[pagesIndex].SetActive(true);
+                GameMenu.instance.pages[pagesIndex].text = item.itemName;
+                GameMenu.instance.pageDescription[pagesIndex].text = item.itemDescription;
+                pagesIndex++;   
+            }
+        }else{
+            Debug.Log("Algo está errado");
+        }
         //QuestItem(item);
     }
 

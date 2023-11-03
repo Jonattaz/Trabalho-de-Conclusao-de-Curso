@@ -70,6 +70,16 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
             // Checks if the player has the music box piece in their inventory
             if(PlayerInventory.instance.items.Contains(musicBoxPiece) || canPuzzle ){            
                 PlayerInventory.instance.items.Remove(musicBoxPiece);
+                for (int i = 0; i < GameMenu.instance.itens.Length; i++){
+                    
+                    if(GameMenu.instance.itens[i].text == musicBoxPiece.itemName){
+                        GameMenu.instance.itensButton[i].SetActive(false);
+                        GameMenu.instance.itens[i].text = ""; 
+                        GameMenu.instance.itemDescription[i].gameObject.SetActive(false);
+                    }
+
+                }
+
                 if(!canPuzzle)
                     audioSource.PlayOneShot(audioClipInteraction);
     
