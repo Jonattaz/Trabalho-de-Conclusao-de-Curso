@@ -67,6 +67,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     public void Interact(){
         
         if(!puzzleCompleted){
+            audioSource.enabled = true;
             // Checks if the player has the music box piece in their inventory
             if(PlayerInventory.instance.items.Contains(musicBoxPiece) || canPuzzle ){            
                 PlayerInventory.instance.items.Remove(musicBoxPiece);
@@ -102,103 +103,119 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         Pin = false = B
     */
     public void ChoiceI(){
-        IPin = !IPin;
-        if(IPin){
-            audioSource.PlayOneShot(pinSound[0]);
-            Debug.Log("IASound playing...");
+        
+        if(!audioSource.isPlaying){
+            IPin = !IPin;
+            if(IPin){
+                audioSource.PlayOneShot(pinSound[0]);
+                Debug.Log("IASound playing...");
+            }else{
+                audioSource.PlayOneShot(pinSound[1]);
+                Debug.Log("IBSound playing...");
+            }
         }else{
-            audioSource.PlayOneShot(pinSound[1]);
-            Debug.Log("IBSound playing...");
+            Debug.Log("Não tocou");
         }
     }
 
     public void ChoiceII(){
-        IIPin = !IIPin;
-        if(IIPin){
-            audioSource.PlayOneShot(pinSound[2]);
-            Debug.Log("IIASound playing...");
-        }else{
-            audioSource.PlayOneShot(pinSound[3]);
-            Debug.Log("IIBSound playing...");
+        if(!audioSource.isPlaying){
+            IIPin = !IIPin;
+            if(IIPin){
+                audioSource.PlayOneShot(pinSound[2]);
+                Debug.Log("IIASound playing...");
+            }else{
+                audioSource.PlayOneShot(pinSound[3]);
+                Debug.Log("IIBSound playing...");
+            }
         }
-
     }
 
     public void ChoiceIII(){
-        IIIPin = !IIIPin;
-        if(IIIPin){
-            audioSource.PlayOneShot(pinSound[4]);
-            Debug.Log("IIIASound playing...");
-        }else{
-            audioSource.PlayOneShot(pinSound[5]);
-            Debug.Log("IIIBSound playing...");
+        
+        if(!audioSource.isPlaying){
+            IIIPin = !IIIPin;
+            if(IIIPin){
+                audioSource.PlayOneShot(pinSound[4]);
+                Debug.Log("IIIASound playing...");
+            }else{
+                audioSource.PlayOneShot(pinSound[5]);
+                Debug.Log("IIIBSound playing...");
+            }
         }
     }
 
     public void ChoiceIV(){
-        IVPin = !IVPin;
-        if(IVPin){
-            audioSource.PlayOneShot(pinSound[6]);
-            Debug.Log("IVASound playing...");
-        }else{
-            audioSource.PlayOneShot(pinSound[7]);
-            Debug.Log("IVBSound playing...");
+        if(!audioSource.isPlaying){
+            IVPin = !IVPin;
+            if(IVPin){
+                audioSource.PlayOneShot(pinSound[6]);
+                Debug.Log("IVASound playing...");
+            }else{
+                audioSource.PlayOneShot(pinSound[7]);
+                Debug.Log("IVBSound playing...");
+            }
         }
     }
 
     public void Play(){
+        if(!audioSource.isPlaying){
+            if(IPin && !IIPin && !IIIPin && IVPin){
 
-         if(IPin && !IIPin && !IIIPin && IVPin){
-
-            // Animação da bailarina dançando e a música tocando
-            // Ao terminar tocar o barulho de algo destrancando
-            StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[5], pinSound[6]));
-            puzzleUnlockText.text = endPuzzleText;
-            puzzleCompleted = true;
-            renderer.material = materials[1];
-            obituaryPage.gameObject.SetActive(true);
-            journalPage.gameObject.SetActive(true);
-            gameObject.GetComponent<SphereCollider>().enabled = false;
-            verify = true;
-            audioSource.PlayOneShot(audioClipUnlock);
-            
-         }else{
-            // Apenas a animação da bailarina rotacionando e musica desafinada tocando
-            if(!IPin && !IIPin && !IIIPin && !IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[5], pinSound[7]));
-            }else if(IPin && IIPin && IIIPin && IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[5], pinSound[6]));
-            }else if(IPin && !IIPin && !IIIPin && !IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[5], pinSound[7]));
-            }else if(!IPin && IIPin && !IIIPin && !IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[5], pinSound[7]));
-            }else if(!IPin && !IIPin && IIIPin && !IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[4], pinSound[7]));
-            }else if(!IPin && !IIPin && !IIIPin && IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[5], pinSound[6]));
-            }else if(IPin && IIPin && !IIIPin && !IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[5], pinSound[7]));
-            }else if(IPin && !IIPin && IIIPin && !IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[4], pinSound[7]));
-            }else if(!IPin && IIPin && IIIPin && !IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[4], pinSound[7]));
-            }else if(!IPin && IIPin && !IIIPin && IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[5], pinSound[6]));
-            }else if(!IPin && !IIPin && IIIPin && IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[4], pinSound[6]));
-            }else if(!IPin && IIPin && IIIPin && IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[4], pinSound[6]));
-            }else if(IPin && !IIPin && IIIPin && IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[4], pinSound[6]));
-            }else if(IPin && IIPin && !IIIPin && IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[5], pinSound[6]));
-            }else if(IPin && IIPin && IIIPin && !IVPin){
-                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[4], pinSound[7]));
+                // Animação da bailarina dançando e a música tocando
+                // Ao terminar tocar o barulho de algo destrancando
+                StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[5], pinSound[6]));
+                puzzleUnlockText.text = endPuzzleText;
+                puzzleCompleted = true;
+                renderer.material = materials[1];
+                obituaryPage.gameObject.SetActive(true);
+                journalPage.gameObject.SetActive(true);
+                gameObject.GetComponent<SphereCollider>().enabled = false;
+                verify = true;
+                audioSource.PlayOneShot(audioClipUnlock);
+                
+            }else{
+                // Apenas a animação da bailarina rotacionando e musica desafinada tocando
+                if(!IPin && !IIPin && !IIIPin && !IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[5], pinSound[7]));
+                }else if(IPin && IIPin && IIIPin && IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[5], pinSound[6]));
+                }else if(IPin && !IIPin && !IIIPin && !IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[5], pinSound[7]));
+                }else if(!IPin && IIPin && !IIIPin && !IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[5], pinSound[7]));
+                }else if(!IPin && !IIPin && IIIPin && !IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[4], pinSound[7]));
+                }else if(!IPin && !IIPin && !IIIPin && IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[5], pinSound[6]));
+                }else if(IPin && IIPin  && !IIIPin && !IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[5], pinSound[7]));
+                }else if(IPin && !IIPin && IIIPin && !IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[4], pinSound[7]));
+                }else if(!IPin && IIPin && IIIPin && !IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[4], pinSound[7]));
+                }else if(!IPin && IIPin && !IIIPin && IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[5], pinSound[6]));
+                }else if(!IPin && !IIPin && IIIPin && IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[1], pinSound[3], pinSound[4], pinSound[6]));
+                }else if(!IPin && IIPin && IIIPin && IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[1], pinSound[2], pinSound[4], pinSound[6]));
+                }else if(IPin && !IIPin && IIIPin && IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[4], pinSound[6]));
+                }else if(IPin && IIPin && !IIIPin && IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[5], pinSound[6]));
+                }else if(IPin && IIPin && IIIPin && !IVPin){
+                    StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[4], pinSound[7]));
+                }
             }
-         }
+        }
     }
 
     public void Exit(){
+        // Desativar o som ao sair
+        audioSource.enabled = false; 
+        audioSource.Stop();
+
         // Zoom out 
         activeCam.Priority = 0;
         puzzleChoicesObject.active = false;
