@@ -10,20 +10,19 @@ public class GameMenu : MonoBehaviour{
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject journalPanel;
     [SerializeField] private GameObject tasksPanel;
-
-    [SerializeField] public Text[] itemDescription;
-    [SerializeField] public Text[] taskDescription;
-    [SerializeField] public Text[] pageDescription; 
+    public GameObject pagesPanel;
+    public Text[] itemDescription;
+    public Text[] taskDescription;
+    public Text[] pageDescription; 
   
-    [SerializeField] public Text[] itens;
-    [SerializeField] public Text[] tasks;
-    [SerializeField] public Text[] pages;
+    public Text[] itens;
+    public Text[] tasks;
+    public Text[] pages;
 
-    [SerializeField] public GameObject[] itensButton;
-    [SerializeField] public GameObject[] tasksButton;
-    [SerializeField] public GameObject[] pagesButton;
+    public GameObject[] itensButton;
+    public GameObject[] tasksButton;
+    public GameObject[] pagesButton;
    
-
     public static GameMenu instance;
     
     private void Awake(){
@@ -51,18 +50,21 @@ public class GameMenu : MonoBehaviour{
     public void InventoryOn(){
         journalPanel.active = false;
         tasksPanel.active = false;
+        pagesPanel.active = false;
         inventoryPanel.active = !inventoryPanel.active;
     }
 
     public void JournalOn(){
         inventoryPanel.active = false;
         tasksPanel.active = false;
+        pagesPanel.active = false;
         journalPanel.active = !inventoryPanel.active;
     }
 
     public void TasksOn(){
         inventoryPanel.active = false;
         journalPanel.active = false;
+        pagesPanel.active = false;
         tasksPanel.active = !tasksPanel.active;
     } 
 
@@ -89,6 +91,7 @@ public class GameMenu : MonoBehaviour{
                 for(int j = 0; j < PlayerInventory.instance.pagesIndex; j++){
                     if(i == j){
                         pageDescription[j].gameObject.SetActive(true);
+                        pagesPanel.active = true;
                     }
                 }
             }else{
