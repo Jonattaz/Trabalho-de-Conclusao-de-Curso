@@ -9,9 +9,12 @@ public class ThrowItem : MonoBehaviour{
     [SerializeField] private Transform attackPoint;
     [SerializeField] private GameObject itemToThrow;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private Sprite canThrowImage;
+    [SerializeField] private Sprite cannotThrow;
+    [SerializeField] private Image throwImage;
+
     private Rigidbody projectileRb;
     private GameObject projectile;
-    public Text throwsText;
     private PlayerMovement PlayerMovement;
 
     [Header("Settings")]
@@ -35,7 +38,7 @@ public class ThrowItem : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         PlayerMovement = GetComponent<PlayerMovement>();
-        throwsText.text = throwsText.text = "Arremessáveis = " + totalThrows.ToString();
+        
         readyToThrow = true;    
 
          int itemLayer = itemToThrow.layer;
@@ -53,6 +56,12 @@ public class ThrowItem : MonoBehaviour{
         mousePos.z = 100f;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             
+        if(totalThrows > 0){
+            throwImage.sprite = canThrowImage;
+        }else{
+            throwImage.sprite = cannotThrow;
+        }
+
         if(!PlayerMovement.movementConstraint){
             if(Input.GetKey(throwKey) && readyToThrow && totalThrows > 0){
                 DrawProjection();
@@ -162,7 +171,6 @@ public class ThrowItem : MonoBehaviour{
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
         totalThrows--;
-        throwsText.text = "Arremessáveis = " + totalThrows.ToString();
 
         // Throw cooldown
         Invoke(nameof(ResetThrow), throwCoolDown);

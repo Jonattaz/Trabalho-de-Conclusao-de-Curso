@@ -42,7 +42,6 @@ public class CollectThrowItem : MonoBehaviour, IInteractable{
     IEnumerator FadingText()
     {
         throwItemRef.totalThrows++;
-        throwItemRef.throwsText.text = throwItemRef.throwsText.text = "Arremessáveis = " + throwItemRef.totalThrows.ToString();
         Color newColor = messageTextObj.color;
 
         while (newColor.a < 1)
