@@ -47,6 +47,20 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     public AudioClip[] pinSound;
     public AudioClip[] pinsSound;
 
+    /* Pins Object
+        Ordem
+        pinObject[0] = IA
+        pinObject[1] = IB
+        pinObject[2] = IIA
+        pinObject[3] = IIB
+        pinObject[4] = IIIA
+        pinObject[5] = IIIB
+        pinObject[6] = IVA
+        pinObject[7] = IVB
+    */
+
+    public GameObject[] pinObject;
+
     // Start is called before the first frame update
     void Start(){
         audioSource = GetComponent<AudioSource>();
@@ -107,9 +121,13 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         if(!audioSource.isPlaying){
             IPin = !IPin;
             if(IPin){
+                pinObject[1].SetActive(false);
+                pinObject[0].SetActive(true);
                 audioSource.PlayOneShot(pinSound[0]);
                 Debug.Log("IASound playing...");
             }else{
+                pinObject[0].SetActive(false);
+                pinObject[1].SetActive(true);
                 audioSource.PlayOneShot(pinSound[1]);
                 Debug.Log("IBSound playing...");
             }
@@ -122,9 +140,13 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         if(!audioSource.isPlaying){
             IIPin = !IIPin;
             if(IIPin){
+                pinObject[3].SetActive(false);
+                pinObject[2].SetActive(true);
                 audioSource.PlayOneShot(pinSound[2]);
                 Debug.Log("IIASound playing...");
             }else{
+                pinObject[2].SetActive(false);
+                pinObject[3].SetActive(true);
                 audioSource.PlayOneShot(pinSound[3]);
                 Debug.Log("IIBSound playing...");
             }
@@ -136,9 +158,13 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         if(!audioSource.isPlaying){
             IIIPin = !IIIPin;
             if(IIIPin){
+                pinObject[5].SetActive(false);
+                pinObject[4].SetActive(true);
                 audioSource.PlayOneShot(pinSound[4]);
                 Debug.Log("IIIASound playing...");
             }else{
+                pinObject[4].SetActive(false);
+                pinObject[5].SetActive(true);
                 audioSource.PlayOneShot(pinSound[5]);
                 Debug.Log("IIIBSound playing...");
             }
@@ -149,9 +175,13 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         if(!audioSource.isPlaying){
             IVPin = !IVPin;
             if(IVPin){
+                pinObject[7].SetActive(false);
+                pinObject[6].SetActive(true);
                 audioSource.PlayOneShot(pinSound[6]);
                 Debug.Log("IVASound playing...");
             }else{
+                pinObject[6].SetActive(false);
+                pinObject[7].SetActive(true);
                 audioSource.PlayOneShot(pinSound[7]);
                 Debug.Log("IVBSound playing...");
             }
