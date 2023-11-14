@@ -9,6 +9,7 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
     private bool wait;
 
     [Header("Item Configuration")]
+    public bool hasVFX;
     // Verifica se o item interagido é de inventário
     public bool inventoryItem;
 
@@ -25,6 +26,7 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
     public string itemType;
 
     public string itemDescription;
+    public GameObject vfxObj;
 
     // Audio que toca ao interagir com o item
     public AudioClip audioClipOnInteract;
@@ -40,8 +42,11 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
         if (item.inventoryItem && !wait){
             messageTextObj.text = collectMessage;
             StartCoroutine(FadingText());
-            if(gameObject.GetComponent<MeshRenderer>() != null)
+            if(gameObject.GetComponent<MeshRenderer>() != null){
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
+            }
+            if(hasVFX)
+                vfxObj.SetActive(false);
             PlayerInventory.instance.AddItem(item);
             wait = !wait;
         }

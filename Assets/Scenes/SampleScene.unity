@@ -2030,7 +2030,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 112282043}
-  - {fileID: 794026566}
   - {fileID: 2010799012}
   - {fileID: 1169820572}
   m_Father: {fileID: 0}
@@ -7954,7 +7953,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.3241035
+  m_Radius: 77.56
   m_Center: {x: -0.5105178, y: 0.2746214, z: 0}
 --- !u!23 &355842075
 MeshRenderer:
@@ -8013,12 +8012,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355842072}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.207, y: 2.125, z: 3.478}
-  m_LocalScale: {x: 0.21907113, y: 0.21907113, z: 0.21907113}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 41, y: 0, z: -4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 794026566}
+  m_Father: {fileID: 1042798414}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &361418849
@@ -14141,39 +14140,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &794026565
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 794026566}
-  m_Layer: 0
-  m_Name: Obs
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &794026566
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794026565}
-  m_LocalRotation: {x: -0, y: -1.1641532e-10, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000047683716, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 355842077}
-  - {fileID: 1028245178}
-  m_Father: {fileID: 117509415}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &795912029
 GameObject:
   m_ObjectHideFlags: 0
@@ -16941,7 +16907,7 @@ MonoBehaviour:
   puzzleCompleted: 0
   IPin: 0
   IIPin: 0
-  IIIPin: 0
+  IIIPin: 1
   IVPin: 0
   pinSound:
   - {fileID: 8300000, guid: 6d10c6d804b733744aa52036aaf82a51, type: 3}
@@ -19846,7 +19812,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.2683904
+  m_Radius: 61.8
   m_Center: {x: 0, y: 0, z: -0.2916096}
 --- !u!23 &1028245176
 MeshRenderer:
@@ -19905,13 +19871,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028245173}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.099, y: 1.804, z: 1.236}
-  m_LocalScale: {x: 0.21907113, y: 0.21907113, z: 0.21907113}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14, y: -56.5, z: 35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 794026566}
-  m_RootOrder: 1
+  m_Father: {fileID: 1042798415}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1029315698
 GameObject:
@@ -20357,6 +20323,16 @@ PrefabInstance:
 --- !u!4 &1042798413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 10805a25dc504bc49a5b67ee3bd7476f, type: 3}
+  m_PrefabInstance: {fileID: 1042798412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1042798414 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -357920315260209700, guid: 10805a25dc504bc49a5b67ee3bd7476f, type: 3}
+  m_PrefabInstance: {fileID: 1042798412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1042798415 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6379083009668591314, guid: 10805a25dc504bc49a5b67ee3bd7476f, type: 3}
   m_PrefabInstance: {fileID: 1042798412}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1057278571
@@ -21498,6 +21474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6739087357162cc44a396025c9a6385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasVFX: 1
   inventoryItem: 1
   collectMessage: "Voc\xEA encontrou a chave da cozinha."
   messageTextObj: {fileID: 638972081}
@@ -21505,6 +21482,7 @@ MonoBehaviour:
   itemName: Chave
   itemType: Item
   itemDescription: "Esta \xE9 a chave da porta da cozinha"
+  vfxObj: {fileID: 1252679092}
   audioClipOnInteract: {fileID: 0}
 --- !u!135 &1124436909
 SphereCollider:
@@ -21517,7 +21495,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6865027
+  m_Radius: 0.76
   m_Center: {x: 0.23462777, y: -0.1048159, z: 0.12260694}
 --- !u!23 &1124436910
 MeshRenderer:
@@ -22523,7 +22501,7 @@ Transform:
   m_Children:
   - {fileID: 1124436912}
   m_Father: {fileID: 117509415}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1177466150
 GameObject:
@@ -22570,6 +22548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6739087357162cc44a396025c9a6385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasVFX: 0
   inventoryItem: 1
   collectMessage: "P\xE1gina do di\xE1rio coletada!"
   messageTextObj: {fileID: 638972081}
@@ -22578,6 +22557,7 @@ MonoBehaviour:
   itemType: Page
   itemDescription: "Est\xE1 \xE9 uma das p\xE1ginas que est\xE3o faltando no meu
     di\xE1rio."
+  vfxObj: {fileID: 0}
   audioClipOnInteract: {fileID: 0}
 --- !u!135 &1177466153
 SphereCollider:
@@ -24107,7 +24087,7 @@ Transform:
   m_GameObject: {fileID: 1252679092}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.23264349, y: -0.13149424, z: -0.07586192}
-  m_LocalScale: {x: 1.2643666, y: 1.2643666, z: 1.2643666}
+  m_LocalScale: {x: 1.3202516, y: 1.3202516, z: 1.3202516}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1124436912}
@@ -33877,6 +33857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6739087357162cc44a396025c9a6385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasVFX: 0
   inventoryItem: 1
   collectMessage: "Obitu\xE1rio da m\xE3e coletado!"
   messageTextObj: {fileID: 638972081}
@@ -33884,6 +33865,7 @@ MonoBehaviour:
   itemName: "Obitu\xE1rio"
   itemType: Item
   itemDescription: "Este \xE9 o obtu\xE1rio da mam\xE3e."
+  vfxObj: {fileID: 0}
   audioClipOnInteract: {fileID: 0}
 --- !u!135 &1762125172
 SphereCollider:
@@ -35279,7 +35261,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6663766
+  m_Radius: 0.99
   m_Center: {x: -0.048320413, y: -0.018039305, z: -0.36469507}
 --- !u!23 &1837677415
 MeshRenderer:
@@ -35343,6 +35325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6739087357162cc44a396025c9a6385b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasVFX: 1
   inventoryItem: 1
   collectMessage: "Chave da caixa de m\xFAsica coletada!"
   messageTextObj: {fileID: 638972081}
@@ -35351,6 +35334,7 @@ MonoBehaviour:
   itemType: Item
   itemDescription: "Essa \xE9 uma pe\xE7a da caixa de m\xFAsica, mas onde est\xE1
     a caixa de m\xFAsica?"
+  vfxObj: {fileID: 163993070}
   audioClipOnInteract: {fileID: 0}
 --- !u!1 &1839393701
 GameObject:
@@ -39048,7 +39032,7 @@ Transform:
   - {fileID: 1837677412}
   - {fileID: 543450652159970763}
   m_Father: {fileID: 117509415}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2012826727
 GameObject:
@@ -41180,7 +41164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2124244927
 Transform:
   m_ObjectHideFlags: 0
@@ -42383,7 +42367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &4200115103946591620
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42511,7 +42495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5386872476937815683
 Transform:
   m_ObjectHideFlags: 0
