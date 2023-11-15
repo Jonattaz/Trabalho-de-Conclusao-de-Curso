@@ -11,7 +11,6 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     private Renderer renderer;
     private bool verify;
     private bool canPuzzle;
-    [SerializeField] private bool canUnlock;
     [SerializeField] private Material[] materials;
     [SerializeField] private CinemachineVirtualCamera activeCam;
     [SerializeField] private AudioClip audioClipInteraction;
@@ -196,8 +195,15 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 // Animação da bailarina dançando e a música tocando
                 // Ao terminar tocar o barulho de algo destrancando
                 StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[5], pinSound[6]));
-                canUnlock = true;
-                
+                puzzleUnlockText.text = endPuzzleText;
+                puzzleCompleted = true;
+                renderer.material = materials[1];
+                obituaryPage.gameObject.SetActive(true);
+                journalPage.gameObject.SetActive(true);
+                gameObject.GetComponent<SphereCollider>().enabled = false;
+                verify = true;
+                audioSource.PlayOneShot(audioClipUnlock);
+        
             }else{
                 // Apenas a animação da bailarina rotacionando e musica desafinada tocando
                 if(!IPin && !IIPin && !IIIPin && !IVPin){
@@ -272,18 +278,8 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
             while (audioSource.isPlaying){
                 yield return null;
             }
-                //5. Go back to #2 and play the next audio in the adClips array
+            //5. Go back to #2 and play the next audio in the adClips array
             
-            if(i == 3 && canUnlock){
-                puzzleUnlockText.text = endPuzzleText;
-                puzzleCompleted = true;
-                renderer.material = materials[1];
-                obituaryPage.gameObject.SetActive(true);
-                journalPage.gameObject.SetActive(true);
-                gameObject.GetComponent<SphereCollider>().enabled = false;
-                verify = true;
-                audioSource.PlayOneShot(audioClipUnlock);
-            }
         }
     }
 }
