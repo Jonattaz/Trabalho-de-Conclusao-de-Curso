@@ -24,7 +24,9 @@ public class PlayerMovement : MonoBehaviour{
     float horizontalInput;
     float verticalInput;
     Vector3 moveDirection;
-    public MovementState state;    
+    public MovementState state;
+    public float noiseRun;
+    public float noiseWalk; 
 
     [Header("Crouching")]
     [SerializeField] private float crouchSpeed;
@@ -138,11 +140,11 @@ public class PlayerMovement : MonoBehaviour{
         if(grounded && Input.GetKey(sprintKey) && !backwardsMove){
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
-            /*
-                Quando a personagem corre faz barulho - Fazer barulho de acordo com um timer(WaitForSeconds)
+            
+            //Quando a personagem corre faz barulho - Fazer barulho de acordo com um timer(WaitForSeconds)
                 
-                HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, 1f);
-            */
+            HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, noiseRun);
+            
         }
 
         // Mode - Walking
@@ -160,6 +162,8 @@ public class PlayerMovement : MonoBehaviour{
         moveDirection = playerObj.forward * verticalInput;
         
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        
+        HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, noiseWalk);
     }
 
     private void SpeedControl(){
