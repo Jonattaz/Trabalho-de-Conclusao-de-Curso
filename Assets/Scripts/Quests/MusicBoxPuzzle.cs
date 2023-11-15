@@ -11,6 +11,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     private Renderer renderer;
     private bool verify;
     private bool canPuzzle;
+    [SerializeField] private bool canUnlock;
     [SerializeField] private Material[] materials;
     [SerializeField] private CinemachineVirtualCamera activeCam;
     [SerializeField] private AudioClip audioClipInteraction;
@@ -121,13 +122,13 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         if(!audioSource.isPlaying){
             IPin = !IPin;
             if(IPin){
-                pinObject[1].SetActive(false);
-                pinObject[0].SetActive(true);
+                pinObject[0].SetActive(false);
+                pinObject[1].SetActive(true);
                 audioSource.PlayOneShot(pinSound[0]);
                 Debug.Log("IASound playing...");
             }else{
-                pinObject[0].SetActive(false);
-                pinObject[1].SetActive(true);
+                pinObject[1].SetActive(false);
+                pinObject[0].SetActive(true);
                 audioSource.PlayOneShot(pinSound[1]);
                 Debug.Log("IBSound playing...");
             }
@@ -195,14 +196,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 // Animação da bailarina dançando e a música tocando
                 // Ao terminar tocar o barulho de algo destrancando
                 StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[5], pinSound[6]));
-                puzzleUnlockText.text = endPuzzleText;
-                puzzleCompleted = true;
-                renderer.material = materials[1];
-                obituaryPage.gameObject.SetActive(true);
-                journalPage.gameObject.SetActive(true);
-                gameObject.GetComponent<SphereCollider>().enabled = false;
-                verify = true;
-                audioSource.PlayOneShot(audioClipUnlock);
+                canUnlock = true;
                 
             }else{
                 // Apenas a animação da bailarina rotacionando e musica desafinada tocando
@@ -278,10 +272,19 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
             while (audioSource.isPlaying){
                 yield return null;
             }
-
                 //5. Go back to #2 and play the next audio in the adClips array
+            
+            if(i == 3 && canUnlock){
+                puzzleUnlockText.text = endPuzzleText;
+                puzzleCompleted = true;
+                renderer.material = materials[1];
+                obituaryPage.gameObject.SetActive(true);
+                journalPage.gameObject.SetActive(true);
+                gameObject.GetComponent<SphereCollider>().enabled = false;
+                verify = true;
+                audioSource.PlayOneShot(audioClipUnlock);
+            }
         }
     }
-
 }
 
