@@ -76,8 +76,7 @@ public class EnemyAI : MonoBehaviour{
     // Chase player
     public void OnFullyDetected(GameObject target){
         Debug.Log("Charge! " + target.gameObject.name);
-        EnemyMovement.OnChase(target);
-        
+        EnemyMovement.OnTargetDetected(target);
     }
     
     

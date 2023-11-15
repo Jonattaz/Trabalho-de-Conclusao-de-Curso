@@ -188,8 +188,9 @@ public class EnemyFSM : MonoBehaviour{
 
         }else{
             
-            if(LastHeardLocation != null)
-                NavMeshAgent.SetDestination(LastHeardLocation.transform.position);
+            if(distance < DeathDistance){
+                StartCoroutine(StunAttack());        
+            } 
         }
 
     }    
@@ -208,36 +209,24 @@ public class EnemyFSM : MonoBehaviour{
             SwitchToState(EState.Patrolling);
 
         }else if(distance < DeathDistance){
-            SwitchToState(EState.Chase);
+           StartCoroutine(StunAttack());        
         }
     }
 
     private void UpdateState_Chase(){
 
         if(LastSeenTarget != null){
-            MovementSpeed = MovementSpeedValueRef;
+            /*MovementSpeed = MovementSpeedValueRef;
 
             NavMeshAgent.SetDestination(LastSeenTarget.transform.position);
 
-            distance = Vector3.Distance(LastSeenTarget.transform.position, gameObject.transform.position);
-
+            distance = Vector3.Distance(LastSeenTarget.transform.position, gameObject.transform.position);*/
             if(distance < DeathDistance){
-                
-                if(DeathCounter == 1){
-
-                    // Game Over
-                    DeathUI.SetActive(true);
-                    PlayerObj.SetActive(false);
-                    this.gameObject.SetActive(false);
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-
-                }else{                            
-                    StartCoroutine(StunAttack());
-                }
-
-            } 
-
+                StartCoroutine(StunAttack());        
+            }
+            
+        }else{
+            SwitchToState(EState.Patrolling);
         }
 
     }
@@ -248,10 +237,15 @@ public class EnemyFSM : MonoBehaviour{
         DeathCounter++;
         PlayerMovement.movementConstraint = true;
         SwitchToState(EState.Patrolling);
-       
+
         yield return new WaitForSeconds(StunTime);
-        
-        PlayerMovement.movementConstraint = false;
+        // Game Over
+        DeathUI.SetActive(true);
+        PlayerObj.SetActive(false);
+        this.gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        //PlayerMovement.movementConstraint = false;
     }
 
 }
