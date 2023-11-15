@@ -3855,6 +3855,8 @@ MonoBehaviour:
   stunMode: 0
   backwardsMove: 0
   state: 0
+  noiseRun: 1
+  noiseWalk: 0.1
   crouchSpeed: 1.5
   crouchYScale: 0.5
   sprintKey: 304
@@ -3904,7 +3906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionKey: 101
-  raycastRange: 3
+  raycastRange: 0.5
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -12619,7 +12621,7 @@ GameObject:
   - component: {fileID: 667494729}
   - component: {fileID: 667494730}
   m_Layer: 8
-  m_Name: Audio Source
+  m_Name: Bolas_Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12660,10 +12662,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 5
-  MinDistance: 5
-  MaxDistance: 10
+  MinDistance: 1
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -12671,31 +12673,22 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.2016955
       value: 1
-      inSlope: -3.860939
-      outSlope: -3.860939
+      inSlope: -1.2490478
+      outSlope: -1.2490478
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.04532578
-    - serializedVersion: 3
-      time: 0.18896747
-      value: 0.42725977
-      inSlope: -1.3071315
-      outSlope: -1.3071315
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 1
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0.06788461
-      outSlope: 0.06788461
+      inSlope: -1.2586806
+      outSlope: -1.2586806
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.18413597
+      inWeight: 1
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -17078,7 +17071,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beaff6160a69e56419f0d5ec8209dd9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canUnlock: 0
   materials:
   - {fileID: 2100000, guid: 907b57f750e183c409635993cc4cfc81, type: 2}
   - {fileID: 2100000, guid: eeb46bf66205c0545a654c507ecf8ff8, type: 2}
@@ -17912,7 +17904,7 @@ GameObject:
   - component: {fileID: 915057974}
   - component: {fileID: 915057975}
   m_Layer: 8
-  m_Name: Audio Source (1)
+  m_Name: Choro_Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17953,10 +17945,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 5
-  MinDistance: 4
-  MaxDistance: 8
+  MinDistance: 1
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -17964,31 +17956,22 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.4013687
       value: 1
-      inSlope: -3.7821438
-      outSlope: -3.7821438
+      inSlope: -1.6602398
+      outSlope: -1.6602398
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.29112777
-    - serializedVersion: 3
-      time: 0.2186327
-      value: 0.42581427
-      inSlope: -1.4978526
-      outSlope: -1.4978526
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 1
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.6782408
+      outSlope: -1.6782408
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.18413597
+      inWeight: 1
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -26093,7 +26076,7 @@ GameObject:
   - component: {fileID: 1335478646}
   - component: {fileID: 1335478647}
   m_Layer: 8
-  m_Name: Audio Source (2)
+  m_Name: HeartBeat_Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26134,8 +26117,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 5
-  MinDistance: 3
-  MaxDistance: 6
+  MinDistance: 1
+  MaxDistance: 4
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -39849,7 +39832,7 @@ MonoBehaviour:
   _VisionConeAngle: 45
   _VisionConeRange: 0
   _VisionConeColor: {r: 1, g: 0.00000019073488, b: 0, a: 0.25}
-  _HearingRange: 5
+  _HearingRange: 15
   _HearingRangeColor: {r: 1, g: 0.87176263, b: 0, a: 0.25}
   _ProximityDetectionRange: 2
   _ProximityRangeColor: {r: 0, g: 0.4457605, b: 1, a: 0.25}
@@ -39972,8 +39955,8 @@ MonoBehaviour:
   MovementSpeed: 0.5
   IdleMinTime: 5
   IdleMaxTime: 10
-  ListenTme: 5
-  AttentionTime: 5
+  ListenTme: 3
+  AttentionTime: 3
   DeathDistance: 2
   StunTime: 3
   DeathCounter: 0
