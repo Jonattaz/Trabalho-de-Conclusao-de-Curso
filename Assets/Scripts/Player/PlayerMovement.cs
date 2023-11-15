@@ -134,6 +134,8 @@ public class PlayerMovement : MonoBehaviour{
         if(Input.GetKey(crouchKey)){
             state = MovementState.crouching;
             moveSpeed = crouchSpeed;
+        }else if(Input.GetKeyUp(crouchKey)){
+            moveSpeed = walkSpeed;
         }
 
         // Mode - Sprinting
@@ -145,6 +147,8 @@ public class PlayerMovement : MonoBehaviour{
                 
             HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, noiseRun);
             
+        }else if(Input.GetKeyUp(sprintKey)){
+            moveSpeed = walkSpeed;
         }
 
         // Mode - Walking
