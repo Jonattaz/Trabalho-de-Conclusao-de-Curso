@@ -19,6 +19,7 @@ public class CollectThrowItem : MonoBehaviour, IInteractable{
             messageTextObj.text = collectMessage;
             StartCoroutine(FadingText());
             gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.SetActive(false);
             wait = !wait;
         }
     }

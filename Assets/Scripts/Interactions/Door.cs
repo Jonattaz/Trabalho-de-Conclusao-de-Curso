@@ -42,6 +42,7 @@ public class Door : MonoBehaviour, IInteractable{
                     audioSource.PlayOneShot(unlockedSound);
                 gameObject.GetComponent<BoxCollider>().enabled = false;
                 gameObject.GetComponent<Renderer> ().enabled = false;
+                gameObject.SetActive(false);
             }     
         }
         

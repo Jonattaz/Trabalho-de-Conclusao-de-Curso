@@ -74,6 +74,7 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
         }
         wait = !wait;
         this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void Interact(){
