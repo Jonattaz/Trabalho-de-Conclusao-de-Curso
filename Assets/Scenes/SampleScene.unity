@@ -954,6 +954,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18938755}
   m_CullTransparentMesh: 1
+--- !u!1 &23733249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 45f610ac54d08b64db806f3df603d9a2, type: 3}
+  m_PrefabInstance: {fileID: 1100181698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &33454178
 GameObject:
   m_ObjectHideFlags: 0
@@ -25858,6 +25863,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 45f610ac54d08b64db806f3df603d9a2, type: 3}
   m_PrefabInstance: {fileID: 1100181698}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &1181366213
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23733249}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3758573805739257388, guid: 45f610ac54d08b64db806f3df603d9a2, type: 3}
 --- !u!1 &1184026969
 GameObject:
   m_ObjectHideFlags: 0
@@ -34768,6 +34787,25 @@ Transform:
   m_Father: {fileID: 2018049020}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1572494284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b51fd738bc137b742a7a708c40ba9a6f, type: 3}
+  m_PrefabInstance: {fileID: 1650872707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1572494287
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572494284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3369316746193770658, guid: b51fd738bc137b742a7a708c40ba9a6f, type: 3}
 --- !u!1001 &1572946964
 PrefabInstance:
   m_ObjectHideFlags: 0
