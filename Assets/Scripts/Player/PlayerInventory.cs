@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour{
 
@@ -60,6 +61,8 @@ public class PlayerInventory : MonoBehaviour{
                 GameMenu.instance.pagesButton[pagesIndex].SetActive(true);
                 GameMenu.instance.pages[pagesIndex].text = item.itemName;
                 GameMenu.instance.pageDescription[pagesIndex].text = item.itemDescription;
+                GameMenu.instance.pagesButton[pagesIndex].GetComponent<Image>().sprite = item.pageImage;
+                GameMenu.instance.pagesImages[pagesIndex].GetComponent<Image>().sprite = item.pageImage;
                 pagesIndex++;   
             }
         }else{

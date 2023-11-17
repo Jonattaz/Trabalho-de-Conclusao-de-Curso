@@ -25,7 +25,9 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private string obsWithoutItem;
     [SerializeField] private string endPuzzleText;
     [SerializeField] private PlayerMovement PlayerMovement;
+    [SerializeField] private GameObject vfxObj;
     [SerializeField] private bool puzzleCompleted;
+    
 
     // Pins
     [SerializeField] private bool IPin;
@@ -82,6 +84,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         
         if(!puzzleCompleted){
             audioSource.enabled = true;
+            vfxObj.SetActive(false);
             // Checks if the player has the music box piece in their inventory
             if(PlayerInventory.instance.items.Contains(musicBoxPiece) || canPuzzle ){            
                 PlayerInventory.instance.items.Remove(musicBoxPiece);
@@ -200,6 +203,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 renderer.material = materials[1];
                 obituaryPage.gameObject.SetActive(true);
                 journalPage.gameObject.SetActive(true);
+                vfxObj.SetActive(false);
                 gameObject.GetComponent<SphereCollider>().enabled = false;
                 verify = true;
                 audioSource.PlayOneShot(audioClipUnlock);
@@ -253,6 +257,9 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         Cursor.visible = false;
         if(puzzleCompleted){
             audioSource.enabled = false;
+            vfxObj.SetActive(false);
+        }else{
+            vfxObj.SetActive(true);
         }
     }
 

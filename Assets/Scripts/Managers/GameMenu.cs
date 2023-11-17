@@ -22,6 +22,8 @@ public class GameMenu : MonoBehaviour{
     public GameObject[] itensButton;
     public GameObject[] tasksButton;
     public GameObject[] pagesButton;
+    public GameObject[] imagesPanel;
+    public GameObject[] pagesImages;
    
     public static GameMenu instance;
     
@@ -91,11 +93,15 @@ public class GameMenu : MonoBehaviour{
                 for(int j = 0; j < PlayerInventory.instance.pagesIndex; j++){
                     if(i == j){
                         pageDescription[j].gameObject.SetActive(true);
+                        imagesPanel[j].gameObject.SetActive(true);
+                        pagesImages[j].gameObject.SetActive(true);
                         pagesPanel.active = true;
                     }
                 }
             }else{
                 pageDescription[i].gameObject.SetActive(false);
+                imagesPanel[i].gameObject.SetActive(false);
+                pagesImages[i].gameObject.SetActive(false);
             }
         }
 

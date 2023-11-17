@@ -30,6 +30,7 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
 
     // Audio que toca ao interagir com o item
     public AudioClip audioClipOnInteract;
+    public Sprite pageImage;
 
     // Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
     void Start(){
