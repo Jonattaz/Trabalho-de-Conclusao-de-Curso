@@ -44,7 +44,7 @@ public class GameMenu : MonoBehaviour{
             if(menuPanel.active)
                 Time.timeScale = 0;
             else{
-                Time.timeScale = 1 ; 
+                Time.timeScale = 1; 
             }
         }
     }

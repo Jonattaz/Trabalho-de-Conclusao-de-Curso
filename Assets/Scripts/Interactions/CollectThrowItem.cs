@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CollectThrowItem : MonoBehaviour, IInteractable{   
     
+    [SerializeField] private GameObject model;
     [SerializeField] private bool thrown;
     [SerializeField] private bool wait;
     [SerializeField] private float destroyTime;
@@ -19,7 +20,8 @@ public class CollectThrowItem : MonoBehaviour, IInteractable{
             messageTextObj.text = collectMessage;
             StartCoroutine(FadingText());
             gameObject.GetComponent<MeshRenderer>().enabled = false;
-            gameObject.SetActive(false);
+            gameObject.GetComponent<SphereCollider>().enabled = false;
+            model.SetActive(false);
             wait = !wait;
         }
     }
@@ -60,7 +62,7 @@ public class CollectThrowItem : MonoBehaviour, IInteractable{
             messageTextObj.color = newColor;
             yield return null;
         }
-    
+        
         thrown = true;
         wait = !wait;
         Destroy(this.gameObject);

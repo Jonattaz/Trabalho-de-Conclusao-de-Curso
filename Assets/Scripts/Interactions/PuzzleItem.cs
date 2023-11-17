@@ -18,6 +18,8 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
 
     public Text messageTextObj;
 
+    public GameObject model;
+
     // Prefab correspondente do item
     public GameObject prefab;
 
@@ -43,12 +45,14 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
         if (item.inventoryItem && !wait){
             messageTextObj.text = collectMessage;
             StartCoroutine(FadingText());
-            if(gameObject.GetComponent<MeshRenderer>() != null){
+            if(gameObject.GetComponent<MeshRenderer>() != null)
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
-            }
+
+            gameObject.GetComponent<SphereCollider>().enabled = false;
             if(hasVFX)
                 vfxObj.SetActive(false);
             PlayerInventory.instance.AddItem(item);
+            model.SetActive(false);
             wait = !wait;
         }
 
@@ -74,7 +78,6 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
             yield return null;
         }
         wait = !wait;
-        this.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 

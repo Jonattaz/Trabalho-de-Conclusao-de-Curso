@@ -20,6 +20,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private PuzzleItem obituaryPage;
     [SerializeField] private GameObject obsObject;
     [SerializeField] private GameObject puzzleChoicesObject;
+    [SerializeField] private GameObject otherButtons;
     [SerializeField] private Text puzzleUnlockText;
     [SerializeField] private Text obsText;
     [SerializeField] private string obsWithoutItem;
@@ -83,6 +84,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     public void Interact(){
         
         if(!puzzleCompleted){
+            Time.timeScale = 0;
             audioSource.enabled = true;
             vfxObj.SetActive(false);
             // Checks if the player has the music box piece in their inventory
@@ -193,6 +195,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
 
     public void Play(){
         if(!audioSource.isPlaying){
+            otherButtons.active = false;
             if(IPin && !IIPin && !IIIPin && IVPin){
 
                 // Animação da bailarina dançando e a música tocando
@@ -246,6 +249,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     }
 
     public void Exit(){
+        Time.timeScale = 1;
         // Desativar o som ao sair
         audioSource.enabled = false; 
         audioSource.Stop();
@@ -286,8 +290,9 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 yield return null;
             }
             //5. Go back to #2 and play the next audio in the adClips array
-            
         }
+        
+        otherButtons.active = true;
     }
 }
 
