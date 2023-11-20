@@ -13,6 +13,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     private bool canPuzzle;
     [SerializeField] private Material[] materials;
     [SerializeField] private CinemachineVirtualCamera activeCam;
+    [SerializeField] private CinemachineVirtualCamera pageCam;
     [SerializeField] private AudioClip audioClipInteraction;
     [SerializeField] private AudioClip audioClipUnlock;
     [SerializeField] private PuzzleItem musicBoxPiece;
@@ -83,9 +84,9 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
 
     public void Interact(){
         
-        if(!puzzleCompleted){
+        if(!puzzleCompleted && !PlayerMovement.crouching){
             Time.timeScale = 0;
-            audioSource.enabled = true;
+            PlayerMovement.movementConstraint = true;
             vfxObj.SetActive(false);
             // Checks if the player has the music box piece in their inventory
             if(PlayerInventory.instance.items.Contains(musicBoxPiece) || canPuzzle ){            
@@ -102,18 +103,19 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
 
                 if(!canPuzzle)
                     audioSource.PlayOneShot(audioClipInteraction);
-    
+
+                audioSource.enabled = true;
                 // Zoom in no objeto
                 activeCam.Priority = 11;
                 puzzleChoicesObject.active = true;
-                PlayerMovement.movementConstraint = true;
                 Cursor.visible = true;
                 canPuzzle = true;
                 
             }else{
+                Time.timeScale = 1;
                 obsObject.active = !obsObject.active;
                 obsText.text = obsWithoutItem;
-                PlayerMovement.movementConstraint = !PlayerMovement.movementConstraint;
+                PlayerMovement.movementConstraint = false;
             }  
         }      
     }
@@ -137,7 +139,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 Debug.Log("IBSound playing...");
             }
         }else{
-            Debug.Log("Não tocou");
+            audioSource.Stop();
         }
     }
 
@@ -155,6 +157,8 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 audioSource.PlayOneShot(pinSound[3]);
                 Debug.Log("IIBSound playing...");
             }
+        }else{
+            audioSource.Stop();
         }
     }
 
@@ -173,6 +177,8 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 audioSource.PlayOneShot(pinSound[5]);
                 Debug.Log("IIIBSound playing...");
             }
+        }else{
+            audioSource.Stop();
         }
     }
 
@@ -190,6 +196,8 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 audioSource.PlayOneShot(pinSound[7]);
                 Debug.Log("IVBSound playing...");
             }
+        }else{
+            audioSource.Stop();
         }
     }
 
@@ -198,9 +206,11 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
             otherButtons.active = false;
             if(IPin && !IIPin && !IIIPin && IVPin){
 
+                activeCam.Priority = 0;
                 // Animação da bailarina dançando e a música tocando
                 // Ao terminar tocar o barulho de algo destrancando
                 StartCoroutine(playAudioSequentially(pinSound[0], pinSound[3], pinSound[5], pinSound[6]));
+                pageCam.Priority = 11;
                 puzzleUnlockText.text = endPuzzleText;
                 puzzleCompleted = true;
                 renderer.material = materials[1];
@@ -245,6 +255,8 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                     StartCoroutine(playAudioSequentially(pinSound[0], pinSound[2], pinSound[4], pinSound[7]));
                 }
             }
+        }else{
+            audioSource.Stop();
         }
     }
 
@@ -256,6 +268,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
 
         // Zoom out 
         activeCam.Priority = 0;
+        pageCam.Priority = 0;
         puzzleChoicesObject.active = false;
         PlayerMovement.movementConstraint = false;
         Cursor.visible = false;

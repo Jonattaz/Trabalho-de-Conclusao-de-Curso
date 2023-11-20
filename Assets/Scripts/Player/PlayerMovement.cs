@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour{
     [SerializeField] private float groundDrag;
     [SerializeField] private bool stunMode;
     [SerializeField] private bool backwardsMove;
+    public bool crouching;
     private float moveSpeed;
     private float rotationSpeedStore;
     float horizontalInput;
@@ -76,6 +77,7 @@ public class PlayerMovement : MonoBehaviour{
             if(stunMode){
                 rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
                 rb.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+                rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
                 stunMode = false;
             }
 
@@ -118,12 +120,14 @@ public class PlayerMovement : MonoBehaviour{
 
         // Start crouch
         if(Input.GetKeyDown(crouchKey)){
+            crouching = true;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
 
         // Stop crouch
         if(Input.GetKeyUp(crouchKey)){
+            crouching = false;
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         } 
     }
@@ -139,7 +143,7 @@ public class PlayerMovement : MonoBehaviour{
         }
 
         // Mode - Sprinting
-        if(grounded && Input.GetKey(sprintKey) && !backwardsMove){
+        if(grounded && Input.GetKey(sprintKey)){
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
             
