@@ -59,6 +59,7 @@ class TrackedTarget{
     }
 
 }
+
 [RequireComponent(typeof(EnemyAI))]
 public class AwarenessSystem : MonoBehaviour{
 
@@ -130,10 +131,10 @@ public class AwarenessSystem : MonoBehaviour{
         // Update target awareness
         if(Targets[targetGO].UpdateAwareness(target, position, awareness, minAwareness)){
             if(Targets[targetGO].Awareness >= 2f){
-                LinkedAI.OnDetected(targetGO);                
+                LinkedAI.OnFullyDetected(targetGO);                
             }else if (Targets[targetGO].Awareness >= 1f){
                 LinkedAI.OnDetected(targetGO);
-            }else{
+            }else if(Targets[targetGO].Awareness >= 0f){
                 LinkedAI.OnSuspicious(targetGO);
             }
         }

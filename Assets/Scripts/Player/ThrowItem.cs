@@ -103,25 +103,13 @@ public class ThrowItem : MonoBehaviour{
     }
 
     private void DrawProjection(){
-            
-       // Faz a mira subir e descer automaticamente StartCoroutine(UpwardForceCounter());
-
+        
         lineRenderer.enabled = true;
         lineRenderer.positionCount = Mathf.CeilToInt(linePoints / timeBetweenPoints) + 1;
         Vector3 startPosition = attackPoint.position;
         
         Vector3 startVelocity = (throwForce * orientation.forward) + (throwUpwardForce * orientation.up) / itemToThrow.GetComponent<Rigidbody>().mass;
         
-        /* --- TESTE 1 ----
-        CASO SOBRAR TEMPO VOLTAR AQUI E TENTAR IMPLEMENTAR
-        Vector3 mousePos;
-        mousePos = Input.mousePosition;
-        mousePos.Z = 100f;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        Debug.DrawRay(transform.position, mousePos - transform.position, Color.red);
-        Vector3 startVelocity = (new Vector3(mousePos.x,orientation.position.y, orientation.position.z) * throwForce) + (throwUpwardForce * orientation.up) / itemToThrow.GetComponent<Rigidbody>().mass;
-        */
-
         int i= 0;
 
         lineRenderer.SetPosition(i, startPosition);

@@ -10,36 +10,38 @@ public class EnemyFSM : MonoBehaviour{
         Patrolling,
         SawSomething,
         HeardSomething,
-        Chase
+        Kill
     }
 
-    [SerializeField] EState CurrentState;
+    // Novas variaveis
+    [SerializeField] private float AttentionTime = 5f ;
+    [SerializeField] private float StunTime;
     [SerializeField] private PlayerMovement PlayerMovement;
     [SerializeField] private GameObject DeathUI;
     [SerializeField] private GameObject PlayerObj;
+    float AttentionTimeRemaning;
+    float MovementSpeedValueRef;
+    float distance;
+    NavMeshAgent NavMeshAgent;
+
+    
+    // Variaveis originais
+    [SerializeField] EState CurrentState;
     [SerializeField] List<Transform> PatrolPoints;
     [SerializeField] private float PatrolPointsReachedThreshold = 0.5f;
     [SerializeField] private float MovementSpeed = 2f;
     [SerializeField] private float IdleMinTime = 5f;
     [SerializeField] private float IdleMaxTime = 10f;
     [SerializeField] private float ListenTme = 5f;
-    [SerializeField] private float AttentionTime = 5f ;
-    [SerializeField] private float DeathDistance;
-    [SerializeField] private float StunTime;
-    [SerializeField] private int DeathCounter;
     float IdleTimeRemaning;
     float ListenTimeRemaning;
-    float AttentionTimeRemaning;
     int CurrentPatrolPoint;
-    GameObject LastHeardLocation;
-    GameObject LastSeenTarget;
-    float MovementSpeedValueRef;
-    float distance;
-    NavMeshAgent NavMeshAgent;
+    Vector3 LastHeardLocation;
+    Transform LastSeenTarget;
+   
 
     // Start is called before the first frame update
     void Start(){
-        DeathCounter = 0;
         MovementSpeedValueRef = MovementSpeed;
         NavMeshAgent = GetComponent<NavMeshAgent>();
         NavMeshAgent.enabled = true;
@@ -53,36 +55,53 @@ public class EnemyFSM : MonoBehaviour{
 
      
     public void OnTargetDetected(GameObject target){
-        LastSeenTarget = target;
+        // OnDetected - I See you
+        LastSeenTarget = target.transform;
         SwitchToState(EState.SawSomething);    
     }
 
     public void OnTargetLost(){
-    
+        // OnLostDetected - Where are you
         LastSeenTarget = null;
 
         if(CurrentState == EState.SawSomething){
-
             SwitchToState(EState.Patrolling);
-
         }
 
     }
-    
-    public void OnSoundHeard(GameObject location){
-                
+
+    public void OnSoundHeard(Vector3 location){
+        // OnSuspicious - I hear you
         LastHeardLocation = location;
 
         SwitchToState(EState.HeardSomething);
 
     }
 
-    public void OnChase(GameObject target){
-        
-        LastSeenTarget = target;
-        SwitchToState(EState.Chase);
+    public void OnKill(GameObject target){
+        // OnFullyDetected - Charge
+        LastSeenTarget = target.transform;
+        SwitchToState(EState.Kill);
     }
     
+    public void OnTotalLostSuspicion(){
+        // OnlostSuspicion - Where did you go
+        LastSeenTarget = null;
+
+        if(CurrentState == EState.SawSomething){
+            SwitchToState(EState.Patrolling);
+        }
+    }
+
+    public void OnTotalLost(){
+        // OnFullyLost - Must be Nothing
+        LastSeenTarget = null;
+
+        if(CurrentState == EState.SawSomething){
+            SwitchToState(EState.Patrolling);
+        }
+    }
+
 
     void SwitchToState(EState newState){
         
@@ -99,18 +118,20 @@ public class EnemyFSM : MonoBehaviour{
         }else if(newState == EState.HeardSomething){
 
             // Look at the sound source for a set time
-            transform.rotation = Quaternion.LookRotation(LastHeardLocation.transform.position - transform.position, Vector3.up);
+            transform.rotation = Quaternion.LookRotation(LastHeardLocation - transform.position, Vector3.up);
             ListenTimeRemaning = ListenTme;
 
         }else if(newState == EState.SawSomething){
 
             // Look at target
             transform.rotation = Quaternion.LookRotation(LastSeenTarget.transform.position - transform.position, Vector3.up);
+            //transform.LookAt(LastSeenTarget, Vector3.up);
             AttentionTimeRemaning = AttentionTime;
 
-        }else if(newState == EState.Chase){
+        }else if(newState == EState.Kill){
 
             transform.rotation = Quaternion.LookRotation(LastSeenTarget.transform.position - transform.position, Vector3.up);
+            AttentionTimeRemaning = AttentionTime;
     
         }
 
@@ -139,8 +160,8 @@ public class EnemyFSM : MonoBehaviour{
 
             UpdateState_SawSomething();
 
-        }else if(CurrentState == EState.Chase){
-            UpdateState_Chase();
+        }else if(CurrentState == EState.Kill){
+            UpdateState_Kill();
         }
     }
 
@@ -170,7 +191,8 @@ public class EnemyFSM : MonoBehaviour{
         }
 
         // Move towards the point - Test this later using NavMesh instead of MoveTowards
-        NavMeshAgent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
+        //NavMeshAgent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
+        transform.position = Vector3.MoveTowards(transform.position, PatrolPoints[CurrentPatrolPoint].position, MovementSpeed * Time.deltaTime);
 
         // Face the patrol point
         transform.LookAt(PatrolPoints[CurrentPatrolPoint], Vector3.up);
@@ -186,13 +208,7 @@ public class EnemyFSM : MonoBehaviour{
 
             SwitchToState(EState.Patrolling);
 
-        }else{
-            
-            if(distance < DeathDistance){
-                StartCoroutine(StunAttack());        
-            } 
         }
-
     }    
 
     private void UpdateState_SawSomething(){
@@ -208,33 +224,28 @@ public class EnemyFSM : MonoBehaviour{
             MovementSpeed = MovementSpeedValueRef;
             SwitchToState(EState.Patrolling);
 
-        }else if(distance < DeathDistance){
-           StartCoroutine(StunAttack());        
         }
     }
 
-    private void UpdateState_Chase(){
+    private void UpdateState_Kill(){
 
-        if(LastSeenTarget != null){
-            /*MovementSpeed = MovementSpeedValueRef;
-
-            NavMeshAgent.SetDestination(LastSeenTarget.transform.position);
-
-            distance = Vector3.Distance(LastSeenTarget.transform.position, gameObject.transform.position);*/
-            if(distance < DeathDistance){
-                StartCoroutine(StunAttack());        
-            }
-            
-        }else{
+        MovementSpeed = 0f;
+        AttentionTimeRemaning -= Time.deltaTime;
+        
+        if(LastSeenTarget != null)
+            distance = Vector3.Distance(LastSeenTarget.transform.position, gameObject.transform.position);
+        
+        // Nothing seen - Patrol
+        if(AttentionTimeRemaning <= 0){
+            MovementSpeed = MovementSpeedValueRef;
             SwitchToState(EState.Patrolling);
-        }
 
+        }
     }
 
     IEnumerator StunAttack(){
        
-        // Stun and go back patrolling
-        DeathCounter++;
+        // Stun and game over
         PlayerMovement.movementConstraint = true;
         SwitchToState(EState.Patrolling);
 
@@ -245,7 +256,7 @@ public class EnemyFSM : MonoBehaviour{
         this.gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        //PlayerMovement.movementConstraint = false;
+
     }
 
 }

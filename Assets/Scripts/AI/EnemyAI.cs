@@ -63,39 +63,43 @@ public class EnemyAI : MonoBehaviour{
     // Go see object thrown
     public void OnSuspicious(GameObject target){
         Debug.Log("I hear you");
-        EnemyMovement.OnSoundHeard(target);
-
+        // Action Here
+        EnemyMovement.OnSoundHeard(target.transform.position);
+    
     }
 
-    // Start a idle moment and then after seconds continue patrolling
     public void OnDetected(GameObject target){
         Debug.Log("I see you " + target.gameObject.name);
+        // Action Here
         EnemyMovement.OnTargetDetected(target);
     }
 
-    // Chase player
+
     public void OnFullyDetected(GameObject target){
         Debug.Log("Charge! " + target.gameObject.name);
-        EnemyMovement.OnTargetDetected(target);
+        // Action Here  
+        EnemyMovement.OnKill(target);  
     }
     
-    
-    // Start a idle moment and then after seconds continue patrolling
+
     public void OnLostDetected(GameObject target){
         Debug.Log("Where are you " + target.gameObject.name);
-        EnemyMovement.OnTargetDetected(target);
+        // Action Here
+        EnemyMovement.OnTargetLost();      
     }
     
     // Start patrolling
     public void OnLostSuspicion(){
         Debug.Log("Where did you go");
-        EnemyMovement.OnTargetLost();
+        // Action Here
+        EnemyMovement.OnTotalLostSuspicion();
     }
 
-    // Start patrolling
     public void OnFullyLost(){
         Debug.Log(" Must be nothing");
-        EnemyMovement.OnTargetLost();
+        // Action Here
+        EnemyMovement.OnTotalLost();
+
     }
 }
 
