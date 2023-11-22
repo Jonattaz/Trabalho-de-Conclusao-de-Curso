@@ -231,7 +231,6 @@ public class EnemyFSM : MonoBehaviour{
 
         MovementSpeed = 0f;
         AttentionTimeRemaning -= Time.deltaTime;
-        
         if(LastSeenTarget != null)
             distance = Vector3.Distance(LastSeenTarget.transform.position, gameObject.transform.position);
         
@@ -240,14 +239,14 @@ public class EnemyFSM : MonoBehaviour{
             MovementSpeed = MovementSpeedValueRef;
             SwitchToState(EState.Patrolling);
 
+        }else{
+            StartCoroutine(StunAttack());
         }
     }
 
     IEnumerator StunAttack(){
-       
         // Stun and game over
         PlayerMovement.movementConstraint = true;
-        SwitchToState(EState.Patrolling);
 
         yield return new WaitForSeconds(StunTime);
         // Game Over
