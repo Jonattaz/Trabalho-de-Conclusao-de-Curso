@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameMenu : MonoBehaviour{
 
+    private PlayerMovement playerMovement;
     [SerializeField] private KeyCode menuKey = KeyCode.Escape;
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject inventoryPanel;
@@ -31,10 +32,16 @@ public class GameMenu : MonoBehaviour{
         instance = this;
     }
 
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    void Start(){
+        playerMovement = GetComponent<PlayerMovement>();        
+    }
+
     // Update is called once per frame
     void Update(){        
-        MenuController();
-
+        if(!playerMovement.movementConstraint)
+            MenuController();
     }
 
     public void MenuController(){

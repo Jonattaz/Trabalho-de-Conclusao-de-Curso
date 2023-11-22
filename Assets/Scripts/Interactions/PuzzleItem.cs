@@ -7,12 +7,16 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
 
     private PuzzleItem item;
     private bool wait;
+    private AudioSource audioSource;
 
     [Header("Item Configuration")]
+    public bool doorPage;
+
     public bool hasVFX;
     // Verifica se o item interagido é de inventário
     public bool inventoryItem;
 
+    public DoorPuzzle doorPuzzle;
     // Mensagem que aparece ao coletar algum item
     public string collectMessage;
 
@@ -37,12 +41,15 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
     // Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
     void Start(){
         item = GetComponent<PuzzleItem>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void CollectItem(){
 
         // Adicionar ao inventario da personagem que este item foi coletado
         if (item.inventoryItem && !wait){
+            if(audioClipOnInteract != null)
+                audioSource.PlayOneShot(audioClipOnInteract);
             messageTextObj.text = collectMessage;
             StartCoroutine(FadingText());
             if(gameObject.GetComponent<MeshRenderer>() != null)
@@ -52,6 +59,7 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
             if(hasVFX)
                 vfxObj.SetActive(false);
             PlayerInventory.instance.AddItem(item);
+           
             model.SetActive(false);
             wait = !wait;
         }
@@ -68,6 +76,9 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
             messageTextObj.color = newColor;
             yield return null;
         }
+
+        if(doorPage)
+            doorPuzzle.ShowUnlock();
 
         yield return new WaitForSeconds(2f);
 
