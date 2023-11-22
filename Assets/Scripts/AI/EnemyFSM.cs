@@ -191,8 +191,8 @@ public class EnemyFSM : MonoBehaviour{
         }
 
         // Move towards the point - Test this later using NavMesh instead of MoveTowards
-        //NavMeshAgent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
-        transform.position = Vector3.MoveTowards(transform.position, PatrolPoints[CurrentPatrolPoint].position, MovementSpeed * Time.deltaTime);
+        NavMeshAgent.SetDestination(PatrolPoints[CurrentPatrolPoint].position);
+        //transform.position = Vector3.MoveTowards(transform.position, PatrolPoints[CurrentPatrolPoint].position, MovementSpeed * Time.deltaTime);
 
         // Face the patrol point
         transform.LookAt(PatrolPoints[CurrentPatrolPoint], Vector3.up);

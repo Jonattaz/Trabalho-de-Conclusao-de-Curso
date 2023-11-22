@@ -5662,8 +5662,7 @@ MonoBehaviour:
   backwardsMove: 0
   crouching: 0
   state: 0
-  noiseRun: 1
-  noiseWalk: 0.1
+  noiseMovement: 0
   crouchSpeed: 1.5
   crouchYScale: 0.5
   sprintKey: 304
@@ -55509,7 +55508,7 @@ MonoBehaviour:
   - {fileID: 1424227208}
   - {fileID: 1452813551}
   PatrolPointsReachedThreshold: 0.5
-  MovementSpeed: 1.5
+  MovementSpeed: 1.25
   IdleMinTime: 5
   IdleMaxTime: 10
   ListenTme: 3
