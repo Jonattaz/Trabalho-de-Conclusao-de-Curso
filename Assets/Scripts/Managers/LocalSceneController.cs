@@ -11,8 +11,12 @@ public class LocalSceneController : MonoBehaviour{
     public float duration;
     public float waitTime;
     public AudioClip clickSound;
+    public GameObject menuPanel;
+    public GameObject controlsPanel;
+    public GameObject configPanel;
+    public GameObject buttonPanel;
     public bool hasClickSound;
-    
+
     /// Awake is called when the script instance is being loaded.
     void Awake(){
         instance = this;
@@ -47,6 +51,40 @@ public class LocalSceneController : MonoBehaviour{
             audioSource.PlayOneShot(clickSound);
         GameManager.CloseGame();
     }
+
+    public void GoControls(){
+        if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
+
+        menuPanel.SetActive(false);
+        controlsPanel.SetActive(true);
+
+    }
+
+    public void GoMenu(){
+        if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
+
+        controlsPanel.SetActive(false);
+        menuPanel.SetActive(true);
+    }
+
+    public void GoButtons(){
+        if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
+
+        configPanel.SetActive(false);
+        buttonPanel.SetActive(true);
+    }
+
+    public void GoConfig(){
+        if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
+
+        buttonPanel.SetActive(false);
+        configPanel.SetActive(true);
+    }
+
 
 }
 

@@ -4,14 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameMenu : MonoBehaviour{
-
+    
+    int var;
+    int auxBackwards = 1;
+    int auxForwards = 1;
     private PlayerMovement playerMovement;
     [SerializeField] private KeyCode menuKey = KeyCode.Escape;
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject journalPanel;
-    [SerializeField] private GameObject tasksPanel;
-    public GameObject pagesPanel;
+    [SerializeField] private GameObject pagesPanel; 
+    
+    [SerializeField] private int pageDescriptionNumber;
+
     public Text[] itemDescription;
     public Text[] taskDescription;
     public Text[] pageDescription; 
@@ -58,27 +63,65 @@ public class GameMenu : MonoBehaviour{
 
     public void InventoryOn(){
         journalPanel.active = false;
-        tasksPanel.active = false;
         pagesPanel.active = false;
         inventoryPanel.active = !inventoryPanel.active;
     }
 
     public void JournalOn(){
         inventoryPanel.active = false;
-        tasksPanel.active = false;
         pagesPanel.active = false;
         journalPanel.active = !inventoryPanel.active;
     }
 
-    public void TasksOn(){
-        inventoryPanel.active = false;
+    public void MenuOn(){
         journalPanel.active = false;
+        menuPanel.active = true;
+    }
+
+    public void PageOff(){
         pagesPanel.active = false;
-        tasksPanel.active = !tasksPanel.active;
-    } 
+    }
+
+
+    // Funciona apenas uma vez - Arrumar
+    public void Backwards(){
+        var = pageDescriptionNumber - auxBackwards; 
+        for (int i = 0; i < pagesButton.Length; i++){
+            if(var == i){
+                pageDescription[i+1].gameObject.SetActive(false);
+                imagesPanel[i+1].gameObject.SetActive(false);
+                pagesImages[i+1].gameObject.SetActive(false);
+                
+                pageDescription[i].gameObject.SetActive(true);
+                imagesPanel[i].gameObject.SetActive(true);
+                pagesImages[i].gameObject.SetActive(true);
+                auxBackwards++;
+                auxForwards--;
+            }
+        }
+
+    }
+
+    // Funciona apenas uma vez - Arrumar
+    public void Forwards(){
+        var = pageDescriptionNumber + auxForwards; 
+        for (int i = 0; i < pagesButton.Length; i++){
+            if(var == i){
+                pageDescription[i-1].gameObject.SetActive(false);
+                imagesPanel[i-1].gameObject.SetActive(false);
+                pagesImages[i-1].gameObject.SetActive(false);
+                
+                pageDescription[i].gameObject.SetActive(true);
+                imagesPanel[i].gameObject.SetActive(true);
+                pagesImages[i].gameObject.SetActive(true);
+                auxForwards--;
+                auxBackwards++;
+            }
+        }
+    }
 
     public void ItemDescriptionButton(int buttonNumber){
-
+    
         for (int i = 0; i < itensButton.Length; i++){
             if(buttonNumber == i){
                 for(int j = 0; j < PlayerInventory.instance.itemIndex; j++){
@@ -90,11 +133,14 @@ public class GameMenu : MonoBehaviour{
                 itemDescription[i].gameObject.SetActive(false);
             }
         }
-
     }
 
     public void PageDescriptionButton(int buttonNumber){
 
+        pageDescriptionNumber = buttonNumber;
+        auxForwards = 1;
+        auxBackwards = 1;
+        
         for (int i = 0; i < pagesButton.Length; i++){
             if(buttonNumber == i){
                 for(int j = 0; j < PlayerInventory.instance.pagesIndex; j++){
@@ -112,14 +158,12 @@ public class GameMenu : MonoBehaviour{
             }
         }
 
-      
-
     }
 
-    public void TaskDescription(){
-
+    public void CloseMenu(){
+        menuPanel.SetActive(false);
+        Time.timeScale = 1;
     }
-
 }
 
 
