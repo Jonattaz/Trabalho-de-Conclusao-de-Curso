@@ -75,6 +75,7 @@ public class GameMenu : MonoBehaviour{
 
     public void MenuOn(){
         journalPanel.active = false;
+        inventoryPanel.active = false;
         menuPanel.active = true;
     }
 
@@ -117,7 +118,7 @@ public class GameMenu : MonoBehaviour{
                 auxForwards--;
                 auxBackwards++;
             }
-        }
+        } 
     }
 
     public void ItemDescriptionButton(int buttonNumber){
