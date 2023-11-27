@@ -9,6 +9,9 @@ public class GameMenu : MonoBehaviour{
     int auxBackwards = 1;
     int auxForwards = 1;
     private PlayerMovement playerMovement;
+    private AudioSource audioSource;
+    public bool hasClickSound;
+    public AudioClip clickSound;
     [SerializeField] private KeyCode menuKey = KeyCode.Escape;
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject inventoryPanel;
@@ -40,7 +43,8 @@ public class GameMenu : MonoBehaviour{
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
     void Start(){
-        playerMovement = GetComponent<PlayerMovement>();        
+        playerMovement = GetComponent<PlayerMovement>();       
+        audioSource = GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
@@ -62,30 +66,41 @@ public class GameMenu : MonoBehaviour{
     }
 
     public void InventoryOn(){
+         if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
         journalPanel.active = false;
         pagesPanel.active = false;
         inventoryPanel.active = !inventoryPanel.active;
     }
 
     public void JournalOn(){
+         if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
         inventoryPanel.active = false;
         pagesPanel.active = false;
         journalPanel.active = !inventoryPanel.active;
     }
 
     public void MenuOn(){
+         if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
         journalPanel.active = false;
         inventoryPanel.active = false;
         menuPanel.active = true;
     }
 
     public void PageOff(){
+         if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
         pagesPanel.active = false;
     }
 
 
     // Funciona apenas uma vez - Arrumar
     public void Backwards(){
+        if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
+       
         var = pageDescriptionNumber - auxBackwards; 
         for (int i = 0; i < pagesButton.Length; i++){
             if(var == i){
@@ -105,6 +120,8 @@ public class GameMenu : MonoBehaviour{
 
     // Funciona apenas uma vez - Arrumar
     public void Forwards(){
+         if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
         var = pageDescriptionNumber + auxForwards; 
         for (int i = 0; i < pagesButton.Length; i++){
             if(var == i){
@@ -122,7 +139,9 @@ public class GameMenu : MonoBehaviour{
     }
 
     public void ItemDescriptionButton(int buttonNumber){
-    
+         if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
+
         for (int i = 0; i < itensButton.Length; i++){
             if(buttonNumber == i){
                 for(int j = 0; j < PlayerInventory.instance.itemIndex; j++){
@@ -141,6 +160,9 @@ public class GameMenu : MonoBehaviour{
         pageDescriptionNumber = buttonNumber;
         auxForwards = 1;
         auxBackwards = 1;
+
+         if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
         
         for (int i = 0; i < pagesButton.Length; i++){
             if(buttonNumber == i){
@@ -162,6 +184,8 @@ public class GameMenu : MonoBehaviour{
     }
 
     public void CloseMenu(){
+         if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
         menuPanel.SetActive(false);
         Time.timeScale = 1;
     }

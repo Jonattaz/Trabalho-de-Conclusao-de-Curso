@@ -84,7 +84,5 @@ public class LocalSceneController : MonoBehaviour{
         buttonPanel.SetActive(false);
         configPanel.SetActive(true);
     }
-
-
 }
 

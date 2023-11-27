@@ -8,6 +8,8 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
 
     private AudioSource audioSource;
     private bool interacting;
+    [SerializeField] private AudioClip lockedSound;
+    [SerializeField] private AudioClip unlockedSound;
     [SerializeField] private bool lessPages;
     [SerializeField] private bool camShowLock;
     [SerializeField] private GameObject endGameUI;
@@ -20,8 +22,8 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private string unlockText;
     [SerializeField] private Text obsText;
     [SerializeField] private GameObject obsObject;
-    [SerializeField] private GameObject vfxObj;
     [SerializeField] private PlayerMovement PlayerMovement;
+
 
     // Pages
     [SerializeField] private PuzzleItem journalPage;
@@ -45,7 +47,7 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
 
     IEnumerator CamFocus(){
 
-        vfxObj.SetActive(false);
+        audioSource.PlayOneShot(unlockedSound);
         PlayerMovement.movementConstraint = true;
         obsObject.active = true;
         obsText.text = unlockText;
@@ -54,7 +56,6 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
 
         yield return new WaitForSeconds(camTime);
 
-        vfxObj.SetActive(true);
         PlayerMovement.movementConstraint = false;
         obsObject.active = false;
         obsText.text = unlockText;
@@ -62,10 +63,6 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
         activeCam.Priority = 0;
     }
 
-    /* Fazer ref desse script no puzzle item para
-        Criar uma bool no puzzle item para verificar se ele é uma página desse puzzle
-        Caso verdadeiro ele irá ativar uma bool desse script que destranca(visualmente) uma fechadura
-    */
 
     public void Interact(){
         
@@ -78,7 +75,6 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
                 if(lessPages){
                     // Desbloquear porta
                     audioSource.enabled = false;
-                    vfxObj.SetActive(false);
                     Debug.Log("Unlocked");
                     endGameUI.SetActive(true);
                     playerObj.SetActive(false);
@@ -89,13 +85,12 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
                 /*else if(PlayerInventory.instance.items.Contains(SecondPage) && PlayerInventory.instance.items.Contains(thirdPage)){
                     // Desbloquear porta
                     audioSource.enabled = false;
-                    vfxObj.SetActive(false);
                 }*/
 
             }else{        
                 Time.timeScale = 0;
                 PlayerMovement.movementConstraint = true;
-                vfxObj.SetActive(false);
+                audioSource.PlayOneShot(lockedSound);
                 audioSource.enabled = true;
                 // Zoom in no objeto
                 activeCam.Priority = 11;
@@ -111,7 +106,6 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
 
             // Zoom out 
             activeCam.Priority = 0;
-            vfxObj.SetActive(true);
             PlayerMovement.movementConstraint = false;
             Cursor.visible = false;
             obsObject.active = false;

@@ -5,18 +5,31 @@ using UnityEngine.UI;
 
 public class CollectThrowItem : MonoBehaviour, IInteractable{   
     
-    [SerializeField] private GameObject model;
+    private AudioSource audioSource;
+    [SerializeField] private bool hasSound;
     [SerializeField] private bool thrown;
     [SerializeField] private bool wait;
     [SerializeField] private float destroyTime;
+    [SerializeField] private GameObject model;
+    [SerializeField] private AudioClip collectSound;
+    [SerializeField] private AudioClip collisionSound;
     [SerializeField] ThrowItem throwItemRef;
     // Mensagem que aparece ao coletar algum item
     public string collectMessage;
     public Text messageTextObj;
 
 
+    //Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
+    void Start(){
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void CollectItem(){
         if(!wait){
+            
+            if(hasSound)
+                audioSource.PlayOneShot(collectSound);
+
             messageTextObj.text = collectMessage;
             StartCoroutine(FadingText());
             gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -35,6 +48,9 @@ public class CollectThrowItem : MonoBehaviour, IInteractable{
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.
     void OnCollisionEnter(Collision other){
         if(thrown){
+            if(hasSound)
+                audioSource.PlayOneShot(collisionSound);
+                
             if(other.gameObject.tag != "Player" && other.gameObject.tag != "Enemy"){
                 HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EItem, 2f);
                 Destroy(this.gameObject, destroyTime);
