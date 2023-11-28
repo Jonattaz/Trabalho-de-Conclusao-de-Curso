@@ -8,6 +8,10 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
     
     private AudioSource audioSource;
     [SerializeField] private bool puzzleCompleted;
+    [SerializeField] private bool hourHorario;
+    [SerializeField] private bool hourAntihorario;
+    [SerializeField] private bool minHorario;
+    [SerializeField] private bool minAntihorario;
     [SerializeField] private PlayerMovement PlayerMovement;
     [SerializeField] private Text puzzleUnlockText;
     [SerializeField] private Text obsText;
@@ -33,6 +37,24 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
 
     // Update is called once per frame
     void Update(){
+
+        /* TEST - Fazer diferente, preciso ter a localização exata do ponteiro para saber se a hora está correta
+            Em vez de mudar adicionar collider para quando o ponteiro estiver OntriggerStay nele isso irá 
+            significar que o ponteiro está no lugar certo,
+            caso os dois estiverem no lugar correto o puzzle estará correto
+        */
+        if(hourHorario)
+            pointerHour.transform.Rotate(Vector3.right);
+
+        if(hourAntihorario)
+            pointerHour.transform.Rotate(-Vector3.right);
+
+        if(minHorario)
+            pointerMin.transform.Rotate(Vector3.right);
+
+        if(minAntihorario)
+            pointerMin.transform.Rotate(-Vector3.right);
+
     }
 
     public void Interact(){

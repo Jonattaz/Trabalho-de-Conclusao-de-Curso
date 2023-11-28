@@ -39505,7 +39505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1407620553
 Transform:
   m_ObjectHideFlags: 0
@@ -62836,6 +62836,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleCompleted: 0
+  hourHorario: 0
+  hourAntihorario: 0
+  minHorario: 0
+  minAntihorario: 0
   PlayerMovement: {fileID: 0}
   puzzleUnlockText: {fileID: 625914131}
   obsText: {fileID: 819333408}
@@ -62848,8 +62852,8 @@ MonoBehaviour:
   obsObject: {fileID: 913429254}
   puzzleChoicesObject: {fileID: 1279268162}
   otherButtons: {fileID: 304824639}
-  pointerHour: {fileID: 408323435}
-  pointerMin: {fileID: 47335625}
+  pointerHour: {fileID: 1119906235}
+  pointerMin: {fileID: 59105707}
   vfxObj: {fileID: 758233853}
   timeMarkers:
   - {fileID: 1162104979}
