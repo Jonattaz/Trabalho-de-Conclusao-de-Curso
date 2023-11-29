@@ -77,8 +77,10 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
             yield return null;
         }
 
-        if(doorPage)
+        if(doorPage){
+
             doorPuzzle.ShowUnlock();
+        }
 
         yield return new WaitForSeconds(2f);
 

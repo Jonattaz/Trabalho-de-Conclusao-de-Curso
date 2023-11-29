@@ -23,11 +23,12 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private Text obsText;
     [SerializeField] private GameObject obsObject;
     [SerializeField] private PlayerMovement PlayerMovement;
-
+    [SerializeField] private GameObject[] lockers;
+    private int aux;
 
     // Pages
-    [SerializeField] private PuzzleItem journalPage;
-    [SerializeField] private PuzzleItem obituaryPage;
+    [SerializeField] private PuzzleItem journalPage1;
+    [SerializeField] private PuzzleItem journalPage2;
 
 
 
@@ -47,6 +48,7 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
 
     IEnumerator CamFocus(){
 
+        lockers[aux].SetActive(false);
         audioSource.PlayOneShot(unlockedSound);
         PlayerMovement.movementConstraint = true;
         obsObject.active = true;
@@ -61,6 +63,7 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
         obsText.text = unlockText;
         // Zoom in no objeto
         activeCam.Priority = 0;
+        aux++;
     }
 
 
@@ -70,8 +73,8 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
         
         if(interacting && !PlayerMovement.crouching){
             // Checks if the player has the pages in their inventory
-            if(PlayerInventory.instance.items.Contains(journalPage)){ 
-                
+            if(PlayerInventory.instance.items.Contains(journalPage1) || PlayerInventory.instance.items.Contains(journalPage2)){ 
+        
                 if(lessPages){
                     // Desbloquear porta
                     audioSource.enabled = false;
@@ -81,12 +84,18 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
                     enemyObj.SetActive(false);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
+                }else{
+                    Time.timeScale = 0;
+                    PlayerMovement.movementConstraint = true;
+                    audioSource.PlayOneShot(lockedSound);
+                    audioSource.enabled = true;
+                    // Zoom in no objeto
+                    activeCam.Priority = 11;
+                    Cursor.visible = true;
+                    obsObject.active = true;
+                    obsText.text = doorText;
                 }
-                /*else if(PlayerInventory.instance.items.Contains(SecondPage) && PlayerInventory.instance.items.Contains(thirdPage)){
-                    // Desbloquear porta
-                    audioSource.enabled = false;
-                }*/
-
+                
             }else{        
                 Time.timeScale = 0;
                 PlayerMovement.movementConstraint = true;
@@ -97,6 +106,17 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
                 Cursor.visible = true;
                 obsObject.active = true;
                 obsText.text = doorText;
+            }
+
+            if(PlayerInventory.instance.items.Contains(journalPage1) && PlayerInventory.instance.items.Contains(journalPage2)){
+                // Desbloquear porta
+                audioSource.enabled = false;
+                Debug.Log("Unlocked");
+                endGameUI.SetActive(true);
+                playerObj.SetActive(false);
+                enemyObj.SetActive(false);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }             
         }else if(!interacting){ 
             Time.timeScale = 1;

@@ -7,6 +7,7 @@ using Cinemachine;
 public class ClockPuzzle : MonoBehaviour, IInteractable{
     
     private AudioSource audioSource;
+    [SerializeField] private bool canPuzzle;
     [SerializeField] private bool localPointerHourCorrect;
     [SerializeField] private bool localPointerMinCorrect;
     [SerializeField] private bool puzzleCompleted;
@@ -22,13 +23,11 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private CinemachineVirtualCamera pageCam;
     [SerializeField] private AudioClip audioClipEndPuzzle;
     [SerializeField] private PuzzleItem journalPage;
-    [SerializeField] private GameObject obsObject;
     [SerializeField] private GameObject puzzleChoicesObject;
-    [SerializeField] private GameObject otherButtons;
     [SerializeField] private GameObject pointerHour;
     [SerializeField] private GameObject pointerMin;
     [SerializeField] private GameObject vfxObj;
-    [SerializeField] private GameObject[] timeMarkers;
+    [SerializeField] private GameObject otherButtons;
     
 
     // Start is called before the first frame update
@@ -64,6 +63,18 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
 
         if(localPointerHourCorrect && localPointerMinCorrect){
             Debug.Log("Puzzle Correct");
+
+            pageCam.Priority = 11;
+            puzzleUnlockText.text = endPuzzleText;
+            puzzleCompleted = true;
+            otherButtons.SetActive(false);
+            journalPage.gameObject.SetActive(true);
+            vfxObj.SetActive(false);
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            
+            if(audioClipEndPuzzle != null)
+                audioSource.PlayOneShot(audioClipEndPuzzle);
+
         }else{
             Debug.Log("Puzzle Wrong");
         }
@@ -71,18 +82,21 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
 
     public void Interact(){
 
-        for (int i = 0; i < pointers.Length; i++){
-            pointers[i].gameObject.SetActive(true);
-        }
+        if(!puzzleCompleted){
 
-        AIObject.SetActive(false);
-        PlayerMovement.movementConstraint = true;
-        vfxObj.SetActive(false);
-        audioSource.enabled = true;
-        // Zoom in no objeto
-        activeCam.Priority = 11;
-        puzzleChoicesObject.active = true;
-        Cursor.visible = true;
+            for (int i = 0; i < pointers.Length; i++){
+                pointers[i].puzzleStarted = true;
+            }
+
+            AIObject.GetComponent<EnemyFSM>().stopAI = true;
+            PlayerMovement.movementConstraint = true;
+            vfxObj.SetActive(false);
+            audioSource.enabled = true;
+            // Zoom in no objeto
+            activeCam.Priority = 11;
+            puzzleChoicesObject.SetActive(true);
+            Cursor.visible = true;
+        }
         
     }
 
@@ -108,11 +122,9 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
     public void Exit(){
 
         for (int i = 0; i < pointers.Length; i++){
-            pointers[i].gameObject.SetActive(false);
+            pointers[i].puzzleStarted = false;
         }
 
-
-        AIObject.SetActive(true);
         // Desativar o som ao sair
         audioSource.enabled = false; 
         audioSource.Stop();
@@ -120,9 +132,11 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
         // Zoom out 
         activeCam.Priority = 0;
         pageCam.Priority = 0;
-        puzzleChoicesObject.active = false;
+        puzzleChoicesObject.SetActive(false);
         PlayerMovement.movementConstraint = false;
         Cursor.visible = false;
+        AIObject.GetComponent<EnemyFSM>().stopAI = false;
+
         if(puzzleCompleted){
             audioSource.enabled = false;
             vfxObj.SetActive(false);

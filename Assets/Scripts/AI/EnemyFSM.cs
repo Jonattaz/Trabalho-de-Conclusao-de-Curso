@@ -38,6 +38,8 @@ public class EnemyFSM : MonoBehaviour{
     int CurrentPatrolPoint;
     Vector3 LastHeardLocation;
     Transform LastSeenTarget;
+
+    public bool stopAI;
    
 
     // Start is called before the first frame update
@@ -50,7 +52,9 @@ public class EnemyFSM : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        UpdateState();
+            
+        if(!stopAI)
+            UpdateState();
     }
 
      
