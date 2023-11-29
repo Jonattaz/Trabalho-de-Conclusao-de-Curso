@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PointerClock : MonoBehaviour{
+
+    public bool whichPointer;   // True - Hora
+                                // False - Minutos
+    public bool pointerHour;
+    public bool pointerMin;
+    
+    // OnTriggerExit is called when the Collider other has stopped touching the trigger.
+    void OnTriggerExit(Collider other){
+        
+    }
+    
+    // OnTriggerStay is called once per frame for every Collider other that is touching the trigger.
+    void OnTriggerStay(Collider other){
+        
+        if(other.gameObject.tag == gameObject.name){
+            
+        }else{
+            Debug.Log(other.gameObject.tag);
+        }
+
+        if(whichPointer){
+            if(other.gameObject.tag == gameObject.name){
+                pointerHour = true;
+            }else{
+                pointerHour = false;
+            }
+        }else{
+            if(other.gameObject.tag == gameObject.name){
+                pointerMin = true;
+            }else{
+                pointerMin = false;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+

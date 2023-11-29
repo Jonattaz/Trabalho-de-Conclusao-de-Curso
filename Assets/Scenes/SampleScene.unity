@@ -721,13 +721,15 @@ GameObject:
   - component: {fileID: 47335629}
   - component: {fileID: 47335628}
   - component: {fileID: 47335627}
-  m_Layer: 0
+  - component: {fileID: 47335630}
+  - component: {fileID: 47335631}
+  m_Layer: 16
   m_Name: PonteiroHoras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &47335626
 Transform:
   m_ObjectHideFlags: 0
@@ -751,11 +753,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47335625}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.659997, y: 2.6277826, z: 1}
+  m_Center: {x: 0, y: 0.81389123, z: -0.0000007252272}
 --- !u!23 &47335628
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -806,6 +808,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47335625}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &47335630
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47335625}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &47335631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47335625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9fdf9c143c74647a2ffe09d2651b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whichPointer: 1
+  pointerHour: 0
+  pointerMin: 0
 --- !u!1 &57219016
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +1003,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &59105707
 GameObject:
@@ -1002,7 +1035,7 @@ Transform:
   m_Children:
   - {fileID: 408323436}
   m_Father: {fileID: 1373589379}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1 &61944759
 GameObject:
@@ -1144,7 +1177,7 @@ Transform:
   - {fileID: 1613149265}
   - {fileID: 1719007228}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &66503450
 GameObject:
@@ -2242,7 +2275,7 @@ Transform:
   - {fileID: 1169820572}
   - {fileID: 1373589379}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &122269309
 GameObject:
@@ -5571,7 +5604,7 @@ Transform:
   - {fileID: 486835875}
   - {fileID: 1438572679}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &171609615
 GameObject:
@@ -5697,7 +5730,7 @@ Transform:
   - {fileID: 430512812}
   - {fileID: 1834930388}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 360.17, z: 0}
 --- !u!54 &179442614
 Rigidbody:
@@ -6319,7 +6352,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &195230291
 GameObject:
@@ -8879,8 +8912,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 887892761}
-        m_TargetAssemblyTypeName: MusicBoxPuzzle, Assembly-CSharp
+      - m_Target: {fileID: 2041509803}
+        m_TargetAssemblyTypeName: ClockPuzzle, Assembly-CSharp
         m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
@@ -13901,13 +13934,15 @@ GameObject:
   - component: {fileID: 408323439}
   - component: {fileID: 408323438}
   - component: {fileID: 408323437}
-  m_Layer: 0
+  - component: {fileID: 408323440}
+  - component: {fileID: 408323441}
+  m_Layer: 17
   m_Name: PonteiroMinutos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &408323436
 Transform:
   m_ObjectHideFlags: 0
@@ -13931,11 +13966,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408323435}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5.7, y: 1.6659307, z: 1}
+  m_Center: {x: 0, y: 0.33409178, z: 0}
 --- !u!23 &408323438
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13986,6 +14021,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408323435}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &408323440
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408323435}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 110
+  m_CollisionDetection: 0
+--- !u!114 &408323441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408323435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9fdf9c143c74647a2ffe09d2651b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whichPointer: 0
+  pointerHour: 0
+  pointerMin: 0
 --- !u!1 &409221889
 GameObject:
   m_ObjectHideFlags: 0
@@ -18340,7 +18406,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &594153210
 GameObject:
@@ -20824,12 +20890,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -34.07, y: 21.87, z: 6.3000054}
+  m_LocalPosition: {x: -32.98, y: 20.02, z: -4.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 1106434662}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &705507996
 MonoBehaviour:
@@ -21172,9 +21238,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 887892761}
-        m_TargetAssemblyTypeName: MusicBoxPuzzle, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 2041509803}
+        m_TargetAssemblyTypeName: ClockPuzzle, Assembly-CSharp
+        m_MethodName: ApplyChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22104,15 +22170,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744415762}
-  m_LocalRotation: {x: -0, y: 0.9135455, z: -0.40673664, w: 0}
-  m_LocalPosition: {x: 4.580102, y: 0.08780897, z: -4.594006}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: -0.7064338}
+  m_LocalPosition: {x: 1.113, y: 0.373, z: 0}
   m_LocalScale: {x: 0.5, y: 0.26378664, z: 0.23758292}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 202917695}
   m_Father: {fileID: 2041509799}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 48, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 5, y: 270, z: 0}
 --- !u!114 &744415764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22344,7 +22410,7 @@ Transform:
   - {fileID: 61944760}
   - {fileID: 147610159}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &756202095
 MonoBehaviour:
@@ -22799,7 +22865,7 @@ GameObject:
   - component: {fileID: 773050768}
   - component: {fileID: 773050767}
   - component: {fileID: 773050766}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22829,7 +22895,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773050764}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -22841,7 +22907,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773050764}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -24183,9 +24249,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 887892761}
-        m_TargetAssemblyTypeName: MusicBoxPuzzle, Assembly-CSharp
-        m_MethodName: ChoiceIII
+      - m_Target: {fileID: 2041509803}
+        m_TargetAssemblyTypeName: ClockPuzzle, Assembly-CSharp
+        m_MethodName: HorasAntihorario
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26873,7 +26939,7 @@ Transform:
   - {fileID: 1106434662}
   - {fileID: 452199879}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &913429254
 GameObject:
@@ -27207,7 +27273,7 @@ GameObject:
   - component: {fileID: 916473155}
   - component: {fileID: 916473154}
   - component: {fileID: 916473153}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27237,7 +27303,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916473151}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -27249,7 +27315,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916473151}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -28661,7 +28727,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 20.59, y: -30, z: 0}
 --- !u!1 &959440942 stripped
 GameObject:
@@ -29409,7 +29475,7 @@ GameObject:
   - component: {fileID: 989617141}
   - component: {fileID: 989617140}
   - component: {fileID: 989617139}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29439,7 +29505,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989617137}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -29451,7 +29517,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989617137}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -30435,7 +30501,7 @@ GameObject:
   - component: {fileID: 1024861806}
   - component: {fileID: 1024861805}
   - component: {fileID: 1024861804}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30465,7 +30531,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024861802}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -30477,7 +30543,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024861802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -31015,7 +31081,7 @@ GameObject:
   - component: {fileID: 1075537565}
   - component: {fileID: 1075537564}
   - component: {fileID: 1075537563}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31045,7 +31111,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075537561}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -31057,7 +31123,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075537561}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -31804,6 +31870,9 @@ Transform:
   - {fileID: 163071358}
   - {fileID: 1983791494}
   - {fileID: 1460288866}
+  - {fileID: 2892641757922370051}
+  - {fileID: 4877267314163913061}
+  - {fileID: 705507995}
   m_Father: {fileID: 912913905}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32053,7 +32122,7 @@ Transform:
   m_Children:
   - {fileID: 47335626}
   m_Father: {fileID: 1373589379}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 12, y: 0, z: 0}
 --- !u!1 &1123804970
 GameObject:
@@ -33276,9 +33345,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 887892761}
-        m_TargetAssemblyTypeName: MusicBoxPuzzle, Assembly-CSharp
-        m_MethodName: ChoiceII
+      - m_Target: {fileID: 2041509803}
+        m_TargetAssemblyTypeName: ClockPuzzle, Assembly-CSharp
+        m_MethodName: MinutosHorario
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33438,7 +33507,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1153841773
 GameObject:
@@ -33729,9 +33798,9 @@ GameObject:
   - component: {fileID: 1162104983}
   - component: {fileID: 1162104982}
   - component: {fileID: 1162104981}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker
-  m_TagString: Untagged
+  m_TagString: PonteiroHoras
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33759,7 +33828,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162104979}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -33771,7 +33840,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162104979}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -33784,7 +33853,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aeb0f9a8ce932fa43a6c7c7504e990b6, type: 2}
+  - {fileID: 2100000, guid: eeb46bf66205c0545a654c507ecf8ff8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34556,7 +34625,7 @@ GameObject:
   - component: {fileID: 1189331489}
   - component: {fileID: 1189331488}
   - component: {fileID: 1189331487}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34586,7 +34655,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189331485}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -34598,7 +34667,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189331485}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -36207,7 +36276,7 @@ Transform:
   - {fileID: 1732949209}
   - {fileID: 322324673}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1261628897
 PrefabInstance:
@@ -37924,9 +37993,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 887892761}
-        m_TargetAssemblyTypeName: MusicBoxPuzzle, Assembly-CSharp
-        m_MethodName: ChoiceIV
+      - m_Target: {fileID: 2041509803}
+        m_TargetAssemblyTypeName: ClockPuzzle, Assembly-CSharp
+        m_MethodName: MinutosAntihorario
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -38704,9 +38773,9 @@ GameObject:
   - component: {fileID: 1353293542}
   - component: {fileID: 1353293541}
   - component: {fileID: 1353293540}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (6)
-  m_TagString: Untagged
+  m_TagString: PonteiroMinutos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38734,7 +38803,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353293538}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -38746,7 +38815,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353293538}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -38759,7 +38828,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aeb0f9a8ce932fa43a6c7c7504e990b6, type: 2}
+  - {fileID: 2100000, guid: eeb46bf66205c0545a654c507ecf8ff8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -39144,8 +39213,8 @@ Transform:
   m_Children:
   - {fileID: 2041509799}
   - {fileID: 1407620553}
-  - {fileID: 59105708}
   - {fileID: 1119906236}
+  - {fileID: 59105708}
   m_Father: {fileID: 117509415}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39875,7 +39944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1407620553
 Transform:
   m_ObjectHideFlags: 0
@@ -40263,7 +40332,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1424841751
 GameObject:
@@ -42175,7 +42244,7 @@ GameObject:
   - component: {fileID: 1476840455}
   - component: {fileID: 1476840454}
   - component: {fileID: 1476840453}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42205,7 +42274,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476840451}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -42217,7 +42286,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476840451}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -44245,7 +44314,7 @@ Transform:
   - {fileID: 57219017}
   - {fileID: 1603724964}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1497751046
 GameObject:
@@ -44451,7 +44520,7 @@ GameObject:
   - component: {fileID: 1512114865}
   - component: {fileID: 1512114864}
   - component: {fileID: 1512114863}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44481,7 +44550,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512114861}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -44493,7 +44562,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512114861}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -46766,7 +46835,7 @@ GameObject:
   - component: {fileID: 1597541358}
   - component: {fileID: 1597541357}
   - component: {fileID: 1597541356}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46796,7 +46865,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597541354}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -46808,7 +46877,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597541354}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -50761,9 +50830,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 887892761}
-        m_TargetAssemblyTypeName: MusicBoxPuzzle, Assembly-CSharp
-        m_MethodName: ChoiceI
+      - m_Target: {fileID: 2041509803}
+        m_TargetAssemblyTypeName: ClockPuzzle, Assembly-CSharp
+        m_MethodName: HorasHorario
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -57975,7 +58044,7 @@ Transform:
   - {fileID: 1960761766}
   - {fileID: 1218140644}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1846329326 stripped
 GameObject:
@@ -62667,7 +62736,7 @@ GameObject:
   - component: {fileID: 2015429208}
   - component: {fileID: 2015429207}
   - component: {fileID: 2015429206}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Marker (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62697,7 +62766,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015429204}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -62709,7 +62778,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015429204}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -63667,7 +63736,8 @@ GameObject:
   - component: {fileID: 2041509801}
   - component: {fileID: 2041509800}
   - component: {fileID: 2041509803}
-  m_Layer: 0
+  - component: {fileID: 2041509804}
+  m_Layer: 6
   m_Name: PuzzleClock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63767,12 +63837,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5cf5e82144d764e9dd7a2fc35018f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localPointerHourCorrect: 0
+  localPointerMinCorrect: 0
   puzzleCompleted: 0
-  hourHorario: 0
-  hourAntihorario: 0
-  minHorario: 0
-  minAntihorario: 0
-  PlayerMovement: {fileID: 0}
+  multiply: 5
+  PlayerMovement: {fileID: 179442615}
+  AIObject: {fileID: 2124244926}
+  pointers:
+  - {fileID: 47335631}
+  - {fileID: 408323441}
   puzzleUnlockText: {fileID: 625914131}
   obsText: {fileID: 819333408}
   obsWithoutItem: 
@@ -63800,6 +63873,102 @@ MonoBehaviour:
   - {fileID: 1024861802}
   - {fileID: 1597541354}
   - {fileID: 1476840451}
+--- !u!82 &2041509804
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041509798}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2043948530
 GameObject:
   m_ObjectHideFlags: 0
@@ -65546,7 +65715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2124244927
 Transform:
   m_ObjectHideFlags: 0
@@ -65561,7 +65730,7 @@ Transform:
   m_Children:
   - {fileID: 2018049020}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2124744918
 PrefabInstance:
@@ -71026,14 +71195,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057567950268470163}
   m_LocalRotation: {x: 0.60185033, y: 0.39344236, z: 0.5374784, w: 0.4405636}
-  m_LocalPosition: {x: -3.363, y: 2.42, z: 12.197}
+  m_LocalPosition: {x: -2.2729998, y: 0.56999993, z: 1.706994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1093814168389308278}
   - {fileID: 8431581254533457118}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1106434662}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 6.164, y: 91.962, z: 107.696}
 --- !u!33 &2910983179837092143
 MeshFilter:
@@ -73806,23 +73975,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1106434662}
     m_Modifications:
     - target: {fileID: 7853220141810682915, guid: 3d69f53a46203d144b034f641703401b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7853220141810682915, guid: 3d69f53a46203d144b034f641703401b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.282
+      value: 5.372
       objectReference: {fileID: 0}
     - target: {fileID: 7853220141810682915, guid: 3d69f53a46203d144b034f641703401b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.863
+      value: 4.0129995
       objectReference: {fileID: 0}
     - target: {fileID: 7853220141810682915, guid: 3d69f53a46203d144b034f641703401b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.17
+      value: -0.32000542
       objectReference: {fileID: 0}
     - target: {fileID: 7853220141810682915, guid: 3d69f53a46203d144b034f641703401b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -73858,6 +74027,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d69f53a46203d144b034f641703401b, type: 3}
+--- !u!4 &4877267314163913061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7853220141810682915, guid: 3d69f53a46203d144b034f641703401b, type: 3}
+  m_PrefabInstance: {fileID: 4877267314163913060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4890341016430635675
 Transform:
   m_ObjectHideFlags: 0

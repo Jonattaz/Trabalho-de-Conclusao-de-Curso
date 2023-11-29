@@ -7,12 +7,13 @@ using Cinemachine;
 public class ClockPuzzle : MonoBehaviour, IInteractable{
     
     private AudioSource audioSource;
+    [SerializeField] private bool localPointerHourCorrect;
+    [SerializeField] private bool localPointerMinCorrect;
     [SerializeField] private bool puzzleCompleted;
-    [SerializeField] private bool hourHorario;
-    [SerializeField] private bool hourAntihorario;
-    [SerializeField] private bool minHorario;
-    [SerializeField] private bool minAntihorario;
+    [SerializeField] private float multiply;
     [SerializeField] private PlayerMovement PlayerMovement;
+    [SerializeField] private GameObject AIObject;
+    [SerializeField] private PointerClock[] pointers;
     [SerializeField] private Text puzzleUnlockText;
     [SerializeField] private Text obsText;
     [SerializeField] private string obsWithoutItem;
@@ -38,31 +39,80 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
     // Update is called once per frame
     void Update(){
 
-        /* TEST - Fazer diferente, preciso ter a localização exata do ponteiro para saber se a hora está correta
-            Em vez de mudar adicionar collider para quando o ponteiro estiver OntriggerStay nele isso irá 
-            significar que o ponteiro está no lugar certo,
-            caso os dois estiverem no lugar correto o puzzle estará correto
-        */
-        if(hourHorario)
-            pointerHour.transform.Rotate(Vector3.right);
+    }
 
-        if(hourAntihorario)
-            pointerHour.transform.Rotate(-Vector3.right);
+    public void ApplyChange(){
+        
+        for (int i = 0; i < pointers.Length; i++){ 
+            
+            if(pointers[i].whichPointer){
 
-        if(minHorario)
-            pointerMin.transform.Rotate(Vector3.right);
+                if(pointers[i].pointerHour){
+                    localPointerHourCorrect = true;
+                }else{
+                    localPointerHourCorrect = false;
+                }
 
-        if(minAntihorario)
-            pointerMin.transform.Rotate(-Vector3.right);
+            }else{
+                if(pointers[i].pointerMin){
+                    localPointerMinCorrect = true;
+                }else{
+                    localPointerMinCorrect = false;
+                }
+            }
+        }
 
+        if(localPointerHourCorrect && localPointerMinCorrect){
+            Debug.Log("Puzzle Correct");
+        }else{
+            Debug.Log("Puzzle Wrong");
+        }
     }
 
     public void Interact(){
-              
+
+        for (int i = 0; i < pointers.Length; i++){
+            pointers[i].gameObject.SetActive(true);
+        }
+
+        AIObject.SetActive(false);
+        PlayerMovement.movementConstraint = true;
+        vfxObj.SetActive(false);
+        audioSource.enabled = true;
+        // Zoom in no objeto
+        activeCam.Priority = 11;
+        puzzleChoicesObject.active = true;
+        Cursor.visible = true;
+        
     }
 
+    public void HorasHorario(){
+        pointerHour.transform.Rotate(Vector3.right * multiply);
+    }
+
+    public void HorasAntihorario(){
+        pointerHour.transform.Rotate(-Vector3.right * multiply);
+
+    }
+
+    public void MinutosHorario(){
+        pointerMin.transform.Rotate(Vector3.right * multiply);
+    }
+
+
+    public void MinutosAntihorario(){
+        pointerMin.transform.Rotate(-Vector3.right * multiply);
+    }
+
+
     public void Exit(){
-        Time.timeScale = 1;
+
+        for (int i = 0; i < pointers.Length; i++){
+            pointers[i].gameObject.SetActive(false);
+        }
+
+
+        AIObject.SetActive(true);
         // Desativar o som ao sair
         audioSource.enabled = false; 
         audioSource.Stop();
