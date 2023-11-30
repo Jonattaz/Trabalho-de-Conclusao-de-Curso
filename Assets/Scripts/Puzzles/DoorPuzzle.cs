@@ -24,6 +24,7 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private GameObject obsObject;
     [SerializeField] private PlayerMovement PlayerMovement;
     [SerializeField] private GameObject[] lockers;
+    [SerializeField] private GameObject[] unlocker;
     private int aux;
 
     // Pages
@@ -37,11 +38,6 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update(){
-        
-    }
-
     public void ShowUnlock(){
         StartCoroutine(CamFocus());
     }
@@ -49,6 +45,7 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
     IEnumerator CamFocus(){
 
         lockers[aux].SetActive(false);
+        unlocker[aux].SetActive(true);
         audioSource.PlayOneShot(unlockedSound);
         PlayerMovement.movementConstraint = true;
         obsObject.active = true;

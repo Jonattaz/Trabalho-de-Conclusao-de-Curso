@@ -25,8 +25,7 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private PuzzleItem journalPage;
     [SerializeField] private GameObject puzzleChoicesObject;
     [SerializeField] private GameObject pointerHour;
-    [SerializeField] private GameObject pointerMin;
-    [SerializeField] private GameObject vfxObj;
+    [SerializeField] private GameObject pointerMin;    
     [SerializeField] private GameObject otherButtons;
     
 
@@ -69,7 +68,6 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
             puzzleCompleted = true;
             otherButtons.SetActive(false);
             journalPage.gameObject.SetActive(true);
-            vfxObj.SetActive(false);
             gameObject.GetComponent<BoxCollider>().enabled = false;
             
             if(audioClipEndPuzzle != null)
@@ -90,7 +88,6 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
 
             AIObject.GetComponent<EnemyFSM>().stopAI = true;
             PlayerMovement.movementConstraint = true;
-            vfxObj.SetActive(false);
             audioSource.enabled = true;
             // Zoom in no objeto
             activeCam.Priority = 11;
@@ -139,9 +136,6 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
 
         if(puzzleCompleted){
             audioSource.enabled = false;
-            vfxObj.SetActive(false);
-        }else{
-            vfxObj.SetActive(true);
         }
     }        
 }
