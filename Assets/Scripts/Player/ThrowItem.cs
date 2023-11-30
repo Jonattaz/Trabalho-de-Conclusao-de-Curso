@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ThrowItem : MonoBehaviour{
     [Header("References")]
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform orientation;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private GameObject itemToThrow;
@@ -158,6 +159,7 @@ public class ThrowItem : MonoBehaviour{
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
+        animator.SetTrigger("Throw");
         totalThrows--;
 
         // Throw cooldown

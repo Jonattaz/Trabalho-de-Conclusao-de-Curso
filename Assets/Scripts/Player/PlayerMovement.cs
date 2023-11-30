@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour{
     
     [Header("References")]
     [SerializeField] private Transform playerObj;
+    [SerializeField] private Animator animator;
+
     public bool movementConstraint;
     Rigidbody rb;
     public bool camCon1;
@@ -52,6 +54,7 @@ public class PlayerMovement : MonoBehaviour{
 
     // Start is called before the first frame update
     void Start(){
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         startYScale = transform.localScale.y;
@@ -59,7 +62,7 @@ public class PlayerMovement : MonoBehaviour{
         rotationSpeedStore = rotationSpeed;
 
         //Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.visible = true;
         movementConstraint = false;
     }
 
@@ -110,17 +113,30 @@ public class PlayerMovement : MonoBehaviour{
         // Backwards Speed
         if(Input.GetKeyDown(KeyCode.S)){
             moveSpeed = backwardsSpeed;
+            // Andar - 1
+            animator.SetFloat("Speed", moveSpeed);
             backwardsMove = true;
+        }else if(Input.GetKeyUp(KeyCode.S)){
+            moveSpeed = 0f;
+            animator.SetFloat("Speed", moveSpeed);
+
         }
         if(Input.GetKeyDown(KeyCode.W)){
+            // Andar +1
             moveSpeed = walkSpeed;
             backwardsMove = false;
             moveSpeed = walkSpeed;
+            animator.SetFloat("Speed", moveSpeed);
             HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, noiseRun);
+        }else if(Input.GetKeyUp(KeyCode.W)){
+            moveSpeed = 0f;
+            animator.SetFloat("Speed", moveSpeed);
         }
 
         // Start crouch
         if(Input.GetKeyDown(crouchKey)){
+            // Hchar
+            animator.SetBool("Crouch", true);
             crouching = true;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
@@ -128,6 +144,7 @@ public class PlayerMovement : MonoBehaviour{
 
         // Stop crouch
         if(Input.GetKeyUp(crouchKey)){
+            animator.SetBool("Crouch", false);
             crouching = false;
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         } 
@@ -139,14 +156,18 @@ public class PlayerMovement : MonoBehaviour{
         if(Input.GetKey(crouchKey)){
             state = MovementState.crouching;
             moveSpeed = crouchSpeed;
+
         }else if(Input.GetKeyUp(crouchKey)){
             moveSpeed = walkSpeed;
         }
 
         // Mode - Sprinting
         if(grounded && Input.GetKey(sprintKey)){
+             
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
+            
+            animator.SetFloat("Speed", moveSpeed);
             
             //Quando a personagem corre faz barulho - Fazer barulho de acordo com um timer(WaitForSeconds)
             
@@ -155,6 +176,7 @@ public class PlayerMovement : MonoBehaviour{
             
         }else if(Input.GetKeyUp(sprintKey)){
             moveSpeed = walkSpeed;
+            animator.SetFloat("Speed", moveSpeed);
         }
 
         // Mode - Walking

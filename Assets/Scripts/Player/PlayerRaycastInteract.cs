@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerRaycastInteract : MonoBehaviour{
     
     private PlayerMovement playerMovement;
+    [SerializeField] private Animator animator;
     [SerializeField] private KeyCode interactionKey = KeyCode.E;                
     [SerializeField] private float raycastRange;
     [SerializeField] private LayerMask layerMask;
@@ -32,6 +33,7 @@ public class PlayerRaycastInteract : MonoBehaviour{
             if(hitObjectInteract != null){
                 if(Input.GetKeyDown(interactionKey)){
                     hitObjectInteract.Interact();
+                    animator.SetTrigger("Interact");
                 }
             } 
 

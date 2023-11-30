@@ -15,6 +15,7 @@ public class LocalSceneController : MonoBehaviour{
     public GameObject controlsPanel;
     public GameObject configPanel;
     public GameObject buttonPanel;
+    public GameObject cutsceneCanvas;
     public bool hasClickSound;
 
     /// Awake is called when the script instance is being loaded.
@@ -24,7 +25,8 @@ public class LocalSceneController : MonoBehaviour{
 
     // Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.
     void Start(){
-        
+        Cursor.visible = true;
+            
         audioSource = GetComponent<AudioSource>();
         // Create a temporary reference to the current scene.
 	    Scene currentScene = SceneManager.GetActiveScene();
@@ -36,6 +38,11 @@ public class LocalSceneController : MonoBehaviour{
 			Cursor.visible = true;
 		}
 	
+    }
+
+    public void SkipCutscene(){
+        Cursor.visible = false;
+        cutsceneCanvas.SetActive(false);
     }
 
     public void LoadScene(int index){
