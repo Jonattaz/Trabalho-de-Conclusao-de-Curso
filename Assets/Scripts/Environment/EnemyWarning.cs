@@ -24,8 +24,8 @@ public class EnemyWarning : MonoBehaviour{
 
     // OnTriggerEnter is called when the Collider other enters the trigger.
     void OnTriggerEnter(Collider other){
-         messageTextObj.text = collectMessage;
-        StartCoroutine(FadingText());    
+      //   messageTextObj.text = collectMessage;
+       // StartCoroutine(FadingText());    
     }
 
     IEnumerator FadingText()

@@ -9034,86 +9034,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216146807}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &217403146
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 217403147}
-  - component: {fileID: 217403149}
-  - component: {fileID: 217403148}
-  m_Layer: 5
-  m_Name: WarningText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &217403147
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217403146}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 591128444}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 19.21209, y: 313.1903}
-  m_SizeDelta: {x: 467.1099, y: 301.9826}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &217403148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217403146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: d0c913ce0e815a4448a9e0e08ac4af78, type: 3}
-    m_FontSize: 40
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 50
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 
---- !u!222 &217403149
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217403146}
-  m_CullTransparentMesh: 1
 --- !u!1 &223573840
 GameObject:
   m_ObjectHideFlags: 0
@@ -9606,7 +9526,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34078
+  m_Name: pb_Mesh97354
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19803,7 +19723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503678430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.426, y: 1.254, z: 0.303}
+  m_LocalPosition: {x: -12.949, y: 1.254, z: 12.059}
   m_LocalScale: {x: 0.21907112, y: 0.21907112, z: 0.21907112}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19834,7 +19754,8 @@ MonoBehaviour:
   prefab: {fileID: 0}
   itemName: "Obitu\xE1rio 2"
   itemType: Item
-  itemDescription: "Este \xE9 o obtu\xE1rio do papai."
+  itemDescription: "Este \xE9 o obtu\xE1rio do papai. A maior parte das informa\xE7\xF5es
+    est\xE1 sensurada, mas eu consigo ler \"... 20 minutos \""
   vfxObj: {fileID: 958511702}
   audioClipOnInteract: {fileID: 0}
   pageImage: {fileID: 21300000, guid: 4af8f552b33dcda48996c06b6ba9c113, type: 3}
@@ -22927,7 +22848,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 638972080}
-  - {fileID: 217403147}
   - {fileID: 1916375744}
   - {fileID: 1772229194}
   m_Father: {fileID: 61944760}
@@ -41499,7 +41419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectMessage: Cuidado com o inimigo, caso ele te veja fique parada e quando ele
     se distrair saia de perto, nunca se aproxime muito dele.
-  messageTextObj: {fileID: 217403148}
+  messageTextObj: {fileID: 0}
   textTime: 10
 --- !u!65 &1147904843
 BoxCollider:
@@ -63445,7 +63365,8 @@ MonoBehaviour:
   prefab: {fileID: 0}
   itemName: "Obitu\xE1rio 1"
   itemType: Item
-  itemDescription: "Este \xE9 o obtu\xE1rio da mam\xE3e."
+  itemDescription: "Este \xE9 o obtu\xE1rio da mam\xE3e. A maior parte das informa\xE7\xF5es
+    est\xE1 sensurada, mas eu consigo ler \"03 horas ... \""
   vfxObj: {fileID: 464118614}
   audioClipOnInteract: {fileID: 0}
   pageImage: {fileID: 21300000, guid: c4d3dae280536b149b0dd31db6f0cdde, type: 3}
@@ -68095,7 +68016,7 @@ RectTransform:
   m_Children:
   - {fileID: 1022296417}
   m_Father: {fileID: 591128444}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -76669,7 +76590,7 @@ MonoBehaviour:
     di\xE1rio."
   vfxObj: {fileID: 464046313}
   audioClipOnInteract: {fileID: 0}
-  pageImage: {fileID: 21300000, guid: 49dd6629dea62b546815c063c0f0d4aa, type: 3}
+  pageImage: {fileID: 21300000, guid: 343e3011d7ba4954692b62fd2ae6c933, type: 3}
 --- !u!82 &1909468838
 AudioSource:
   m_ObjectHideFlags: 0
@@ -77000,7 +76921,7 @@ RectTransform:
   m_Children:
   - {fileID: 913429255}
   m_Father: {fileID: 591128444}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -80573,7 +80494,7 @@ MonoBehaviour:
   _VisionConeColor: {r: 1, g: 0.00000019073488, b: 0, a: 0.25}
   _HearingRange: 6
   _HearingRangeColor: {r: 1, g: 0.87176263, b: 0, a: 0.25}
-  _ProximityDetectionRange: 3
+  _ProximityDetectionRange: 0
   _ProximityRangeColor: {r: 0, g: 0.4457605, b: 1, a: 0.25}
 --- !u!114 &2016958547
 MonoBehaviour:
