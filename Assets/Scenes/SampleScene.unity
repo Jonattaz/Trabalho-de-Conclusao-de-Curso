@@ -9526,7 +9526,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh97354
+  m_Name: pb_Mesh34146
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -30283,7 +30283,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: d0c913ce0e815a4448a9e0e08ac4af78, type: 3}
-    m_FontSize: 36
+    m_FontSize: 32
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
@@ -30295,7 +30295,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "W,A,S,D - Movimenta\xE7\xE3o\nCtrl Esq - Agachar\nShift Esq - Correr\nE
-    - Intera\xE7\xE3o com Objetos\nG - Arremessar Objeto Amarelo\nEsc - Abrir menu"
+    - Interagir\nG - Arremessar Garrafa\nEsc - Invent\xE1rio, Di\xE1rio, Configura\xE7\xE3o"
 --- !u!222 &847948452
 CanvasRenderer:
   m_ObjectHideFlags: 0
