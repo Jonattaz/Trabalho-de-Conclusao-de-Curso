@@ -11,6 +11,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     private Renderer renderer;
     private bool verify;
     private bool canPuzzle;
+    private bool noStop;
     [SerializeField] private Material[] materials;
     [SerializeField] private CinemachineVirtualCamera activeCam;
     [SerializeField] private CinemachineVirtualCamera pageCam;
@@ -83,9 +84,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     }
 
     public void Interact(){
-        
         if(!puzzleCompleted && !PlayerMovement.crouching){
-            Time.timeScale = 0;
             PlayerMovement.movementConstraint = true;
             vfxObj.SetActive(false);
             // Checks if the player has the music box piece in their inventory
@@ -112,10 +111,16 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 canPuzzle = true;
                 
             }else{
-                Time.timeScale = 1;
-                obsObject.active = !obsObject.active;
-                obsText.text = obsWithoutItem;
-                PlayerMovement.movementConstraint = false;
+                if(noStop){
+                    PlayerMovement.movementConstraint = false;
+                    obsObject.SetActive(false);
+                }else{
+                    PlayerMovement.movementConstraint = true;
+                    obsObject.SetActive(true);
+                    obsText.text = obsWithoutItem;
+                }                
+
+                noStop = !noStop;
             }  
         }      
     }

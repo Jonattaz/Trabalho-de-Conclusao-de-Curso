@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour{
 
         // Start crouch
         if(Input.GetKeyDown(crouchKey)){
-            // Hchar
+
             animator.SetBool("Crouch", true);
             crouching = true;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
@@ -174,7 +174,7 @@ public class PlayerMovement : MonoBehaviour{
             if(!crouching)
                 HearingManager.Instance.OnSoundEmitted(gameObject, transform.position, EHeardSoundCategory.EFootstep, noiseWalk);
             
-        }else if(Input.GetKeyUp(sprintKey)){
+        }else if(Input.GetKeyUp(sprintKey) && !crouching){
             moveSpeed = walkSpeed;
             animator.SetFloat("Speed", moveSpeed);
         }
