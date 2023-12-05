@@ -17,6 +17,7 @@ public class LocalSceneController : MonoBehaviour{
     public GameObject buttonPanel;
     public GameObject cutsceneCanvas;
     public bool hasClickSound;
+    public GameObject sceneActivator;
 
     /// Awake is called when the script instance is being loaded.
     void Awake(){
@@ -34,13 +35,14 @@ public class LocalSceneController : MonoBehaviour{
 	    // Retrieve the name of this scene.
 	    string sceneName = currentScene.name;
 
-		if (sceneName == "Menu"){
+			if (sceneName == "Menu"){
 			Cursor.visible = true;
 		}
-	
     }
 
     public void SkipCutscene(){
+        sceneActivator.SetActive(true);
+        Time.timeScale = 1;
         Cursor.visible = false;
         cutsceneCanvas.SetActive(false);
     }

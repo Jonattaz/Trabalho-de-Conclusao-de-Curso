@@ -82,7 +82,6 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }else{
-                    Time.timeScale = 0;
                     PlayerMovement.movementConstraint = true;
                     audioSource.PlayOneShot(lockedSound);
                     audioSource.enabled = true;
@@ -94,7 +93,6 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
                 }
                 
             }else{        
-                Time.timeScale = 0;
                 PlayerMovement.movementConstraint = true;
                 audioSource.PlayOneShot(lockedSound);
                 audioSource.enabled = true;
@@ -116,7 +114,6 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
                 Cursor.visible = true;
             }             
         }else if(!interacting){ 
-            Time.timeScale = 1;
             // Desativar o som ao sair
             audioSource.enabled = false; 
             audioSource.Stop();

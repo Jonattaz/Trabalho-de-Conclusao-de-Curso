@@ -11,7 +11,8 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private bool localPointerHourCorrect;
     [SerializeField] private bool localPointerMinCorrect;
     [SerializeField] private bool puzzleCompleted;
-    [SerializeField] private float multiply;
+    [SerializeField] private float multiplyHours;
+    [SerializeField] private float multiplyMinutes;
     [SerializeField] private PlayerMovement PlayerMovement;
     [SerializeField] private GameObject AIObject;
     [SerializeField] private PointerClock[] pointers;
@@ -32,11 +33,6 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
     // Start is called before the first frame update
     void Start(){
         audioSource = GetComponent<AudioSource>();
-    }
-
-    // Update is called once per frame
-    void Update(){
-
     }
 
     public void ApplyChange(){
@@ -98,21 +94,21 @@ public class ClockPuzzle : MonoBehaviour, IInteractable{
     }
 
     public void HorasHorario(){
-        pointerHour.transform.Rotate(Vector3.right * multiply);
+        pointerHour.transform.Rotate(Vector3.right * multiplyHours);
     }
 
     public void HorasAntihorario(){
-        pointerHour.transform.Rotate(-Vector3.right * multiply);
+        pointerHour.transform.Rotate(-Vector3.right * multiplyHours);
 
     }
 
     public void MinutosHorario(){
-        pointerMin.transform.Rotate(Vector3.right * multiply);
+        pointerMin.transform.Rotate(Vector3.right * multiplyMinutes);
     }
 
 
     public void MinutosAntihorario(){
-        pointerMin.transform.Rotate(-Vector3.right * multiply);
+        pointerMin.transform.Rotate(-Vector3.right * multiplyMinutes);
     }
 
 

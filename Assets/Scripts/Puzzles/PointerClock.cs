@@ -9,12 +9,7 @@ public class PointerClock : MonoBehaviour{
     public bool pointerHour;
     public bool pointerMin;
     public bool puzzleStarted;
-    
-    // OnTriggerExit is called when the Collider other has stopped touching the trigger.
-    void OnTriggerExit(Collider other){
         
-    }
-    
     // OnTriggerStay is called once per frame for every Collider other that is touching the trigger.
     void OnTriggerStay(Collider other){
 

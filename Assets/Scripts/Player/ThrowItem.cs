@@ -27,7 +27,7 @@ public class ThrowItem : MonoBehaviour{
     private LayerMask itemCollisionMask;
 
     [Header("Throwing")]
-    [SerializeField] private KeyCode throwKey = KeyCode.G;
+    [SerializeField] private KeyCode throwKey;
     [SerializeField] private float throwForce;
     [SerializeField] private float throwUpwardForce;
     [SerializeField] private float throwMovementTimer;

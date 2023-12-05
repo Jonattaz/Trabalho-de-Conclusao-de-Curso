@@ -13,6 +13,8 @@ public class GameMenu : MonoBehaviour{
     public bool hasClickSound;
     public AudioClip clickSound;
     [SerializeField] private KeyCode menuKey = KeyCode.Escape;
+    [SerializeField] private KeyCode inventoryKey = KeyCode.I;
+    [SerializeField] private KeyCode journalKey = KeyCode.J;
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject journalPanel;
@@ -49,19 +51,52 @@ public class GameMenu : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){        
-        if(!playerMovement.movementConstraint)
+        if(!playerMovement.movementConstraint){
             MenuController();
+            InventoryOpen();
+            JournalOpen();
+        }
     }
 
     public void MenuController(){
-        if(Input.GetKeyDown(menuKey)){
-            menuPanel.active = !menuPanel.active;
         
-            if(menuPanel.active)
-                Time.timeScale = 0;
-            else{
-                Time.timeScale = 1; 
+        if(!journalPanel.active && !inventoryPanel.active){
+            if(Input.GetKeyDown(menuKey)){
+                menuPanel.active = !menuPanel.active;
+            
+                if(menuPanel.active)
+                    Time.timeScale = 0;
+                else{
+                    Time.timeScale = 1; 
+                }
             }
+        }
+    }
+
+    public void InventoryOpen(){
+        
+        if(!journalPanel.active && !menuPanel.active)
+            if(Input.GetKeyDown(inventoryKey)){
+                inventoryPanel.active = !inventoryPanel.active;
+                
+                if(inventoryPanel.active)
+                    Time.timeScale = 0;
+                else{
+                    Time.timeScale = 1; 
+                }
+            }
+    }
+
+    public void JournalOpen(){
+        if(!inventoryPanel.active && !menuPanel.active)
+            if(Input.GetKeyDown(journalKey)){            
+                journalPanel.active = !journalPanel.active;
+
+                if(journalPanel.active)
+                    Time.timeScale = 0;
+                else{
+                    Time.timeScale = 1; 
+                }
         }
     }
 
