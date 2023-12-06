@@ -7,7 +7,11 @@ using Cinemachine;
 public class DoorPuzzle : MonoBehaviour, IInteractable{
 
     private AudioSource audioSource;
-    private bool interacting;
+    private bool interacting;    
+    private int aux;
+    [SerializeField] private bool startTimer; 
+    [SerializeField] private float timer;
+    [SerializeField] private float delayTime;
     [SerializeField] private AudioClip lockedSound;
     [SerializeField] private AudioClip unlockedSound;
     [SerializeField] private bool lessPages;
@@ -21,16 +25,16 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private string doorText;
     [SerializeField] private string unlockText;
     [SerializeField] private Text obsText;
+    [SerializeField] private Text obsUnlock;
     [SerializeField] private GameObject obsObject;
+    [SerializeField] private GameObject unlockObject;
     [SerializeField] private PlayerMovement PlayerMovement;
     [SerializeField] private GameObject[] lockers;
     [SerializeField] private GameObject[] unlocker;
-    private int aux;
 
     // Pages
     [SerializeField] private PuzzleItem journalPage1;
     [SerializeField] private PuzzleItem journalPage2;
-
 
 
     // Start is called before the first frame update
@@ -38,8 +42,19 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
         audioSource = GetComponent<AudioSource>();
     }
 
+    // Update is called every frame, if the MonoBehaviour is enabled.
+    void Update(){
+        if(startTimer)
+            if (timer < delayTime){
+                timer += Time.deltaTime;
+            }else{
+                timer = 0;
+                StartCoroutine(CamFocus());   
+                startTimer = false;
+            }
+    }
     public void ShowUnlock(){
-        StartCoroutine(CamFocus());
+        startTimer = true; 
     }
 
     IEnumerator CamFocus(){
@@ -48,16 +63,16 @@ public class DoorPuzzle : MonoBehaviour, IInteractable{
         unlocker[aux].SetActive(true);
         audioSource.PlayOneShot(unlockedSound);
         PlayerMovement.movementConstraint = true;
-        obsObject.active = true;
-        obsText.text = unlockText;
+        unlockObject.active = true;
+        obsUnlock.text = unlockText;
         // Zoom in no objeto
         activeCam.Priority = 11;
 
         yield return new WaitForSeconds(camTime);
 
         PlayerMovement.movementConstraint = false;
-        obsObject.active = false;
-        obsText.text = unlockText;
+        unlockObject.active = false;
+        obsUnlock.text = unlockText;
         // Zoom in no objeto
         activeCam.Priority = 0;
         aux++;

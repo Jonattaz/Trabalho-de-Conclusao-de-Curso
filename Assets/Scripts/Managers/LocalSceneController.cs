@@ -15,9 +15,7 @@ public class LocalSceneController : MonoBehaviour{
     public GameObject controlsPanel;
     public GameObject configPanel;
     public GameObject buttonPanel;
-    public GameObject cutsceneCanvas;
     public bool hasClickSound;
-    public GameObject sceneActivator;
 
     /// Awake is called when the script instance is being loaded.
     void Awake(){
@@ -38,13 +36,6 @@ public class LocalSceneController : MonoBehaviour{
 			if (sceneName == "Menu"){
 			Cursor.visible = true;
 		}
-    }
-
-    public void SkipCutscene(){
-        sceneActivator.SetActive(true);
-        Time.timeScale = 1;
-        Cursor.visible = false;
-        cutsceneCanvas.SetActive(false);
     }
 
     public void LoadScene(int index){

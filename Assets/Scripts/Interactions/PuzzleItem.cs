@@ -78,7 +78,6 @@ public class PuzzleItem : MonoBehaviour, IInteractable{
         }
 
         if(doorPage){
-
             doorPuzzle.ShowUnlock();
         }
 
