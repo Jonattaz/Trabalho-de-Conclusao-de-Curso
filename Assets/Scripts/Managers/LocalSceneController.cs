@@ -15,6 +15,7 @@ public class LocalSceneController : MonoBehaviour{
     public GameObject controlsPanel;
     public GameObject configPanel;
     public GameObject buttonPanel;
+    public GameObject creditsPanel;
     public bool hasClickSound;
 
     /// Awake is called when the script instance is being loaded.
@@ -66,6 +67,8 @@ public class LocalSceneController : MonoBehaviour{
             audioSource.PlayOneShot(clickSound);
 
         controlsPanel.SetActive(false);
+        if(creditsPanel != null)
+            creditsPanel.SetActive(false);
         menuPanel.SetActive(true);
     }
 
@@ -83,6 +86,14 @@ public class LocalSceneController : MonoBehaviour{
 
         buttonPanel.SetActive(false);
         configPanel.SetActive(true);
+    }
+
+    public void GoCredits(){
+        if(hasClickSound)
+            audioSource.PlayOneShot(clickSound);
+
+        menuPanel.SetActive(false);
+        creditsPanel.SetActive(true);
     }
 }
 
