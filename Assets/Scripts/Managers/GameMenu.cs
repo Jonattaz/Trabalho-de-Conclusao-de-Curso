@@ -35,7 +35,8 @@ public class GameMenu : MonoBehaviour{
     public GameObject[] pagesButton;
     public GameObject[] imagesPanel;
     public GameObject[] pagesImages;
-   
+    public GameObject[] itemImage;
+
     public static GameMenu instance;
     
     private void Awake(){
@@ -182,10 +183,12 @@ public class GameMenu : MonoBehaviour{
                 for(int j = 0; j < PlayerInventory.instance.itemIndex; j++){
                     if(i == j){
                         itemDescription[j].gameObject.SetActive(true);
+                        itemImage[j].gameObject.SetActive(true);
                     }
                 }
             }else{
                 itemDescription[i].gameObject.SetActive(false);
+                itemImage[i].gameObject.SetActive(false);
             }
         }
     }

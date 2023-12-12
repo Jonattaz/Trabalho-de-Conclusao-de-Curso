@@ -44,6 +44,7 @@ public class PlayerInventory : MonoBehaviour{
                 GameMenu.instance.itensButton[itemIndex].SetActive(true);
                 GameMenu.instance.itens[itemIndex].text = item.itemName;
                 GameMenu.instance.itemDescription[itemIndex].text = item.itemDescription;
+                GameMenu.instance.itemImage[itemIndex].GetComponent<Image>().sprite = item.image;
                 itemIndex++; 
             }
 
@@ -61,8 +62,8 @@ public class PlayerInventory : MonoBehaviour{
                 GameMenu.instance.pagesButton[pagesIndex].SetActive(true);
                 GameMenu.instance.pages[pagesIndex].text = item.itemName;
                 GameMenu.instance.pageDescription[pagesIndex].text = item.itemDescription;
-                GameMenu.instance.pagesButton[pagesIndex].GetComponent<Image>().sprite = item.pageImage;
-                GameMenu.instance.pagesImages[pagesIndex].GetComponent<Image>().sprite = item.pageImage;
+                GameMenu.instance.pagesButton[pagesIndex].GetComponent<Image>().sprite = item.image;
+                GameMenu.instance.pagesImages[pagesIndex].GetComponent<Image>().sprite = item.image;
                 pagesIndex++;   
             }
         }else{

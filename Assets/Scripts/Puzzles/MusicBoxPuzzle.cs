@@ -29,6 +29,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
     [SerializeField] private string endPuzzleText;
     [SerializeField] private PlayerMovement PlayerMovement;
     [SerializeField] private GameObject vfxObj;
+    [SerializeField] private GameObject exitButton;
     [SerializeField] private bool puzzleCompleted;
     
 
@@ -106,7 +107,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
                 audioSource.enabled = true;
                 // Zoom in no objeto
                 activeCam.Priority = 11;
-                puzzleChoicesObject.active = true;
+                puzzleChoicesObject.SetActive(true);
                 Cursor.visible = true;
                 canPuzzle = true;
                 
@@ -208,7 +209,8 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
 
     public void Play(){
         if(!audioSource.isPlaying){
-            otherButtons.active = false;
+            otherButtons.SetActive(false);
+            exitButton.SetActive(false);
             if(IPin && !IIPin && !IIIPin && IVPin){
 
                 activeCam.Priority = 0;
@@ -274,7 +276,7 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
         // Zoom out 
         activeCam.Priority = 0;
         pageCam.Priority = 0;
-        puzzleChoicesObject.active = false;
+        puzzleChoicesObject.SetActive(false);
         PlayerMovement.movementConstraint = false;
         Cursor.visible = false;
         if(puzzleCompleted){
@@ -310,7 +312,12 @@ public class MusicBoxPuzzle : MonoBehaviour, IInteractable{
             //5. Go back to #2 and play the next audio in the adClips array
         }
         
-        otherButtons.active = true;
+        if(!puzzleCompleted){
+            otherButtons.SetActive(true);
+            exitButton.SetActive(true);
+        }else{
+            exitButton.SetActive(true);
+        }
     }
 }
 

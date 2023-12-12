@@ -33,10 +33,6 @@ public class LocalSceneController : MonoBehaviour{
 
 	    // Retrieve the name of this scene.
 	    string sceneName = currentScene.name;
-
-			if (sceneName == "Menu"){
-			Cursor.visible = true;
-		}
     }
 
     public void LoadScene(int index){
